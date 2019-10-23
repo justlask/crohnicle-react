@@ -1,0 +1,21 @@
+<main>
+  <div class="heading">
+    <h1>{{user.username}}'s groups</h1>
+  </div>
+
+<div class="userinfo2">
+    {{#each groups}}
+      <div class="user">
+        <a href="/groups/{{id}}">{{name}}</a>
+        <img src="{{groupImage}}" alt="" class="userPic">
+        <sub>{{location.city}}, {{location.state}}</sub>
+        <sub>{{summary}}</sub>
+        <form action="/groups/remove/{{../user.id}}/{{id}}" method="POST">
+          <button class="buttony">leave group</button>
+        </form>
+
+      </div>
+    {{/each}}
+
+  </div>
+</main>

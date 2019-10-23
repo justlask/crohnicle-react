@@ -1,0 +1,59 @@
+<div class="heading">
+  <h1>edit your page</h1>
+</div>
+<div class="profile-edit">
+  <div class="form-style">
+    <form action="/user/edit" method="POST" enctype="multipart/form-data">
+
+      <label for="profilePic"><b>profile picture</b></label>
+      <input type="file" name="photo"><br>
+
+      <label for="name"><b>name</b></label>
+      <input type="text" name="name" value={{user.name}}><br>
+
+      <label for="bio"><b>bio</b></label>
+      <textarea name="bio" id="bio" cols="30" rows="10">{{user.bio}}</textarea><br>
+
+      <label for="email"><b>email</b></label>
+      <input type="email" name="email" id="email"><br>
+
+      <button type="submit">submit</button>
+    </form>
+  </div>
+
+  <div class="form-style">
+    <form action="/user/edit/conditions" method="POST">
+      <label for="illness"><b>illnesses/conditions:</b></label><br>
+      <sub>select the checkbox to remove</sub><br>
+      {{#each user.illness}}
+        <input type="checkbox" name="remove" id="{{this}}" value="{{this}}">{{this}}<br>
+      {{/each}}
+      <input type="text" name="illness" id="illness" placeholder="illness/condition">
+      <button>update</button><br>
+    </form>
+  </div>
+
+  <div class="form-style">
+    <form action="/user/edit/medications" method="POST">
+      <label for="medication"><b>medications:</b></label><br>
+      <sub>select the checkbox to remove</sub><br>
+      {{#each user.medications}}
+        <input type="checkbox" name="remove" id="{{this}}" value={{this}}>{{this}}<br>
+      {{/each}}
+      <input type="text" name="medication" placeholder="add another">
+      <button>update</button><br>
+    </form>
+  </div>
+
+
+  <div>
+    <form action="/user/delete" method="POST">
+    <p>delete account</p>
+    <button>delete account</button>
+  </form>
+  </div>
+</div>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>

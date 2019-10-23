@@ -1,0 +1,27 @@
+<main>
+  <div class="heading">
+  <h1>join crohnicle</h1>
+</div>
+
+<div class="user">
+<form action="/user/signup" method="POST">
+  <label for="username"><i class="fas fa-user"></i> </label>
+  <input type="text" name="username" id="username" placeholder="username" required><br>
+
+  <label for="email"><i class="far fa-envelope"></i> </label>
+  <input type="email" name="email" id="email" placeholder="email" required><br>
+
+  <label for="password"><i class="fas fa-lock"></i> </label>
+  <input type="password" name="password" id="password" placeholder="password" required><br>
+
+  <select name="type" id="type" required>
+    <option value="" selected disabled>select account type</option>
+    <option value="crohnie">patient</option>
+    <option value="ally">ally</option>
+    <option value="caregiver">caregiver</option>
+    <option value="professional">medical professional</option>
+  </select>
+  <button class="buttony">sign up!</button>
+</form>
+</div>
+</main>

@@ -1,0 +1,506 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap');
+header {
+  display: flex;
+  justify-content: space-around;
+  padding: 25px;
+  background-color: black;
+  color: white;
+}
+
+
+img {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+nav {
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fa-heart {
+  color: red;
+}
+
+#crohniclename {
+  text-decoration: none;
+  color: pink;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.pushright {
+  align-self: flex-end;
+  margin: 10px 0px;
+}
+
+nav a,
+.links a {
+  color:pink;
+  text-decoration: none;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  background-color:  #f7f7f7;
+  color: black;
+  font-size: 20px;
+  font-family: 'Poppins';
+  background-color: pink;
+}
+
+#profilePic {
+  height: auto;
+  width: 150px;
+  border-radius: 20px;
+}
+
+.users {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.body {
+  display: flex;
+}
+
+.body > div img {
+  height: auto;
+  width: 100px;
+}
+
+.body > div {
+  width: 40vw;
+}
+
+.body a {
+  text-decoration: none;
+  color: black;
+}
+
+
+
+.user {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  padding-bottom: 20px;
+  background-color: #f7f7f7;
+  border-radius: 12px;
+  margin: 10px;
+  width: 100%;
+  min-width: 300px;
+  max-width: 400px;
+}
+
+.user .buttony {
+  font-size: 12px;
+}
+
+.user a,
+.user p:first-child {
+  font-size: 30px;
+  text-decoration: none;
+  color: black;
+}
+
+
+.userPic {
+  height: auto;
+  width: 200px;
+  border-radius: 16px;
+}
+
+
+.rowit {
+  display: flex;
+  padding-top: 50px;
+  align-items: center;
+  justify-content: space-around;
+  width: 80vw;
+
+}
+
+.userinfo2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100vw;
+  max-width: 600px;
+  min-width: 300px;
+}
+
+.userinfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100vw;
+  max-width: 400px;
+}
+
+.friendinfo {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+}
+
+.friendinfo div {
+  max-width: 50vw;
+}
+.post form {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  background-color: #7e6d7b;
+  justify-content: space-around;
+  align-items: flex-start;
+  color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 12px;
+  padding: 15px;
+  width: 70vw;
+}
+
+.post form input {
+  background-color: #f7f7f7;
+  padding: 5px 10px;
+  font-size: 20px;
+  margin: 0px 50px;
+  border-radius: 8px;
+}
+
+.post form textarea {
+  background-color: #f7f7f7;
+  margin: 20px 50px;
+  font-size: 20px;
+  font-family: 'Poppins';
+  border-radius: 8px;
+  height: 100px;
+  width: 60vw;
+}
+
+.group {
+  max-width: 800px;
+}
+
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+  z-index: -1;
+}
+
+.inputfile + label {
+  padding: 5px 10px;
+  border-radius: 8px;
+  color: black;
+  background-color: white;
+  display: inline-block;
+  cursor: pointer;
+  margin: 20px 0;
+  margin-left: 50px;
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+  background-color: black;
+  color: white;
+}
+
+.post form button {
+  align-self: flex-end;
+}
+
+.profile-edit {
+  min-height: 50vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.allposts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.single {
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  background-color: #f7f7f7;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin: 50px;
+  border-radius: 12px;
+  width: 100vw;
+  max-width: 800px;
+}
+
+.heading a {
+  color: white;
+  text-shadow: 1px 3px 2px black;
+  text-decoration: none;
+}
+
+.user img {
+  height: auto;
+  width: 200px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.single a,
+.user a {
+  color: black;
+  text-shadow: 2px 2px 2px pink;
+  text-decoration: none;
+}
+
+.form-style {
+  height: 300px;
+}
+
+.user-buttons a,
+.post form button,
+.buttony {
+  text-decoration: none;
+  color: black;
+  padding: 5px 15px;
+  font-size: 20px;
+  border-radius: 8px;
+  transition: all 3s;
+  border: 2px solid black;
+  box-shadow: 1px 1px black;
+  background-color: white;
+}
+
+.buttony-small {
+  text-decoration: none;
+  color: black;
+  padding: 5px 10px;
+  font-size: 12px;
+  border-radius: 8px;
+  transition: all 3s;
+  border: 2px solid black;
+  box-shadow: 1px 1px black;
+  background-color: white;
+  margin-left: 10px;
+}
+
+.user-buttons {
+  display: flex;
+  justify-content: space-around;
+  width: 250px;
+}
+
+.login form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.flexright {
+  display: flex;
+  width: 50vw;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.login form button {
+  text-decoration: none;
+  color: black;
+  padding: 5px 15px;
+  font-size: 20px;
+  border-radius: 8px;
+  transition: all 3s;
+  border: 2px solid black;
+  box-shadow: 1px 1px black;
+  background-color: white;
+}
+
+
+.login form input,
+.user form input,
+.group form input {
+  padding: 5px 10px;
+  margin: 5px 0px;
+  border-radius: 12px;
+  font-family: 'Poppins';
+  font-size: 20px;
+}
+
+.badge {
+  padding: 5px 15px;
+  background-color: blue;
+  font-size: 18px;
+  border-radius: 8px;
+  color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#illnessinput,
+#medicationinput {
+  padding: 5px 10px;
+  margin: 5px 0px;
+  border-radius: 12px;
+  font-family: 'Poppins';
+  font-size: 20px;
+  width: 100%;
+}
+
+.user form select {
+  padding: 5px 10px;
+  margin: 5px 0px;
+  font-size: 20px;
+  font-family: 'Poppins'
+}
+
+.heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.user .fas,
+.user .far {
+  font-size: 26px;
+  margin-right: 5px;
+}
+
+main {
+  min-height: 80vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.links {
+  display: flex;
+  align-items: center;
+}
+
+
+
+//STOLEN CSS
+.dropbtn,
+.logout button {
+  background-color: black;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  font-family: 'Poppins'
+}
+
+.dropbtn:hover, .dropbtn:focus,
+.logout button {
+  background-color: pink;
+  color: black;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 200px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown a:hover {
+  background-color: #ddd;
+}
+
+.show {display: block;}
+
+ul {
+  list-style: none;
+}
+
+
+#comments {
+  padding: 25px 50px;
+}
+
+.comment {
+  background-color: white;
+  padding: 10px;
+  margin: 15px;
+  border-radius: 12px;
+}
+
+
+#addcomment div textarea {
+  background-color: #f7f7f7;
+  width: 100vw;
+  max-width: 500px;
+  font-size: 20px;
+  font-family: 'Poppins';
+  border-radius: 8px;
+  height: 100px;
+}
+
+
+
+#addcomment form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  background-color: #7e6d7b;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 12px;
+  margin-top: 20px;
+  padding: 25px;
+}
+
+
+#addcomment form button {
+  align-self: flex-end;
+}
+
+
+.userhead {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100vw;
+}
+
+
+.groupImg {
+  height: auto;
+  width: 300px;
+}
