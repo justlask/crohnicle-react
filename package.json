@@ -1,19 +1,14 @@
 {
-  "name": "crohnicle-react",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "crohnic",
+  "version": "2.0.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "preinstall": "echo --- preinstall --- && cd server && npm install && cd ../client && npm install && npm run build && cd ..",
+    "start": "echo --- start --- && cd server && npm start",
+    "dev:server": "cd server && npm run dev",
+    "dev:client": "cd client && npm run start"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/justlask/crohnicle-react.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/justlask/crohnicle-react/issues"
-  },
-  "homepage": "https://github.com/justlask/crohnicle-react#readme"
+  "engines": {
+    "node": "8.9.4"
+  }
 }
