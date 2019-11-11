@@ -15,7 +15,7 @@
 } 
 
 header {
-  padding: 25px;
+  padding: 15px 25px;
   display: flex;
   justify-content: space-between;
 	background-color: #4E1681;
