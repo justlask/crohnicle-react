@@ -2,8 +2,6 @@
 import React, { Component } from 'react';
 import AuthService from './AuthService';
 import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser, faLock } from '@fortawesome/free-solid-svg-icons'
 import Button from '../Button'
 
 class Signup extends Component {
@@ -37,19 +35,17 @@ class Signup extends Component {
   }
 
   render(){
-    console.log(this.state)
-    console.log(this.props)
     return(
-      // more code will be added here
-      <div className="flexcolfull">
+      <div className="signupbox">
+        <h1>Signup</h1>
         <form onSubmit={this.handleFormSubmit} className="signup-login">
          <div>
-         <label  className="icons"><FontAwesomeIcon icon={faUser} /></label>
+         <label >Username</label>
           <input type="text" name="username" placeholder="username" value={this.state.username} onChange={ e => this.handleChange(e)}/><br></br>
          </div>
           
           <div>
-          <label  className="icons"><FontAwesomeIcon icon={faLock} /></label>
+          <label>Password</label>
           <input type="password" name="password" placeholder="password" value={this.state.password} onChange={ e => this.handleChange(e)} /><br></br>
           </div>
           <input className="submitbtn" type="submit" value="Signup" />
@@ -58,7 +54,6 @@ class Signup extends Component {
         <p>Already have account? 
             <Link to={"/login"}> Login</Link>
         </p>
-
     </div>
     )
   }
