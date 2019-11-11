@@ -7,7 +7,7 @@
 
 .App {
   text-align: center;
-  background-color: #F1ECE8;
+  background-color: #E6E5DE;
   font-family: 'Poppins';
   font-weight: 700;
   min-height: 100vh;
@@ -18,12 +18,12 @@ header {
   padding: 15px 25px;
   display: flex;
   justify-content: space-between;
-	background-color: #4E1681;
+	background-color: #E6E5DE;
   z-index: 2;
 }
 
 .pink {
-  color: #E6E5DE;
+  color: #4E1681;
   font-size: 38px;
 }
 
@@ -32,11 +32,11 @@ nav {
   justify-content: space-around;
   align-items: center;
   text-align: center;
-  color: #E6E5DE;
+  color: #4E1681;
 }
 
 nav a {
-  color: #E6E5DE;
+  color: #4E1681;
   font-weight: 400;
   font-size: 20px;
   margin-right: 29px;
@@ -98,6 +98,7 @@ h2 {
   align-items: center;
   flex-direction: column;
   width: 100vw;
+  background-color: #E6E5DE;
 }
 
 .boxholder {
@@ -139,7 +140,7 @@ img {
   margin-top: 42px;
   margin-bottom: 59px;
   height: 68px;
-  width: 272px;
+  width: 200px;
   border: none;
   border-radius: 10px;
   background-color: #4E1681;
