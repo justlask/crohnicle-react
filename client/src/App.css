@@ -129,7 +129,7 @@ h2 {
 
 .box:hover {
   transform: rotate(8deg);
-  transition: all 0.5s;
+  transition: all 1s;
 }
 
 .box p {
@@ -192,7 +192,9 @@ img {
 }
 
 @media screen and (max-width: 500px) {
-
+  nav {
+    width: 100vw;
+  }
   header {
     flex-direction: column;
   }
