@@ -16,19 +16,19 @@ export default class Home extends Component {
             <div className="boxholder">
               <div className="box">
               <img src="../images/chat.svg" alt=""/> 
-              <p>share your story.</p>
+              <p>share your story</p>
               </div>
               <div className="box">
-                <img src="../images/deal.svg" alt=""/>
-                <p>connect with others.</p>
+                <img src="../images/hands.svg" alt=""/>
+                <p>connect with others</p>
               </div>
               <div className="box">
-                <img src="../images/interview.svg" alt=""/>
-                <p>form groups for support, activities, anything you want.</p>
+                <img src="../images/people.svg" alt=""/>
+                <p>form groups</p>
               </div>
               <div className="box">
                 <img src="../images/sports.svg" alt=""/>
-                <p>create and host events.</p>
+                <p>create & host events</p>
               </div>
             </div>
           </section>
