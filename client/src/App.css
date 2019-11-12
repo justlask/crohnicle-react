@@ -173,20 +173,15 @@ img {
   cursor: pointer;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 800px) {
 
-  header {
-    padding-bottom: 150px;
-  }
-  
   .hero h1 {
-    padding-top: 100px;
+      font-size: 46px;
     margin-left: 25px;
   }
   .hero a {
     align-self: flex-start;
     margin-left: 25px;
-    padding-bottom: 200px;
   }
 }
 
