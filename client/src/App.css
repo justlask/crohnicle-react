@@ -124,6 +124,12 @@ h2 {
     border-radius: 15px;
     background-color: #F7F7F7;
     box-shadow: 5px 5px 30px 0 rgba(0,0,0,0.1);
+    transition: all 1s;
+}
+
+.box:hover {
+  transform: rotate(8deg);
+  transition: all 0.5s;
 }
 
 .box p {
