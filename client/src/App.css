@@ -46,6 +46,10 @@ a {
   text-decoration: none;
 }
 
+a:hover {
+  color: #F05D5D;
+}
+
 footer {
   height: 10vh;
   color: black;
@@ -109,6 +113,7 @@ h2 {
   align-items: center;
   flex-wrap: wrap;
   background-color: #E6E5DE;
+  padding-bottom: 124px;
 }
 .box {
   display: flex;
@@ -168,15 +173,6 @@ img {
   transition: all 0.2s;
   cursor: pointer;
 }
-
-/* background: linear-gradient(#E4A2A4, #F1D1B5) */
-/* 
-#EEEEE8 //light grey
-#E4A2A4 //PINK
-#305F72 //DARK BLUE
-#F1D1B5 // ORANGE PINK
-#568EA6 // LIGHT BLUE 
-#F5F7F1 //ALMOST WHITE  */
 
 /*
 Purple 4E1681

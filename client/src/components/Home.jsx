@@ -32,9 +32,6 @@ export default class Home extends Component {
               </div>
             </div>
           </section>
-          <section className="boxholder">
-            <Button name="signup"/>
-          </section>
         </main>
     )
   }
