@@ -191,6 +191,13 @@ img {
   }
 }
 
+@media screen and (max-width: 500px) {
+
+  header {
+    flex-direction: column;
+  }
+}
+
 /*
 Purple 4E1681
 ORANGE F05DSD
