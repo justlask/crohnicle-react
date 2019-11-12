@@ -95,23 +95,22 @@ h2 {
   justify-content: center;
 }
 
-.flexcol {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: column;
-  width: 100vw;
+.boxes {
   background-color: #E6E5DE;
+}
+
+.justify {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  align-items: center;
+  margin-bottom: 26px;
 }
 
 
 .boxholder {
   padding-top: 136px;
-  width: 100vw;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-wrap: wrap;
   background-color: #E6E5DE;
   padding-bottom: 124px;
 }
@@ -172,6 +171,23 @@ img {
   background-color: rgb(207, 76, 76);
   transition: all 0.2s;
   cursor: pointer;
+}
+
+@media screen and (max-width: 500px) {
+
+  header {
+    padding-bottom: 150px;
+  }
+  
+  .hero h1 {
+    padding-top: 100px;
+    margin-left: 25px;
+  }
+  .hero a {
+    align-self: flex-start;
+    margin-left: 25px;
+    padding-bottom: 200px;
+  }
 }
 
 /*
