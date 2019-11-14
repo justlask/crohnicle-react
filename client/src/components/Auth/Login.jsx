@@ -3,11 +3,11 @@ import AuthService from './AuthService';
 import { Link, Redirect } from 'react-router-dom';
 
 class Login extends Component {
-  constructor(props){
-    super(props);
-    this.state = { username: '', password: '' };
-    this.service = new AuthService();
-  }
+    constructor(props){
+      super(props);
+      this.state = { username: '', password: '' };
+      this.service = new AuthService();
+    }
 
   handleFormSubmit = (event) => {
     event.preventDefault();
@@ -16,9 +16,7 @@ class Login extends Component {
     this.service.login(username, password)
     .then( response => {
         this.setState({ username: "", password: "" });
-        this.props.getUser(response)
-        this.props.history.push('/action')
-        
+        return this.props.updateUser({loggedInUser: response})
     })
     .catch( error => console.log(error) )
   }
@@ -31,9 +29,10 @@ class Login extends Component {
 
 
   render(){
-    if(this.state.loggedInUser){
+    console.log(this.props)
+    if(this.props.user.loggedInUser){
       return(
-        <Redirect to="/actions" />
+        <Redirect to="/dashboard" />
       )
     } else {
       return ( 

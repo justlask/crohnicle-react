@@ -9,56 +9,93 @@ const Event     = require('../models/Events')
 
 const uploadCloud = require('../config/cloudinary.js');
 
-router.get("/signup", (req,res,next) => {
-  res.render("user-views/signup")
-})
-
 router.post('/signup', (req,res,next) => {
-
-  const characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  let token = '';
-  for (let i = 0; i < 25; i++) {
-    token += characters[Math.floor(Math.random() * characters.length )];
-  }
-
   let username = req.body.username
   let password = req.body.password
   let email = req.body.email
   let type = req.body.type
 
-  const saltRounds = 10;
-  const salt  = bcrypt.genSaltSync(saltRounds);
-  const hash = bcrypt.hashSync(password, salt);
-
-  User.create({
-    username: username,
-    password: hash,
-    email: email,
-    confirmationCode: token,
-    type: type
-  }).then(data => {
-    res.redirect("/user/login")
-
-  }).catch(err => next(err))
-})
-
-router.get("/login", (req,res,next) => {
-  res.render("user-views/login")
-})
-
-router.post('/login', passport.authenticate("local", {
-  successRedirect: "/user/profile",
-  failureRedirect: "/user/login",
-  failureFlash: true,
-  passReqToCallback: true
-}));
-
-router.use((req,res,next) => {
-  if (!req.user) {
-    res.redirect("/user/login");
+  if (!username || !password) {
+    res.status(400).json({ message: 'Provide username and password' });
+    return;
   }
-  next();
-}); 
+
+  if(password.length < 7){
+      res.status(400).json({ message: 'Please make your password at least 8 characters long for security purposes.' });
+      return;
+  }
+
+  User.findOne({username}, (err, foundUser) => {
+    if (foundUser) {
+      res.status(400).json({message: 'Username taken. Choose another one.'})
+      return;
+    }
+
+    const saltRounds = 10;
+    const salt  = bcrypt.genSaltSync(saltRounds);
+    const hash = bcrypt.hashSync(password, salt);
+
+    const newUser = new User({
+      username: username,
+      password: hash,
+      email: email,
+      type: type
+    });
+
+
+    newUser.save(err => {
+      if (err) {
+        res.status(400).json({
+          message: 'saving user to database went wrong'
+        })
+        return;
+      }
+
+      res.status(200).json({
+        message: 'your account has been created, please login'
+      })
+    })
+
+
+
+  })
+})
+
+router.post('/login', (req,res,next) => {
+  passport.authenticate('local', (err, theUser, failureDetails) => {
+    if (err) {
+      res.status(500).json({message: 'Something went wrong during login'})
+      return;
+    }
+    if (!theUser) {
+      res.status(401).json(failureDetails);
+      return;
+    }
+
+    req.login(theUser, (err) => {
+      if (err) {
+        res.status(500).json({message: 'Error during login.'})
+        return;
+      }
+      
+      res.status(200).json(theUser)
+
+    })
+  })(req,res,next);
+});
+
+router.post('/logout', (req, res, next) => {
+  req.logout();
+  res.status(200).json({message: "You've been logged out"});
+});
+
+router.get('/loggedin', (req,res,next) => {
+  if (req.isAuthenticated()) {
+    res.status(200).json(req.user);
+    return;
+  }
+  res.status(403).json({message: 'Not Authorized'})
+})
 
 
 router.get('/profile', (req,res,next) => {
@@ -76,10 +113,7 @@ router.get('/profile', (req,res,next) => {
     }).catch(err => next(err))
 })
 
-router.post('/logout', (req, res, next) => {
-  req.logout();
-  res.redirect('/')
-});
+
 
 router.get('/findfriends', (req,res,next) => {
   User.find({ _id: { $nin: req.user.friends, $ne: req.user.id} }).then(users => {

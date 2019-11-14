@@ -64,7 +64,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // default value for title local
-app.locals.title = 'Express API For React App - Generated with IronGenerator';
+app.locals.title = 'Crohnicles';
 
 
 // ADD CORS SETTINGS HERE TO ALLOW CROSS-ORIGIN INTERACTION:
@@ -75,10 +75,12 @@ app.use(cors({
 
 
 // ROUTES MIDDLEWARE STARTS HERE:
-
 const index = require('./routes/index');
 app.use('/', index);
 app.use('/api/auth', require('./routes/auth-routes'))
+
+
+
 
 
 
