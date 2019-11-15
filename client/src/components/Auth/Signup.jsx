@@ -33,6 +33,10 @@ class Signup extends Component {
     this.setState({[name]: value});
   }
 
+  handleActive = (e) => {
+    console.log(e.target.label)
+  }
+
 
   render(){
     if (this.state.hasSignedUp) {
@@ -41,37 +45,42 @@ class Signup extends Component {
 
     return(
       <div className="signupbox">
-        <h1>Signup</h1>
-        <form onSubmit={this.handleFormSubmit} className="signup-login">
-        <div>
-          <label >Username</label>
-          <input type="text" name="username" placeholder="username" value={this.state.username} onChange={ e => this.handleChange(e)}/><br></br>
-        </div>
-        <div>
-          <label htmlFor="email">Email</label>
-          <input type="email" name="email" id="email" placeholder="email" required />
-        </div>
+        <div className="form">
+          <h1>Signup</h1>
+          <form onSubmit={this.handleFormSubmit} className="signup-login">
 
-        <select name="type" id="type" required>
-          <option value="" selected disabled>select account type</option>
-          <option value="crohnie">patient</option>
-          <option value="ally">ally</option>
-          <option value="caregiver">caregiver</option>
-          <option value="professional">medical professional</option>
-        </select>
+          <div className="floatinglabel" onClick={(e) => this.handleActive(e)}>
+            <label htmlFor="username" >Username</label>
+            <input type="text" name="username" placeholder="username" value={this.state.username} onChange={ e => this.handleChange(e)} /><br></br>
+          </div>
 
-          
-        <div>
-          <label>Password</label>
-          <input type="password" name="password" placeholder="password" value={this.state.password} onChange={ e => this.handleChange(e)} /><br></br>
+          <div className="floatinglabel" onClick={(e) => this.handleActive(e)}>
+            <label htmlFor="email">Email</label>
+            <input type="email" name="email" id="email" placeholder="email" required onChange={ e => this.handleChange(e)} /><br></br>
+          </div>
+
+          <div className="floatinglabel" onClick={(e) => this.handleActive(e)}>
+            <label htmlFor="password">Password</label>
+            <input type="password" name="password" placeholder="password" value={this.state.password} onChange={ e => this.handleChange(e)} /><br></br>
+          </div>
+
+
+          <select name="type" id="type" required>
+            <option value="" selected disabled>select account type</option>
+            <option value="crohnie">patient</option>
+            <option value="ally">ally</option>
+            <option value="caregiver">caregiver</option>
+            <option value="professional">medical professional</option>
+          </select><br></br>
+
+            <input className="submitbtn" type="submit" value="Signup" />
+          </form><br></br>
+
+          <p>Already have account? 
+              <Link to={"/login"}> Login</Link>
+          </p>
         </div>
-          <input className="submitbtn" type="submit" value="Signup" />
-        </form>
-
-        <p>Already have account? 
-            <Link to={"/login"}> Login</Link>
-        </p>
-    </div>
+      </div>
     )
   }
 }

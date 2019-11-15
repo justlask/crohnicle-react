@@ -37,23 +37,26 @@ class Login extends Component {
     } else {
       return ( 
           <div className="signupbox">
-            <form onSubmit={this.handleFormSubmit} className="signup-login">
-            <h1>Login</h1>
-              <div>
-                <label className="icons">Username</label>
-                <input type="text" name="username" placeholder="username" value={this.state.username} onChange={ e => this.handleChange(e)}/><br></br>
-              </div>
-              <div>
-                <label className="icons">Password</label>
-                <input type="password" name="password" placeholder="password" value={this.state.password} onChange={ e => this.handleChange(e)} /><br></br>
-              </div>
-                    
-                <input type="submit" value="Login" className="submitbtn" />
-                </form>
-                <p>Don't have account? 
-                    <Link to={"/signup"}> Signup</Link>
-                </p>
-            </div> 
+            <div className="form">
+              <form onSubmit={this.handleFormSubmit} className="signup-login">
+                <h1>Log in</h1>
+                <div  className="floatinglabel">
+                  <label>Username</label>
+                  <input type="text" name="username" placeholder="username" value={this.state.username} onChange={ e => this.handleChange(e)}/><br></br>
+                </div>
+
+                <div  className="floatinglabel">
+                  <label>Password</label>
+                  <input type="password" name="password" placeholder="password" value={this.state.password} onChange={ e => this.handleChange(e)} /><br></br>
+                </div>
+                      
+                  <input type="submit" value="Login" className="submitbtn" />
+                  </form><br></br>
+                  <p>Don't have account? 
+                      <Link to={"/signup"}> Signup</Link>
+                  </p>
+            </div>
+          </div> 
       )
     }
   }

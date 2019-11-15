@@ -29,54 +29,20 @@ class AuthService {
     .then(response => response.data)
   }
 
-  getProfile = () => {
-    return this.service.get('/auth/profile')
-    .then(response => response.data)
-  }
-
-  findFriends = (userID) => {
-    return this.service.get(`/user/friends/${userID}`)
-    .then(response => response.data)
-  }
-
-  follow = (userID, friendID) => {
-    return this.service.put('/user/follow', {userID, friendID})
-    .then(response => response.data)
-  }
-
-  unfollow = (userID, friendID) => {
-    return this.service.put('/user/unfollow', {userID, friendID})
-    .then(response => response.data)
-  }
-
-  deleteProfile = (id) => {
-    return this.service.delete('/auth/delete')
-    .then(response => response.data)
-  }
-
-  actionCompleted = (userID, actionID) => {
-    return this.service.put('/user/completed', {userID, actionID})
-    .then(response => response.data)
-  }
-
-  allActions = () => {
-    return this.service.get('/action')
-    .then(response => response.data)
-  }
-
-  randomAction = () => {
-    return this.service.get('/action/random')
-    .then(response => response.data)
-  }
   handleUpload (theFile) {
     return this.service.post('/user/upload', theFile)
       .then(res => res.data)
       .catch(err => console.log(err));
   }
-  getFriend(friendID) {
-    return this.service.get(`/user/profile/${friendID}`)
-    .then(res => res.data)
-    .catch(err => console.log(err))
+
+  post = (status) => {
+    return this.service.post('/post/create', status)
+    .then(response => response.data)
+  }
+
+  getPosts = () => {
+    return this.service.get('/user/posts')
+    .then(response => response.data)
   }
 }
 

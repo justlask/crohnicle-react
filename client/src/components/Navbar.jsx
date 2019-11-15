@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import AuthService from './Auth/AuthService'
-import { Link } from 'react-router-dom'
+import { Link,  } from 'react-router-dom'
 import Button from './Button'
 
 export default class Navbar extends Component {
@@ -9,17 +9,21 @@ export default class Navbar extends Component {
     this.service = new AuthService();
   }
 
+  logoutUser = () =>{
+    this.service.logout()
+    .then(() => {
+      this.props.updateUser({loggedInUser: null})
+      this.props.getUser(null);  
+    })
+  }
+
   render() {
     if (this.props.user.loggedInUser) {
       return (
         <header>
           <Link to="/"><h1 className="pink">crohnicles</h1></Link>
           <nav>
-            supppppppppp
-            <Button name="logout" onClick={() => {
-              this.service.logout();
-              return this.props.updateUser({loggedInUser: null})
-            }}></Button>
+            <Button name="logout" onClick={() => this.logoutUser()}></Button>
           </nav>
         </header>
       )
@@ -27,7 +31,7 @@ export default class Navbar extends Component {
     else {
       return (
         <header>
-          <Link to="/"><h1>crohnic</h1></Link>
+          <Link to="/"><h1 className="pink">crohnicles</h1></Link>
           <nav>
             <Link to="/login">log in</Link>
             <Link to="/signup">sign up</Link>

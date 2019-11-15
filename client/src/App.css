@@ -5,6 +5,10 @@
   padding: 0;
 }
 
+.peach {
+  background-color: #F05D5D;
+}
+
 .App {
   text-align: center;
   background-color: #E6E5DE;
@@ -47,12 +51,15 @@ a {
 }
 
 a:hover {
-  color: #F05D5D;
+  color: #E6E5DE;
+  text-decoration-color: #F05D5D;
 }
 
 footer {
-  height: 10vh;
+  min-height: 10vh;
   color: black;
+  padding: 50px;
+  background-color: #4E1681;
 }
 
 
@@ -143,10 +150,70 @@ img {
 
 
 .signupbox {
-  padding: 200px;
+  width: 100vw;
+  display: flex;
   justify-content: center;
   align-items: center;
+  padding: 100px;
 }
+
+.form {
+  display: flex;
+  flex-direction: column;
+  background-color: #E6E5DE;
+  border-radius: 12px;
+  box-shadow: 2px 2px 10px rgb(30, 9, 51, 0.8);
+  padding: 50px;
+  color: #4E1681;
+  width: 90vw;
+  max-width: 600px;
+  background-color: #F05D5D;
+}
+
+
+.floatinglabel input {
+  border-radius: 8px;
+  padding: 5px;
+  border: none;
+}
+
+.submitbtn {
+  justify-self: flex-start;
+  align-self: flex-start;
+  height: 56px;
+  width: 200px;
+  border: none;
+  border-radius: 10px;
+  background-color: #4E1681;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
+  color: #E6E5DE;
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 37px;
+  transition: all 0.2s;
+}
+
+.submitbtn:hover {
+  background-color: rgb(48, 13, 78);
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+
+
+.form a {
+  color: #F05D5D;
+}
+
+.form div,
+.form select {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  justify-content: flex-start;
+}
+
+
 
 .hero a {
   align-self: flex-start;
@@ -178,6 +245,35 @@ img {
   transition: all 0.2s;
   cursor: pointer;
 }
+
+
+.statusbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.status {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+}
+
+
+
+
+
+
+
+
+
+.postbox {
+  padding: 15px;
+  margin: 10px;
+  background-color: #F7F7F7;
+}
+
+
 
 @media screen and (max-width: 800px) {
 
