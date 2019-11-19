@@ -8,17 +8,16 @@ export default class Navbar extends Component {
     super(props);
     this.service = new AuthService();
   }
-
   logoutUser = () =>{
     this.service.logout()
     .then(() => {
-      this.props.updateUser({loggedInUser: null})
-      this.props.getUser(null);  
+      this.setState({ loggedInUser: null });
+      this.props.updateUser(null);  
     })
   }
 
   render() {
-    if (this.props.user.loggedInUser) {
+    if (this.props.user) {
       return (
         <header>
           <Link to="/"><h1 className="pink">crohnicles</h1></Link>

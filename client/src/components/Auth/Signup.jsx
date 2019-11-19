@@ -7,7 +7,7 @@ import Button from '../Button'
 class Signup extends Component {
   constructor(props){
     super(props);
-    this.state = { username: '', password: '', hasSignedUp: false };
+    this.state = { username: '', password: ''};
     this.service = new AuthService();
   }
 
@@ -22,8 +22,8 @@ class Signup extends Component {
         this.setState({
             username: "", 
             password: "",
-            hasSignedUp: true
         });
+        this.props.history.push('/dashboard')
     })
     .catch( error => console.log(error) )
   }
@@ -33,16 +33,8 @@ class Signup extends Component {
     this.setState({[name]: value});
   }
 
-  handleActive = (e) => {
-    console.log(e.target.label)
-  }
-
 
   render(){
-    if (this.state.hasSignedUp) {
-      return <Redirect to='/login' />
-    }
-
     return(
       <div className="signupbox">
         <div className="form">

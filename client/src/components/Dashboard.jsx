@@ -8,27 +8,20 @@ import Posts from './Profile/Posts'
 export default class Dashboard extends Component {
   constructor(props){
     super(props);
-    this.state = {user: this.props.user}
     this.service = new AuthService();
   }
 
 
-  handleStatusUpdate = (info) => {
-    console.log('okkkkkay')
-    console.log(info)
-    this.setState({user: info})
-  }
-
   render() {
-    if (this.props.user.loggedInUser) {
+    if (this.props.user) {
       return (
       <div> 
         <div>
-        <p>you're logged in, {this.props.user.loggedInUser.username}</p>
+        <p>you're logged in, {this.props.user.username}</p>
         <Button name="logout" onClick={() => this.service.logout()}></Button>
         </div>
-        <Status user={this.state.user} updateUser={this.props.updateUser} handleStatusUpdate={this.handleStatusUpdate}/>
-        <Posts user={this.state.user} updateUser={this.props.updateUser} />
+        <Status user={this.props.user} updateUser={this.props.updateUser} handleStatusUpdate={this.handleStatusUpdate}/>
+        <Posts user={this.props.user} updateUser={this.props.updateUser} />
       </div>
 
       )

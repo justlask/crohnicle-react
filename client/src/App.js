@@ -11,38 +11,52 @@ import Login from './components/Auth/Login'
 import Dashboard from './components/Dashboard'
 import Example from './components/NewDash'
 
-function App() {
-  const service = new AuthService;
+class App extends Component {
+  constructor(props){
+    super(props)
+    this.state = { loggedInUser: null };
+    this.service = new AuthService();
+  }
 
-  const [user, updateUser] = useState({
-    loggedInUser: null
-  });
-
-  const fetchUser = () => {
-    if(user.loggedInUser === null ){
-      service.loggedin()
+  fetchUser(){
+    if( this.state.loggedInUser === null ){
+      this.service.loggedin()
       .then(response =>{
-        user.loggedInUser = response
+        this.setState({
+          loggedInUser:  response
+        }) 
       })
       .catch( err =>{
-        user.loggedInUser = null
+        this.setState({
+          loggedInUser:  false
+        }) 
       })
     }
   }
-  return (
-    <div className="App">
-      <Navbar user={user} updateUser={updateUser} getUser={fetchUser}/>
-      <Switch>
-        <Route exact path='/' render={() => <Home user={user} updateUser={updateUser}/>}></Route>
-        <Route exact path='/signup' render={() => <Signup user={user} updateUser={updateUser}/>}></Route>
-        <Route exact path='/login' render={() => <Login user={user} updateUser={updateUser}/>}></Route>
-        <Route exact path='/dashboard' render={() => <Dashboard user={user} updateUser={updateUser} getUser={fetchUser}/>}></Route>
-        <Route exact path='/testing' render={() => <Example />}></Route>
-        {/* <ProtectedRoute user={this.state.loggedInUser} path='/projects/:id' component={ProjectDetails} /> */}
-      </Switch>
-      <Footer />
-    </div>
-  );
+
+  updateUser = (userObj) => {
+    this.setState({
+      loggedInUser: userObj
+    })
+  }
+
+  render () {
+    {this.fetchUser()}
+    return (
+      <div className="App">
+        <Navbar user={this.state.loggedInUser} updateUser={this.updateUser} />
+        <Switch>
+          <Route exact path='/' render={(props) => <Home user={this.state.loggedInUser} {...props} updateUser={this.updateUser}/>}></Route>
+          <Route exact path='/signup' render={(props) => <Signup user={this.state.loggedInUser}  {...props} updateUser={this.updateUser} />}></Route>
+          <Route exact path='/login' render={(props) => <Login user={this.state.loggedInUser} {...props} updateUser={this.updateUser} />}></Route>
+          <Route exact path='/dashboard' render={() => <Dashboard user={this.state.loggedInUser} updateUser={this.updateUser} getUser={this.fetchUser}/>}></Route>
+          <Route exact path='/testing' render={() => <Example />}></Route>
+          {/* <ProtectedRoute user={this.state.loggedInUser} path='/projects/:id' component={ProjectDetails} /> */}
+        </Switch>
+        <Footer />
+      </div>
+    );
+  }
 }
 
 export default App;

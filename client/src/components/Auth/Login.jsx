@@ -11,12 +11,15 @@ class Login extends Component {
 
   handleFormSubmit = (event) => {
     event.preventDefault();
+
     const username = this.state.username;
     const password = this.state.password;
+
     this.service.login(username, password)
     .then( response => {
         this.setState({ username: "", password: "" });
-        return this.props.updateUser({loggedInUser: response})
+        this.props.updateUser(response)
+        this.props.history.push('/dashboard')
     })
     .catch( error => console.log(error) )
   }
@@ -27,14 +30,7 @@ class Login extends Component {
   }
 
 
-
   render(){
-    console.log(this.props)
-    if(this.props.user.loggedInUser){
-      return(
-        <Redirect to="/dashboard" />
-      )
-    } else {
       return ( 
           <div className="signupbox">
             <div className="form">
@@ -58,7 +54,6 @@ class Login extends Component {
             </div>
           </div> 
       )
-    }
   }
 }
 
