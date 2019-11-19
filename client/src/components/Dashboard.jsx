@@ -9,7 +9,28 @@ export default class Dashboard extends Component {
   constructor(props){
     super(props);
     this.service = new AuthService();
+    this.state = {
+      posts: []
+    }
   }
+
+  componentDidMount() {
+    this.loadPosts();
+  }
+
+  handleStatusUpdate = (data) => {
+    this.loadPosts();
+  }
+
+
+  loadPosts = () => {
+    this.service.getPosts()
+    .then(data => {
+      this.setState({posts: data.posts})
+    })
+    .catch(err => console.log(err))
+  }
+
 
 
   render() {
@@ -18,10 +39,9 @@ export default class Dashboard extends Component {
       <div> 
         <div>
         <p>you're logged in, {this.props.user.username}</p>
-        <Button name="logout" onClick={() => this.service.logout()}></Button>
         </div>
         <Status user={this.props.user} updateUser={this.props.updateUser} handleStatusUpdate={this.handleStatusUpdate}/>
-        <Posts user={this.props.user} updateUser={this.props.updateUser} />
+        <Posts user={this.props.user} updateUser={this.props.updateUser} posts={this.state.posts}handleStatusUpdate={this.handleStatusUpdate} />
       </div>
 
       )

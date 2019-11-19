@@ -10,14 +10,12 @@ export default class Status extends Component {
 
 
   handleChange = (event) => {
-    console.log(event.target.value)
     const {name, value} = event.target;
     this.setState({[name]: value});
   }
 
 
   handleFileUpload = e => {
-    console.log("The file to be uploaded is: ", e.target.files[0]);
 
     const uploadData = new FormData();
     uploadData.append("image", e.target.files[0]);
@@ -33,15 +31,13 @@ export default class Status extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log(this.state)
+
     this.service.post(this.state)
     .then(data => {
-      this.props.handleStatusUpdate(data)
+      // clear the inputs here =>
+      return this.props.handleStatusUpdate(data)
     })
   }
-
-
-
 
   render() {
     return (
