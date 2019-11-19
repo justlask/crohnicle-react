@@ -4,6 +4,7 @@ import { Link, Redirect } from 'react-router-dom';
 import Button from './Button'
 import Status from './Profile/Status'
 import Posts from './Profile/Posts'
+import InfoCard from './Profile/InfoCard'
 
 export default class Dashboard extends Component {
   constructor(props){
@@ -38,6 +39,7 @@ export default class Dashboard extends Component {
       return (
       <div> 
         <div>
+        <InfoCard user={this.props.user}/>
         <p>you're logged in, {this.props.user.username}</p>
         </div>
         <Status user={this.props.user} updateUser={this.props.updateUser} handleStatusUpdate={this.handleStatusUpdate}/>

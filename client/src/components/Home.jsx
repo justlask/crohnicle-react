@@ -1,12 +1,26 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCoffee } from '@fortawesome/free-solid-svg-icons'
 import Signup from '../components/Auth/Signup'
 import Button from '../components/Button'
 
 export default class Home extends Component {
+  constructor(props) {
+    super(props)
+  }
+
+
   render() {
-    return (
+
+   
+    if (this.props.user) {
+      return(
+        <Redirect to="/dashboard" />
+      )
+    }
+    else {
+      return (
         <main>
           <section className="hero">
             <h1>Find other crohnies,<br></br> locally & online</h1>
@@ -42,5 +56,11 @@ export default class Home extends Component {
           </section>
         </main>
     )
+    }
+
+
+
+
+
   }
 }

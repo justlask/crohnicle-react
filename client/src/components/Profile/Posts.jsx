@@ -8,9 +8,6 @@ export default class Posts extends Component {
     super(props);
     this.service = new AuthService();
   }
-
-
-
   showPosts = () => {
     return this.props.posts.map((post, i) => {
     return (
@@ -27,7 +24,6 @@ export default class Posts extends Component {
   render() {
     return (
       <div>
-        hello from posts
         {this.showPosts()}
       </div>
     )

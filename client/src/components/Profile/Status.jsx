@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
 import AuthService from '../Auth/AuthService'
 
+const initialState = {}
+
 export default class Status extends Component {
   constructor(props){
     super(props);
     this.service = new AuthService();
     this.state = {}
+    this.baseState = {}
   }
 
 
@@ -34,7 +37,7 @@ export default class Status extends Component {
 
     this.service.post(this.state)
     .then(data => {
-      // clear the inputs here =>
+      document.getElementById("status").reset()
       return this.props.handleStatusUpdate(data)
     })
   }
@@ -42,7 +45,7 @@ export default class Status extends Component {
   render() {
     return (
       <div className="statusbox">
-        <form className="status" onSubmit={this.handleSubmit} encType="multipart/form-data">
+        <form className="status" id="status" onSubmit={this.handleSubmit} encType="multipart/form-data">
             <input type="text" name="title" placeholder="give me a title" onChange={this.handleChange}/>         
             <textarea name="content" id="content" placeholder="tell me something good."  onChange={this.handleChange}></textarea>
           <div>
