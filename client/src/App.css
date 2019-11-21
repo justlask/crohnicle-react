@@ -287,6 +287,10 @@ img {
   }
 }
 
+.options {
+  width: 100vw;
+}
+
 @media screen and (max-width: 500px) {
   nav {
     width: 100vw;

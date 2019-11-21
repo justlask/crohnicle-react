@@ -1,8 +1,6 @@
-
 import React, { Component } from 'react';
 import AuthService from './AuthService';
-import { Link, Redirect } from 'react-router-dom';
-import Button from '../Button'
+import { Link } from 'react-router-dom';
 
 class Signup extends Component {
   constructor(props){

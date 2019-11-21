@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import AuthService from '../Auth/AuthService'
 
-const initialState = {}
-
 export default class Status extends Component {
   constructor(props){
     super(props);

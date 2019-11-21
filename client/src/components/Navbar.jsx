@@ -22,6 +22,9 @@ export default class Navbar extends Component {
         <header>
           <Link to="/"><h1 className="pink">crohnicles</h1></Link>
           <nav>
+            <Link to="/groups">groups</Link>
+            <Link to="/events">events</Link>
+            <Link to="/friends">friends</Link>
             <Button name="logout" onClick={() => this.logoutUser()}></Button>
           </nav>
         </header>

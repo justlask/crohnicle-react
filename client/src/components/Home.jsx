@@ -1,19 +1,9 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCoffee } from '@fortawesome/free-solid-svg-icons'
-import Signup from '../components/Auth/Signup'
 import Button from '../components/Button'
 
 export default class Home extends Component {
-  constructor(props) {
-    super(props)
-  }
-
-
   render() {
-
-   
     if (this.props.user) {
       return(
         <Redirect to="/dashboard" />

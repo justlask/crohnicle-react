@@ -23,7 +23,7 @@ export default class InfoCard extends Component {
     console.log(this.props.user)
     return (
       <div>
-        <img src={this.props.user.image} alt="users profile picture"/>
+        <img src={this.props.user.image} alt={`${this.props.user.username}'s profile`}/>
         <h1>{this.props.user.username}</h1>
           <div className="type">
            <p>{this.props.user.type}</p>

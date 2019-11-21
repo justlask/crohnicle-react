@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import AuthService from './Auth/AuthService'
-import { Link, Redirect } from 'react-router-dom';
-import Button from './Button'
+import { Redirect } from 'react-router-dom';
 import Status from './Profile/Status'
 import Posts from './Profile/Posts'
 import InfoCard from './Profile/InfoCard'
