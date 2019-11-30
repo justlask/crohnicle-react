@@ -22,7 +22,7 @@ export default class InfoCard extends Component {
   render() {
     console.log(this.props.user)
     return (
-      <div>
+      <div className="profileCard">
         <img src={this.props.user.image} alt={`${this.props.user.username}'s profile`}/>
         <h1>{this.props.user.username}</h1>
           <div className="type">
@@ -37,7 +37,7 @@ export default class InfoCard extends Component {
             <h3>Conditions</h3>
             {this.getInfo(this.props.user.illness)}
           </div>
-          <p>{this.props.user.friends.length}</p>
+          <p>{this.props.user.friends.length} friends</p>
 
       </div>
     )
