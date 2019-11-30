@@ -39,7 +39,6 @@ export default class Dashboard extends Component {
       <div> 
         <div>
         <InfoCard user={this.props.user}/>
-        <p>you're logged in, {this.props.user.username}</p>
         </div>
         <Status user={this.props.user} updateUser={this.props.updateUser} handleStatusUpdate={this.handleStatusUpdate}/>
         <Posts user={this.props.user} updateUser={this.props.updateUser} posts={this.state.posts}handleStatusUpdate={this.handleStatusUpdate} />
