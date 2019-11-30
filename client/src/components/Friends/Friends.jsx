@@ -7,17 +7,20 @@ export default class Friends extends Component {
     super(props)
   }
 
-  componentDidMount() {
-    console.log(this.props)
+  findFriends = () => {
+    console.log('these are not your friends')
   }
 
+  showFriends = () => {
+    console.log('these are your friends')
+  }
 
   render() {
     return (
       <main>
         <nav style={{color: '#4E1681'}}>
-          <Button name="find friends"></Button>
-          <Button name="my friends"></Button>
+          <Button name="find friends" onClick={() => this.findFriends()}></Button>
+          <Button name="my friends" onClick={() => this.showFriends()}></Button>
         </nav>
         sup these are your friends
 
