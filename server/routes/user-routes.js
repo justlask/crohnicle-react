@@ -51,11 +51,8 @@ router.get('/findfriends', (req,res,next) => {
 
 
 router.post('/user/addfriend', (req,res,next) => {
-  User.findByIdAndUpdate(req.user.id,
-    {$push: {friends: req.body.friendID}}
-  ).then(profile => {
-    res.json(profile)
-  })
+  console.log(req.body)
+
 });
 
 

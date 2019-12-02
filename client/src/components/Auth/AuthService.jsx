@@ -56,12 +56,12 @@ class AuthService {
   }
 
   addFriend = (user, friendID) => {
-    return this.service.post('/user/addfriend', {user, friendID})
+    return this.service.put('/user/addfriend', {user, friendID})
     .then(response => response.data)
   }
 
   removeFriend = (user, friendID) => {
-    return this.service.post('/user/removefriend')
+    return this.service.put('/user/removefriend')
     .then(response => response.data)
   }
 
