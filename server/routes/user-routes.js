@@ -18,8 +18,7 @@ router.post('/upload', uploadCloud.single("image"), (req, res, next) => {
 })
 
 router.get('/posts', (req,res,next) => {
-  //get all posts from user and user friends
-    // Post.find({ authorID: {$in: req.user.friends }})
+
     Post.find({ $or: [ { authorID: { $in: req.user.friends } }, { authorID: req.user.id}]}).then(data => {
       data.forEach(thing => { 
         thing.iAmAdmin = false;
@@ -35,21 +34,53 @@ router.get('/posts', (req,res,next) => {
 
 
 
-
-
-
-router.get('/friends', (req,res,next) => {
-  User.findById(req.user.id).populate('friends').select("-password").then(data => {
-    res.json(data)
+router.get('/myfriends', (req,res,next) => {
+  User.findById(req.user.id).populate('friends').select("-password -email").then(data => {
+    if (Array.isArray(data)) {
+      res.json(data)
+    }
+    else res.json([])
   })
 });
 
 router.get('/findfriends', (req,res,next) => {
-  console.log(req.user)
-  User.find({ _id: { $nin: req.user.friends, $ne: req.user.id} }).select("-password").then(users => {
+  User.find({ _id: { $nin: req.user.friends, $ne: req.user.id} }).select("-password -email").then(users => {
     res.json(users)
   })
 });
+
+
+router.post('/user/addfriend', (req,res,next) => {
+  User.findByIdAndUpdate(req.user.id,
+    {$push: {friends: req.body.friendID}}
+  ).then(profile => {
+    res.json(profile)
+  })
+});
+
+
+router.post('/user/removefriend', (req,res,next) => {
+  User.findByIdAndUpdate(req.user.id, 
+    { $pull: {friends: req.body.friendID }
+  }).then(data => {
+    res.json(data)
+  }).catch(err => next(err))
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 router.get('/profile/:id', (req,res,next) => {
 
@@ -59,20 +90,6 @@ router.get('/profile/:id', (req,res,next) => {
     })
     )
 });
-
-router.post('/profile/addfriend', (req,res,next) => {
-  User.findByIdAndUpdate(req.user.id,
-    {$push: {friends: req.body.friendID}}
-  ).then(profile => {
-      req.flash('success', 'friend has been added')
-      res.redirect('/user/profile')
-  })
-})
-
-
-
-
-
 
 
 
@@ -98,13 +115,7 @@ router.post('/edit', uploadCloud.single('photo'),(req,res,next) => {
 });
 
 
-router.post('/profile/removefriend', (req,res,next) => {
-  User.findByIdAndUpdate(req.user.id, 
-    { $pull: {friends: req.body.friendID }
-  }).then(data => {
-    res.redirect("/user/friends")
-  }).catch(err => next(err))
-});
+
 
 router.post("/delete", (req,res,next) => {
   User.findByIdAndRemove(req.user.id).then(data => {

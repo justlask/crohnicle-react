@@ -19,6 +19,7 @@
 } 
 
 header {
+  width: 100vw;
   padding: 15px 25px;
   display: flex;
   justify-content: space-between;
@@ -86,6 +87,7 @@ footer {
 
 main {
   width: 100vw;
+  min-height: 80vh;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -277,6 +279,21 @@ img {
   padding: 15px;
   margin: 10px;
   background-color: #F7F7F7;
+}
+
+
+.secondaryNav {
+  position: relative;
+}
+
+.content {
+  min-height: 50vh;
+}
+
+.friendcard {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 

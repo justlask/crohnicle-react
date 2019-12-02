@@ -8,24 +8,23 @@ export default class Friends extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      friends: [],
-      notFriends: [],
-      displayThis: []
+      friends: []
     }
     this.service = new AuthService();
   }
 
 
   componentDidMount() {
-    this.findFriends();
-    this.myFriends();
+    this.service.findFriends(this.props.user)
+    .then(response => {
+      this.setState({friends: response})
+    })
   }
 
   findFriends = () => {
     this.service.findFriends(this.props.user)
     .then(response => {
-      console.log(response)
-        this.setState({notFriends: response});
+        this.setState({friends: response});
     })
     .catch( error => console.log(error) )
   }
@@ -34,33 +33,28 @@ export default class Friends extends Component {
   myFriends = () => {
     this.service.myFriends(this.props.user)
     .then(response => {
-      console.log(response)
       this.setState({friends: response})
     })
-    .catch(err => console.log(err))
   }
 
 
 
-  showFriends = (type) => {
-    console.log('button was pressed')
-    this.setState({
-      displayThis: type
-    })
-    console.log(this.state.displayThis)
+  showFriends = () => {
+      return ( this.state.friends.map((friend, i) => {
+        return <FriendCard user={this.props.user} key={i} friend={friend} />
+     }))
   }
 
   render() {
     return (
       <main>
-        <nav style={{color: '#4E1681'}}>
-          <Button name="find friends" onClick={() => this.showFriends(this.state.notFriends)}></Button>
-          <Button name="my friends" onClick={() => this.showFriends(this.state.friends)}></Button>
+        <nav style={{color: '#4E1681'}} className="secondaryNav">
+          <Button name="find friends" onClick={() => this.findFriends()}></Button>
+          <Button name="my friends" onClick={() => this.myFriends()}></Button>
         </nav>
-
-        sup these are your friends
-
-        <FriendCard friends={this.state.displayThis} />
+        <div className="content">
+          {this.showFriends()}
+        </div>
 
       </main>
     )

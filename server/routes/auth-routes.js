@@ -80,7 +80,7 @@ router.post('/signup', (req,res,next) => {
         res.status(401).json(failureDetails);
         return;
       }
-  
+
       req.login(theUser, (err) => {
         if (err) {
           res.status(500).json({message: 'Error during login.'})
@@ -88,8 +88,7 @@ router.post('/signup', (req,res,next) => {
         }
         
         res.status(200).json(theUser)
-  
-      })
+      });
     })(req,res,next);
   });
   
