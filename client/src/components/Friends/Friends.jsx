@@ -9,7 +9,8 @@ export default class Friends extends Component {
     super(props)
     this.state = {
       friends: [],
-      notFriends: []
+      notFriends: [],
+      displayThis: []
     }
     this.service = new AuthService();
   }
@@ -42,11 +43,11 @@ export default class Friends extends Component {
 
 
   showFriends = (type) => {
-    return (
-      this.type.map((friend, i) => {
-        return <FriendCard key={i} friend={friend}/>
-      })
-    )
+    console.log('button was pressed')
+    this.setState({
+      displayThis: type
+    })
+    console.log(this.state.displayThis)
   }
 
   render() {
@@ -56,7 +57,11 @@ export default class Friends extends Component {
           <Button name="find friends" onClick={() => this.showFriends(this.state.notFriends)}></Button>
           <Button name="my friends" onClick={() => this.showFriends(this.state.friends)}></Button>
         </nav>
+
         sup these are your friends
+
+        <FriendCard friends={this.state.displayThis} />
+
       </main>
     )
   }
