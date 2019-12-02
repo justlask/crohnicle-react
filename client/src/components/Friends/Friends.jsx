@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import SecondaryNav from '../SecondaryNav'
 import AuthService from '../Auth/AuthService'
 import Button from '../Button'
+import FriendCard from './FriendCard'
 
 export default class Friends extends Component {
   constructor(props) {
@@ -13,37 +14,49 @@ export default class Friends extends Component {
     this.service = new AuthService();
   }
 
-  findFriends = (e) => {
-    e.preventDefault();
-    console.log(this.props.user)
 
+  componentDidMount() {
+    this.findFriends();
+    this.myFriends();
+  }
+
+  findFriends = () => {
     this.service.findFriends(this.props.user)
     .then(response => {
       console.log(response)
         this.setState({notFriends: response});
     })
     .catch( error => console.log(error) )
-    console.log('these are not your friends')
   }
 
-  showFriends = () => {
-    console.log('these are your friends')
+
+  myFriends = () => {
+    this.service.myFriends(this.props.user)
+    .then(response => {
+      console.log(response)
+      this.setState({friends: response})
+    })
+    .catch(err => console.log(err))
+  }
+
+
+
+  showFriends = (type) => {
+    return (
+      this.type.map((friend, i) => {
+        return <FriendCard key={i} friend={friend}/>
+      })
+    )
   }
 
   render() {
     return (
       <main>
         <nav style={{color: '#4E1681'}}>
-          <Button name="find friends" onClick={(e) => this.findFriends(e)}></Button>
-          <Button name="my friends" onClick={(e) => this.showFriends(e)}></Button>
+          <Button name="find friends" onClick={() => this.showFriends(this.state.notFriends)}></Button>
+          <Button name="my friends" onClick={() => this.showFriends(this.state.friends)}></Button>
         </nav>
         sup these are your friends
-
-
-
-        <div>
-          <p>{this.props.user.username}</p>
-        </div>
       </main>
     )
   }

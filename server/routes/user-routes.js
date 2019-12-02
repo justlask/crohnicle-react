@@ -30,7 +30,7 @@ router.get('/posts', (req,res,next) => {
       })
         res.json({posts: data.reverse()})
     }).catch(err => next(err))
-})
+});
 
 
 
@@ -38,20 +38,18 @@ router.get('/posts', (req,res,next) => {
 
 
 
-
-
-
-
-
-
-
+router.get('/friends', (req,res,next) => {
+  User.findById(req.user.id).populate('friends').select("-password").then(data => {
+    res.json(data)
+  })
+});
 
 router.get('/findfriends', (req,res,next) => {
   console.log(req.user)
-  User.find({ _id: { $nin: req.user.friends, $ne: req.user.id} }).then(users => {
+  User.find({ _id: { $nin: req.user.friends, $ne: req.user.id} }).select("-password").then(users => {
     res.json(users)
   })
-})
+});
 
 router.get('/profile/:id', (req,res,next) => {
 
@@ -60,7 +58,7 @@ router.get('/profile/:id', (req,res,next) => {
       res.render('user-views/friend', {user: data, posts: posts.reverse()})
     })
     )
-})
+});
 
 router.post('/profile/addfriend', (req,res,next) => {
   User.findByIdAndUpdate(req.user.id,
@@ -77,12 +75,7 @@ router.post('/profile/addfriend', (req,res,next) => {
 
 
 
-router.get('/friends', (req,res,next) => {
-  console.log(req.user)
-  User.findById(req.user.id).populate('friends').then(data => {
-    res.json(data)
-  })
-})
+
 
 router.get('/edit', (req,res,next) => {
   //edit profile stuff will go here
