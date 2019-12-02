@@ -39,17 +39,17 @@ class Signup extends Component {
           <h1>Signup</h1>
           <form onSubmit={this.handleFormSubmit} className="signup-login">
 
-          <div className="floatinglabel" onClick={(e) => this.handleActive(e)}>
+          <div className="floatinglabel">
             <label htmlFor="username" >Username</label>
             <input type="text" name="username" placeholder="username" value={this.state.username} onChange={ e => this.handleChange(e)} /><br></br>
           </div>
 
-          <div className="floatinglabel" onClick={(e) => this.handleActive(e)}>
+          <div className="floatinglabel">
             <label htmlFor="email">Email</label>
             <input type="email" name="email" id="email" placeholder="email" required onChange={ e => this.handleChange(e)} /><br></br>
           </div>
 
-          <div className="floatinglabel" onClick={(e) => this.handleActive(e)}>
+          <div className="floatinglabel">
             <label htmlFor="password">Password</label>
             <input type="password" name="password" placeholder="password" value={this.state.password} onChange={ e => this.handleChange(e)} /><br></br>
           </div>

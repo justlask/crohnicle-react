@@ -44,6 +44,17 @@ class AuthService {
     return this.service.get('/user/posts')
     .then(response => response.data)
   }
+
+  myFriends = (user) => {
+    return this.service.get('/user/friends')
+    .then(response => response.data)
+  }
+
+  findFriends = (user) => {
+    return this.service.get('/user/findfriends')
+    .then(response => response.data)
+  }
+
 }
 
 export default AuthService;

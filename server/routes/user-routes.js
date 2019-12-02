@@ -47,9 +47,9 @@ router.get('/posts', (req,res,next) => {
 
 
 router.get('/findfriends', (req,res,next) => {
+  console.log(req.user)
   User.find({ _id: { $nin: req.user.friends, $ne: req.user.id} }).then(users => {
-    console.log
-    res.render('user-views/findfriends' , {users: users})
+    res.json(users)
   })
 })
 
@@ -78,8 +78,9 @@ router.post('/profile/addfriend', (req,res,next) => {
 
 
 router.get('/friends', (req,res,next) => {
+  console.log(req.user)
   User.findById(req.user.id).populate('friends').then(data => {
-    res.render('user-views/friends', {friends: data.friends})
+    res.json(data)
   })
 })
 
