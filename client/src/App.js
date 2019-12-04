@@ -11,6 +11,7 @@ import Dashboard from './components/Dashboard'
 import Example from './components/NewDash'
 
 import Friends from './components/Friends/Friends'
+import FriendProfile from './components/Friends/FriendProfile'
 import Groups from './components/Groups/Group'
 import Events from './components/Events/Event'
 
@@ -54,6 +55,11 @@ class App extends Component {
           <Route exact path='/login' render={(props) => <Login user={this.state.loggedInUser} {...props} updateUser={this.updateUser} />}></Route>
           <Route exact path='/dashboard' render={() => <Dashboard user={this.state.loggedInUser} updateUser={this.updateUser} getUser={this.fetchUser}/>}></Route>
           <Route exact path='/friends' render={() => <Friends user={this.state.loggedInUser} updateUser={this.updateUser}/>}></Route>
+    <Route path='/profile/:id'  render={() => <FriendProfile user={this.state.loggedInUser} updateUser={this.updateUser}/>}></Route>
+          
+          
+          
+          
           <Route exact path='/groups' render={() => <Groups />}></Route>
           <Route exact path='/events' render={() => <Events />}></Route>
           <Route exact path='/testing' render={() => <Example />}></Route>

@@ -51,7 +51,6 @@ router.get('/findfriends', (req,res,next) => {
 
 
 router.put('/addfriend', (req,res,next) => {
-  console.log(req.body)
   User.findByIdAndUpdate(req.user.id, {
     $push: {friends: req.body.friendID}
   }, {new:true}).then(data => {
@@ -72,25 +71,20 @@ router.put('/removefriend', (req,res,next) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 router.get('/profile/:id', (req,res,next) => {
 
-  User.findById( req.params.id ).then(data =>
+  User.findById( req.params.id ).select("-password -email").then(data =>
     Post.find({authorID: data.id}).then(posts => {
-      res.render('user-views/friend', {user: data, posts: posts.reverse()})
+      res.json({user: data, posts: posts.reverse()})
     })
     )
 });
+
+
+
+
+
+
 
 
 

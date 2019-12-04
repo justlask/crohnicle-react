@@ -65,6 +65,11 @@ class AuthService {
     .then(response => response.data)
   }
 
+  getProfile = (id) => {
+    return this.service.get(`/user/profile/${id}`)
+    .then(response => response.data)
+  }
+
 }
 
 export default AuthService;

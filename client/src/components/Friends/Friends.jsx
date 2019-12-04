@@ -14,7 +14,6 @@ export default class Friends extends Component {
     this.service = new AuthService();
   }
 
-
   componentDidMount() {
     this.service.findFriends(this.props.user)
     .then(response => {
@@ -27,23 +26,17 @@ export default class Friends extends Component {
   findFriends = () => {
     this.service.findFriends(this.props.user)
     .then(response => {
-      console.log(response)
         this.setState({friends: response, thisFunc: this.findFriends});
     })
     .catch( error => console.log(error) )
-    console.log('not my friends')
   }
-
 
   myFriends = () => {
     this.service.myFriends(this.props.user)
     .then(response => {
-      console.log(response.friends)
       this.setState({friends: response.friends, thisFunc: this.myFriends})
     })
-    console.log('my friends')
   }
-
 
   showFriends = () => {
       return ( this.state.friends.map((friend, i) => {
