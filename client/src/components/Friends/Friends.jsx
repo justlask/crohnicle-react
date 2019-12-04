@@ -21,22 +21,27 @@ export default class Friends extends Component {
     })
   }
 
+
+
   findFriends = () => {
     this.service.findFriends(this.props.user)
     .then(response => {
+      console.log(response)
         this.setState({friends: response});
     })
     .catch( error => console.log(error) )
+    console.log('not my friends')
   }
 
 
   myFriends = () => {
     this.service.myFriends(this.props.user)
     .then(response => {
-      this.setState({friends: response})
+      console.log(response.friends)
+      this.setState({friends: response.friends})
     })
+    console.log('my friends')
   }
-
 
 
   showFriends = () => {

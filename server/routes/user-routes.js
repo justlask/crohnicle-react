@@ -35,31 +35,35 @@ router.get('/posts', (req,res,next) => {
 
 
 router.get('/myfriends', (req,res,next) => {
-  User.findById(req.user.id).populate('friends').select("-password -email").then(data => {
-    if (Array.isArray(data)) {
-      res.json(data)
-    }
-    else res.json([])
-  })
+  User.findById(req.user._id).populate('friends').select("-password -email").then(data => {
+    res.json(data)
+  }).catch(err =>  next(err))
 });
+
+
+
 
 router.get('/findfriends', (req,res,next) => {
-  User.find({ _id: { $nin: req.user.friends, $ne: req.user.id} }).select("-password -email").then(users => {
-    res.json(users)
+  User.find({ _id : { $nin: req.user.friends, $ne: req.user._id}}).select("-password -email").then(data => {
+    res.json(data)
   })
 });
 
 
-router.post('/user/addfriend', (req,res,next) => {
+router.put('/addfriend', (req,res,next) => {
   console.log(req.body)
-
+  User.findByIdAndUpdate(req.user.id, {
+    $push: {friends: req.body.friendID}
+  }, {new:true}).then(data => {
+    res.json(data)
+  })
 });
 
 
-router.post('/user/removefriend', (req,res,next) => {
+router.put('/removefriend', (req,res,next) => {
   User.findByIdAndUpdate(req.user.id, 
     { $pull: {friends: req.body.friendID }
-  }).then(data => {
+  }, {new:true}).then(data => {
     res.json(data)
   }).catch(err => next(err))
 });

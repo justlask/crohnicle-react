@@ -23,7 +23,8 @@ export default class FriendCard extends Component {
 
     this.service.addFriend(user, friendID)
     .then(response => {
-      return console.log("your friend now")
+      console.log(response)
+      console.log("your friend now")
     })
   }
 

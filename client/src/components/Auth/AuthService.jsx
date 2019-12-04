@@ -61,7 +61,7 @@ class AuthService {
   }
 
   removeFriend = (user, friendID) => {
-    return this.service.put('/user/removefriend')
+    return this.service.put('/user/removefriend', {user, friendID})
     .then(response => response.data)
   }
 
