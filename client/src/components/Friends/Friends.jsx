@@ -8,7 +8,8 @@ export default class Friends extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      friends: []
+      friends: [],
+      thisFunc: this.findFriends
     }
     this.service = new AuthService();
   }
@@ -27,7 +28,7 @@ export default class Friends extends Component {
     this.service.findFriends(this.props.user)
     .then(response => {
       console.log(response)
-        this.setState({friends: response});
+        this.setState({friends: response, thisFunc: this.findFriends});
     })
     .catch( error => console.log(error) )
     console.log('not my friends')
@@ -38,7 +39,7 @@ export default class Friends extends Component {
     this.service.myFriends(this.props.user)
     .then(response => {
       console.log(response.friends)
-      this.setState({friends: response.friends})
+      this.setState({friends: response.friends, thisFunc: this.myFriends})
     })
     console.log('my friends')
   }
@@ -46,7 +47,7 @@ export default class Friends extends Component {
 
   showFriends = () => {
       return ( this.state.friends.map((friend, i) => {
-        return <FriendCard user={this.props.user} key={i} friend={friend} />
+        return <FriendCard user={this.props.user} thisFunc={this.state.thisFunc} myFriends={this.myFriends} findFriends={this.findFriends} updateUser={this.props.updateUser} key={i} friend={friend} />
      }))
   }
 

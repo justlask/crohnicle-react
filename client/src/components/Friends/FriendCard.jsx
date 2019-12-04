@@ -8,28 +8,30 @@ export default class FriendCard extends Component {
     this.service = new AuthService();
   }
 
-  componentDidMount() {
-  }
-
-
   addFriend = (e) => {
-    console.log('add it')
+
     let user = this.props.user
     let friendID = this.props.friend._id
 
-
-    console.log(this.props.user._id)
-    console.log(this.props.friend._id)
-
     this.service.addFriend(user, friendID)
     .then(response => {
-      console.log(response)
+      this.props.updateUser(response)
       console.log("your friend now")
+      this.props.thisFunc();
     })
   }
 
   removeFriend = (e) => {
-    console.log('remove it')
+
+    let user = this.props.user
+    let friendID = this.props.friend._id
+
+    this.service.removeFriend(user, friendID)
+    .then(response => {
+      this.props.updateUser(response)
+      console.log('not your friend now')
+      this.props.thisFunc();
+    })
   }
 
 
