@@ -376,18 +376,19 @@ img {
 }
 
 .content {
-  min-height: 50vh;
+  min-height: 60vh;
   width: 80vw;
   border: 20px solid #4E1681;
-  border-top-right-radius: 8px;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
+  border-top-right-radius: 16px;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
   box-shadow: 0 1px 1px rgba(240, 93, 93, 0.8), 
 
 }
 
 .contentInner {
   border: 10px solid #E6E5DE;
+  min-height: 60vh;
   border-radius: 8px;
   margin: -10px;
   display: flex;

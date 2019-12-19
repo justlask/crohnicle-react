@@ -31,14 +31,20 @@ export default class Group extends Component {
   render() {
     return (
       <main>
+        <div className="friends">
         <nav className="secondaryNav">
-          <Button className="friendbutton" name="my groups"></Button>
-          <Button className="friendbutton" name="find groups"></Button>
-          <Button className="friendbutton" name="create a group"></Button>
+          <div className="navButtons">
+            <Button className="activeButton" name="my groups"></Button>
+            <Button className="notActiveButton" name="find groups"></Button>
+            <Button className="notActiveButton" name="create a group"></Button>
+          </div>
         </nav>
         <div className="content">
-
+            <div className="contentInner">
+                Groups coming soon!
+            </div>
         </div> 
+        </div>
       </main>
     )
   }
