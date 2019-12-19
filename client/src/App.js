@@ -15,6 +15,8 @@ import FriendProfile from './components/Friends/FriendProfile'
 import Groups from './components/Groups/Groups'
 import Events from './components/Events/Events'
 
+import ResetPassword from './components/Auth/ResetPassword'
+
 class App extends Component {
   constructor(props){
     super(props)
@@ -64,6 +66,8 @@ class App extends Component {
           <Route exact path='/events' render={() => <Events />}></Route>
           <Route exact path='/testing' render={() => <Example />}></Route>
           {/* <ProtectedRoute user={this.state.loggedInUser} path='/projects/:id' component={ProjectDetails} /> */}
+
+          <Route exact path="/forgot" render={() => <ResetPassword /> }></Route>
         </Switch>
         <Footer />
       </div>

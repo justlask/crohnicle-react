@@ -70,6 +70,11 @@ class AuthService {
     .then(response => response.data)
   }
 
+  resetPassword = (email) => {
+    return this.service.post(`/auth/resetpassword`, {email})
+    .then(response => response.data)
+  }
+
 }
 
 export default AuthService;
