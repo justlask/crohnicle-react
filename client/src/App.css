@@ -282,6 +282,7 @@ img {
 
 .secondaryNav {
   display: flex;
+  flex-direction: row;
   position: relative;
   width: 100vw;
   justify-content: left;
@@ -298,9 +299,6 @@ img {
   border-top-right-radius: 8px;
 }
 
-.navButtons {
-  margin-right: 170px;
-}
 
 .noButton {
   color: #E6E5DE;
