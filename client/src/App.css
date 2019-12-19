@@ -15,7 +15,6 @@
   font-family: 'Poppins';
   font-weight: 700;
   min-height: 100vh;
-  /* background: linear-gradient(#E4A2A4, #F1D1B5) */
 } 
 
 header {
@@ -137,7 +136,7 @@ h2 {
 }
 
 .box:hover {
-  transform: rotate(8deg);
+  transform: scale(1.2);
   transition: all 1s;
 }
 
@@ -274,7 +273,6 @@ img {
 
 
 
-
 .postbox {
   padding: 15px;
   margin: 10px;
@@ -283,17 +281,121 @@ img {
 
 
 .secondaryNav {
+  display: flex;
   position: relative;
+  width: 100vw;
+  justify-content: left;
+  align-items: flex-end;
+}
+
+
+.activeButton {
+  background-color: #4E1681;
+  border: none;
+  color: #E6E5DE;
+  padding: 5px 20px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.navButtons {
+  margin-right: 170px;
+}
+
+.noButton {
+  color: #E6E5DE;
+  padding:0; 
+  margin:0;
+  border:0;
+  background-color:transparent;
+}
+
+.notActiveButton {
+  color: #4E1681;
+  padding:0; 
+  margin:0;
+  border:0;
+  background-color:transparent;
+}
+
+
+
+.friendcard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin: 30px;
+  background-color: white;
+  border-radius: 16px;
+  padding: 26px 48px;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.11), 
+              0 2px 2px rgba(0,0,0,0.11), 
+              0 4px 4px rgba(0,0,0,0.11), 
+              0 8px 8px rgba(0,0,0,0.11), 
+              0 16px 16px rgba(0,0,0,0.11), 
+              0 32px 32px rgba(0,0,0,0.11);
+}
+
+.friendlink {
+  color: #4E1681;
+}
+
+.friendbutton {
+  border: none;
+  border-radius: 10px;
+  padding: 5px 20px;
+  background-color: #F05D5D;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
+  color: #E6E5DE;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 37px;
+  transition: all 0.2s;
+}
+
+
+.friendbutton:hover {
+  background-color: rgb(207, 76, 76);
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.is-active {
+  font-weight: bold;
+}
+
+
+.friends {
+  width: 80vw;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 50px 0;
 }
 
 .content {
   min-height: 50vh;
+  width: 80vw;
+  border: 20px solid #4E1681;
+  border-top-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  box-shadow: 0 1px 1px rgba(240, 93, 93, 0.8), 
+
 }
 
-.friendcard {
+.contentInner {
+  border: 10px solid #E6E5DE;
+  border-radius: 8px;
+  margin: -10px;
   display: flex;
-  justify-content: space-around;
+  flex-wrap: wrap;
   align-items: center;
+  justify-content: space-around;
 }
 
 

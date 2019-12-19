@@ -34,10 +34,10 @@ export default class FriendCard extends Component {
 
   handleButton = () => {
     if (this.props.user.friends.includes(this.props.friend._id)) {
-      return <Button onClick={(e) => this.removeFriend(e)} name="unfollow" />
+      return <Button className="friendbutton" onClick={(e) => this.removeFriend(e)} name="unfollow" />
     }
     else {
-      return <Button onClick={(e) => this.addFriend(e)} name="follow" />
+      return <Button className="friendbutton" onClick={(e) => this.addFriend(e)} name="follow" />
     }
   }
 
@@ -45,18 +45,18 @@ export default class FriendCard extends Component {
     console.log(this.props.friend)
     return (
       <div className="friendcard">
-          <div>
-            <img src={this.props.friend.image} alt=""/>
-          </div>
-          <div>
-            <h2>{this.props.friend.name}</h2>
-            <Link to={`profile/${this.props.friend._id}`}><h3>{this.props.friend.username}</h3></Link>
+        <img src={this.props.friend.image} alt=""/>
+        <div>
+          <div className="flexcol">
+              <h2>{this.props.friend.name}</h2>
+              <Link to={`profile/${this.props.friend._id}`}><h3 className="friendlink">{this.props.friend.username}</h3></Link>
 
-            <p>{this.props.friend.location.city}, {this.props.friend.location.state}</p>
-          </div>
-          <div>
-            {this.handleButton()}
-          </div>
+              <p>{this.props.friend.location.city}, {this.props.friend.location.state}</p>
+            </div>
+            <div>
+              {this.handleButton()}
+            </div>
+        </div>
       </div>
     )
   }

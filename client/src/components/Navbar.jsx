@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import AuthService from './Auth/AuthService'
-import { Link,  } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import Button from './Button'
 
 export default class Navbar extends Component {
@@ -22,10 +22,11 @@ export default class Navbar extends Component {
         <header>
           <Link to="/"><h1 className="pink">crohnicles</h1></Link>
           <nav>
-            <Link to="/groups">groups</Link>
-            <Link to="/events">events</Link>
-            <Link to="/friends">friends</Link>
-            <Button name="logout" onClick={() => this.logoutUser()}></Button>
+            
+            <NavLink activeClassName='is-active' to="/groups">groups</NavLink>
+            <NavLink activeClassName='is-active' to="/events">events</NavLink>
+            <NavLink activeClassName='is-active' to="/friends">friends</NavLink>
+            <Button className="noButton" name="logout" onClick={() => this.logoutUser()}></Button>
           </nav>
         </header>
       )

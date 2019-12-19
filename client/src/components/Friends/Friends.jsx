@@ -47,14 +47,19 @@ export default class Friends extends Component {
   render() {
     return (
       <main>
-        <nav style={{color: '#4E1681'}} className="secondaryNav">
-          <Button name="find friends" onClick={() => this.findFriends()}></Button>
-          <Button name="my friends" onClick={() => this.myFriends()}></Button>
-        </nav>
-        <div className="content">
-          {this.showFriends()}
+        <div className="friends">
+          <nav className="secondaryNav">
+            <div className="navButtons">
+            <Button className="activeButton" name="find friends" onClick={() => this.findFriends()}></Button>
+            <Button className="notActiveButton" name="my friends" onClick={() => this.myFriends()}></Button>
+            </div>
+          </nav>
+          <div className="content">
+            <div className="contentInner">
+              {this.showFriends()}
+            </div>
+          </div>
         </div>
-
       </main>
     )
   }
