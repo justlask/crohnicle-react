@@ -55,7 +55,7 @@ class App extends Component {
           <Route exact path='/login' render={(props) => <Login user={this.state.loggedInUser} {...props} updateUser={this.updateUser} />}></Route>
           <Route exact path='/dashboard' render={() => <Dashboard user={this.state.loggedInUser} updateUser={this.updateUser} getUser={this.fetchUser}/>}></Route>
           <Route exact path='/friends' render={() => <Friends user={this.state.loggedInUser} updateUser={this.updateUser}/>}></Route>
-          <Route path='/profile/:id'  render={() => <FriendProfile user={this.state.loggedInUser} updateUser={this.updateUser}/>}></Route>
+          <Route path='/profile/:id'  render={(props) => <FriendProfile user={this.state.loggedInUser}  {...props} updateUser={this.updateUser}/>}></Route>
           
           
           

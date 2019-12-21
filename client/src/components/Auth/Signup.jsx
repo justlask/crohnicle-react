@@ -35,8 +35,8 @@ class Signup extends Component {
   render(){
     return(
       <div className="signupbox">
+                  <h1>Signup</h1>
         <div className="form">
-          <h1>Signup</h1>
           <form onSubmit={this.handleFormSubmit} className="signup-login">
 
           <div className="floatinglabel">

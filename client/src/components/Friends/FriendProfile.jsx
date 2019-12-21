@@ -11,7 +11,7 @@ export default class Friend extends Component {
   }
 
   componentDidMount(){
-    console.log(this.props.match)
+    console.log(this.props)
   }
 
   loadProfile = () => {

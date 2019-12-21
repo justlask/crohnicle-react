@@ -9,7 +9,9 @@ export default class Friends extends Component {
     super(props)
     this.state = {
       friends: [],
-      thisFunc: this.findFriends
+      thisFunc: this.findFriends,
+      activeButtons: {findFriends: 'activeButton', myFriends: 'notActiveButton'},
+      borders: 'content'
     }
     this.service = new AuthService();
   }
@@ -23,26 +25,28 @@ export default class Friends extends Component {
 
 
 
-  findFriends = () => {
+  findFriends = (e) => {
     this.service.findFriends(this.props.user)
     .then(response => {
-        this.setState({friends: response, thisFunc: this.findFriends});
+        this.setState({friends: response, thisFunc: this.findFriends, activeButtons: {findFriends: 'activeButton', myFriends: 'notActiveButton'}, borders: 'content' });
     })
     .catch( error => console.log(error) )
   }
 
-  myFriends = () => {
+  myFriends = (e) => {
     this.service.myFriends(this.props.user)
     .then(response => {
-      this.setState({friends: response.friends, thisFunc: this.myFriends})
+      this.setState({friends: response.friends, thisFunc: this.myFriends, activeButtons: {findFriends: 'notActiveButton', myFriends: 'activeButton'}, borders: 'content2' })
     })
   }
 
-  showFriends = () => {
+  showFriends = (e) => {
       return ( this.state.friends.map((friend, i) => {
         return <FriendCard user={this.props.user} thisFunc={this.state.thisFunc} myFriends={this.myFriends} findFriends={this.findFriends} updateUser={this.props.updateUser} key={i} friend={friend} />
      }))
   }
+
+
 
   render() {
     return (
@@ -50,11 +54,11 @@ export default class Friends extends Component {
         <div className="friends">
           <nav className="secondaryNav">
             <div className="navButtons">
-            <Button className="activeButton" name="find friends" onClick={() => this.findFriends()}></Button>
-            <Button className="notActiveButton" name="my friends" onClick={() => this.myFriends()}></Button>
+            <Button className={this.state.activeButtons.findFriends} name="find friends" onClick={(e) => this.findFriends(e)}></Button>
+            <Button className={this.state.activeButtons.myFriends} name="my friends" onClick={(e) => this.myFriends(e)}></Button>
             </div>
           </nav>
-          <div className="content">
+          <div className={this.state.borders}>
             <div className="contentInner">
               {this.showFriends()}
             </div>
