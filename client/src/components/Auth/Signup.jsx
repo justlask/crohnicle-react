@@ -14,13 +14,16 @@ class Signup extends Component {
     event.preventDefault();
     const username = this.state.username;
     const password = this.state.password;
+    const email = this.state.email;
+    const type = this.state.type
   
-    this.service.signup(username, password)
-    .then( response => {
+    this.service.signup(username, password, email, type)
+    .then(response => {
         this.setState({
             username: "", 
             password: "",
         });
+        this.props.updateUser(response)
         this.props.history.push('/dashboard')
     })
     .catch( error => console.log(error) )
@@ -31,11 +34,16 @@ class Signup extends Component {
     this.setState({[name]: value});
   }
 
+  handleSelect = (e) => {
+    const {name, value} = e.target;
+    this.setState({[name]: value});
+  }
+
 
   render(){
     return(
       <div className="signupbox">
-                  <h1>Signup</h1>
+        <h1>Signup</h1>
         <div className="form">
           <form onSubmit={this.handleFormSubmit} className="signup-login">
 
@@ -55,12 +63,12 @@ class Signup extends Component {
           </div>
 
 
-          <select name="type" id="type" required>
-            <option value="" selected disabled>select account type</option>
-            <option value="crohnie">patient</option>
-            <option value="ally">ally</option>
-            <option value="caregiver">caregiver</option>
-            <option value="professional">medical professional</option>
+          <select name="type" id="type" required onChange={this.handleSelect}>
+            <option defaultValue="" selected disabled>select account type</option>
+            <option defaultValue="crohnie">patient</option>
+            <option defaultValue="ally">ally</option>
+            <option defaultValue="caregiver">caregiver</option>
+            <option defaultValue="professional">medical professional</option>
           </select><br></br>
 
             <input className="submitbtn" type="submit" value="Signup" />

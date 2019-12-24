@@ -33,7 +33,7 @@ class Login extends Component {
   render(){
       return ( 
           <div className="signupbox">
-                            <h1>Log in</h1>
+            <h1>Log in</h1>
             <div className="form">
               <form onSubmit={this.handleFormSubmit} className="signup-login">
                 <div  className="floatinglabel">

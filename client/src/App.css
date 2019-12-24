@@ -292,6 +292,7 @@ img {
   padding: 5px 20px;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
+  font-weight: bold;
 }
 
 
@@ -328,6 +329,17 @@ img {
               0 8px 8px rgba(0,0,0,0.11), 
               0 16px 16px rgba(0,0,0,0.11), 
               0 32px 32px rgba(0,0,0,0.11);
+}
+
+.friendcard img {
+  border-radius: 16px;
+  box-shadow: 0 1px 1px rgba(78, 22, 129, 0.11), 
+              0 2px 2px rgba(78, 22, 129, 0.11), 
+              0 4px 4px rgba(78, 22, 129, 0.11), 
+              0 8px 8px rgba(78, 22, 129, 0.11), 
+              0 16px 16px rgba(78, 22, 129, 0.11), 
+              0 32px 32px rgba(78, 22, 129, 0.11);
+  margin-bottom: 10px;
 }
 
 .friendlink {
@@ -374,9 +386,11 @@ img {
   min-height: 60vh;
   width: 80vw;
   border: 20px solid #4E1681;
+  background-color:  #4E1681;
   border-top-right-radius: 16px;
   border-bottom-left-radius: 16px;
   border-bottom-right-radius: 16px;
+  box-shadow: 0 8px 6px -6px rgba(0,0,0,0.5); 
 }
 
 
@@ -385,10 +399,11 @@ img {
   width: 80vw;
   border: 20px solid #4E1681;
   border-radius: 16px;
+  background-color: #4E1681;
+  box-shadow: 0 8px 6px -6px rgba(0,0,0,0.5);
 }
 
 .contentInner {
-  border: 10px solid #E6E5DE;
   min-height: 60vh;
   border-radius: 8px;
   margin: -10px;

@@ -75,6 +75,8 @@ router.get('/profile/:id', (req,res,next) => {
 
   User.findById( req.params.id ).select("-password -email").then(data =>
     Post.find({authorID: data.id}).then(posts => {
+      console.log(posts)
+      console.log(data)
       res.json({user: data, posts: posts.reverse()})
     })
     )

@@ -36,13 +36,13 @@ export default class Dashboard extends Component {
   render() {
     if (this.props.user) {
       return (
-      <div> 
+      <main> 
         <div>
-        <InfoCard user={this.props.user}/>
+          <InfoCard user={this.props.user}/>
         </div>
-        <Status user={this.props.user} updateUser={this.props.updateUser} handleStatusUpdate={this.handleStatusUpdate}/>
-        <Posts user={this.props.user} updateUser={this.props.updateUser} posts={this.state.posts}handleStatusUpdate={this.handleStatusUpdate} />
-      </div>
+          <Status user={this.props.user} updateUser={this.props.updateUser} handleStatusUpdate={this.handleStatusUpdate}/>
+          <Posts user={this.props.user} updateUser={this.props.updateUser} posts={this.state.posts}handleStatusUpdate={this.handleStatusUpdate} />
+      </main>
 
       )
     }
