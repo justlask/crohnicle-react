@@ -30,6 +30,7 @@ class ResetPassword extends Component {
       return (
         <main>
           <p>We have sent your temporary password to your email</p>
+          <p>If you do not recieve it, please check your spam folder.</p>
         </main>
       )
     }
