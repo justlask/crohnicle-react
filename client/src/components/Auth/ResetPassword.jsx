@@ -1,51 +1,45 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import AuthService from './AuthService'
 
-class ResetPassword extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: "",
-      sent: false
-    }
-    this.service = new AuthService();
-  }
+const ResetPassword = () => {
+  const service = new AuthService();
+  const [email, setEmail] = useState('');
+  const [sent, setSent] = useState(false);
 
-  handleChange = (e) => {
-    this.setState({email: e.target.value})
-  }
-
-  handleSubmit = (e) => {
-    e.preventDefault();
-    this.service.resetPassword(this.state.email)
-    .then(data => {
-      this.setState({
-        sent: true
-      })
+  const handleChange = (e) => {
+    setEmail({
+      ...email,
+      [e.target.name]: e.target.value
     })
   }
 
-  render() {
-    if (this.state.sent) {
-      return (
-        <main>
-          <p>We have sent your temporary password to your email</p>
-          <p>If you do not recieve it, please check your spam folder.</p>
-        </main>
-      )
-    }
-    else {
-      return (
-        <div className="signupbox">
-          <h1>Lost Password?</h1>
-          <form onSubmit={(e) => this.handleSubmit(e)}>
-            <label htmlFor="email">Email</label><br></br>
-            <input type="text" placeholder="email" id="email" value={this.state.email} onChange={(e) => this.handleChange(e)}/>
-            <input type="submit" value="submit"/>
-          </form>
-        </div>
-      )
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    service.resetPassword(email)
+    .then(response => {
+      setSent(true)
+    })
+  }
+
+  if (sent) {
+    return (
+      <main>
+        <p>We have sent your temporary password to your email</p>
+        <p>If you do not recieve it, please check your spam folder.</p>
+      </main>
+    )
+  }
+  else {
+    return (
+      <div className="signupbox">
+        <h1>Lost Password?</h1>
+        <form onSubmit={(e) => handleSubmit(e)}>
+          <label htmlFor="email">Email</label><br></br>
+          <input type="text" placeholder="email" id="email" value={email} onChange={(e) => handleChange(e)}/>
+          <input type="submit" value="submit"/>
+        </form>
+      </div>
+    )
   }
 }
 

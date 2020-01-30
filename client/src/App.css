@@ -152,17 +152,17 @@ img {
 
 .signupbox {
   min-height: 75vh;
+  padding: 50px 0px;
   display: flex;
   flex-direction: column;
   color: #4E1681;
   justify-content: center;
   align-items: center;
-
 }
 
 .form {
   color: #4E1681;
-  border: 10px solid #4E1681;
+  background-color: white;
   border-radius: 16px;
   padding: 42px;
    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
@@ -172,7 +172,12 @@ img {
 .floatinglabel input {
   border-radius: 8px;
   padding: 5px;
-  border: none;
+  border: 1px solid #4E1681;
+  color: #4E1681;
+}
+
+.floatinglable input:focus {
+  outline: none;
 }
 
 .submitbtn {

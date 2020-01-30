@@ -22,7 +22,7 @@ passport.deserializeUser((userIdFromSession, cb) => {
 });
 
 passport.use(new LocalStrategy((username, password, next) => {
-  User.findOne({ username }, (err, foundUser) => {
+  User.findOne({ username }).select('+password').exec((err, foundUser) => {
     if (err) {
       next(err);
       return;

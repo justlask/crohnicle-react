@@ -12,29 +12,28 @@ const nodemailer = require('nodemailer')
 
 
 router.post('/signup', (req, res, next) => {
+  console.log(req.body)
   const username = req.body.username;
   const password = req.body.password;
   const type = req.body.type;
   const email = req.body.email;
 
   if (!username || !password) {
+    console.log('no username or pass')
     res.status(400).json({ message: 'Provide username and password' });
     return;
-  }
-
-  if(password.length < 7){
-      res.status(400).json({ message: 'Please make your password at least 8 characters long for security purposes.' });
-      return;
   }
 
   User.findOne({ username }, (err, foundUser) => {
 
       if(err){
+        console.log(err)
           res.status(500).json({message: "Username check went bad."});
           return;
       }
 
       if (foundUser) {
+        console.log('already exists')
           res.status(400).json({ message: 'Username taken. Choose another one.' });
           return;
       }
@@ -51,11 +50,12 @@ router.post('/signup', (req, res, next) => {
 
       aNewUser.save(err => {
           if (err) {
+            console.log('error saving')
               res.status(400).json({ message: 'Saving user to database went wrong.' });
               return;
           }
 
-                      // Automatically log in user after sign up
+          // Automatically log in user after sign up
           // .login() here is actually predefined passport method
           req.login(aNewUser, (err) => {
 

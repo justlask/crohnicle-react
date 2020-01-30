@@ -1,60 +1,54 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import AuthService from './AuthService';
 import { Link } from 'react-router-dom';
 
-class Login extends Component {
-    constructor(props){
-      super(props);
-      this.state = { username: '', password: '' };
-      this.service = new AuthService();
-    }
+const Login = (props) => {
+  const service = new AuthService();
+  const [user, setUser] = useState({username: '', password: ''});
 
-  handleFormSubmit = (event) => {
+
+  const handleFormSubmit = (event) => {
     event.preventDefault();
 
-    const username = this.state.username;
-    const password = this.state.password;
+    const username = user.username;
+    const password = user.password;
 
-    this.service.login(username, password)
+    service.login(username, password)
     .then( response => {
-        this.setState({ username: "", password: "" });
-        this.props.updateUser(response)
-        this.props.history.push('/dashboard')
+      props.updateUser(response)
+      props.history.push('/dashboard')
     })
     .catch( error => console.log(error) )
   }
     
-  handleChange = (event) => {  
-    const {name, value} = event.target;
-    this.setState({[name]: value});
+  const handleChange = (event) => {  
+    setUser({
+      ...user,
+      [event.target.name]: event.target.value
+    })
   }
 
-
-  render(){
-      return ( 
-          <div className="signupbox">
-            <h1>Log in</h1>
-            <div className="form">
-              <form onSubmit={this.handleFormSubmit} className="signup-login">
-                <div  className="floatinglabel">
-                  <label>Username</label>
-                  <input type="text" name="username" placeholder="username" value={this.state.username} onChange={ e => this.handleChange(e)}/><br></br>
-                </div>
-
-                <div  className="floatinglabel">
-                  <label>Password</label>
-                  <input type="password" name="password" placeholder="password" value={this.state.password} onChange={ e => this.handleChange(e)} /><br></br>
-                </div>
-                      
-                  <input type="submit" value="Login" className="submitbtn" />
-                  </form><br></br>
-                  <p>Don't have account? 
-                      <Link to={"/signup"}> Signup</Link>
-                  </p>
-            </div>
-          </div> 
-      )
-  }
+  return ( 
+    <div className="signupbox">
+      <h1>Log in</h1>
+      <div className="form">
+        <form onSubmit={handleFormSubmit} className="signup-login">
+          <div className="floatinglabel">
+            <label>Username</label>
+            <input type="text" name="username" placeholder="username" value={user.username} onChange={ e => handleChange(e)}/><br></br>
+          </div>
+          <div  className="floatinglabel">
+            <label>Password</label>
+            <input type="password" name="password" placeholder="password" value={user.password} onChange={ e => handleChange(e)} /><br></br>
+          </div>             
+          <input type="submit" value="Login" className="submitbtn" />
+        </form><br></br>
+        <p>Don't have account? 
+          <Link to={"/signup"}> Signup</Link>
+        </p>
+      </div>
+    </div> 
+  )
 }
 
 export default Login;
