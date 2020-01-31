@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import UserImageUpload from './UserImageUpload';
 
 export default class InfoCard extends Component {
 
@@ -20,7 +21,7 @@ export default class InfoCard extends Component {
   render() {
     return (
       <div className="profileCard">
-        <img src={this.props.user.image} alt={`${this.props.user.username}'s profile`}/>
+        <UserImageUpload />
         <h1>{this.props.user.username}</h1>
           <div className="type">
            <p>{this.props.user.type}</p>

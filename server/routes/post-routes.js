@@ -33,35 +33,6 @@ router.post('/create', (req,res,next) => {
 
 
 
-// router.post('/create',uploadCloud.single('photo'), (req,res,next) => {
-//   console.log(req.body)
-//   let postObj = {}
-
-//   postObj.author = req.user.username,
-//   postObj.authorID= req.user.id,
-//   postObj.date= new Date,
-//   postObj.timestamps= true,
-//   postObj.body = req.body.content
-
-//   if (req.body.title) postObj.title = req.body.title
-//   if (req.body.image)  postObj.image = req.body.image;
-
-//   Post.create(postObj).then(data => {
-//     User.findById(req.user.id).then(data => {
-//       res.json(data)
-//     })
-//   }).catch(err => next(err))
-// })
-
-
-
-
-
-
-
-
-
-
 
 
 

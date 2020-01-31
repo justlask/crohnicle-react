@@ -14,7 +14,12 @@ router.post('/upload', uploadCloud.single("image"), (req, res, next) => {
     next(new Error('No file uploaded!'));
     return;
   }
-  res.json({ secure_url: req.file.secure_url });
+
+  User.findByIdAndUpdate(req.user.id, {image: req.file.secure_url }, {new: true})
+  .then(response => {
+    console.log(response)
+    res.json(response);
+  })
 })
 
 router.get('/posts', (req,res,next) => {
@@ -31,24 +36,17 @@ router.get('/posts', (req,res,next) => {
     }).catch(err => next(err))
 });
 
-
-
-
 router.get('/myfriends', (req,res,next) => {
   User.findById(req.user._id).populate('friends').select("-password -email").then(data => {
     res.json(data)
   }).catch(err =>  next(err))
 });
 
-
-
-
 router.get('/findfriends', (req,res,next) => {
   User.find({ _id : { $nin: req.user.friends, $ne: req.user._id}}).select("-password -email").then(data => {
     res.json(data)
   })
 });
-
 
 router.put('/addfriend', (req,res,next) => {
   User.findByIdAndUpdate(req.user.id, {
@@ -57,7 +55,6 @@ router.put('/addfriend', (req,res,next) => {
     res.json(data)
   })
 });
-
 
 router.put('/removefriend', (req,res,next) => {
   User.findByIdAndUpdate(req.user.id, 

@@ -101,6 +101,12 @@ class AuthService {
       .catch(err => console.log(err));
   }
 
+  handleUserPhotoUpload = (theFile) => {
+    return this.service.post('/user/upload', theFile)
+    .then(res => res.data)
+    .catch(err => console.log(err))
+  }
+
   getGroup = (id) => {
     return this.service.get(`/group/${id}`)
     .then(res => res.data)

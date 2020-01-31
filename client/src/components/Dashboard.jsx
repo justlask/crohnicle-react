@@ -7,7 +7,6 @@ import InfoCard from './Profile/InfoCard'
 const Dashboard = (props) => {
   const service = new AuthService();
   const [posts, setPosts] = useState([]);
-  const [status, newStatus] = useState(false);
 
   const loadPosts = () => {
     service.getPosts()
@@ -23,7 +22,7 @@ const Dashboard = (props) => {
 
   return (
     <main className="dash"> 
-      <InfoCard user={props.user}/>
+      <InfoCard user={props.user} updateUser={props.updateUser}/>
       <div>
         <Status user={props.user} updateUser={props.updateUser} updatePosts={loadPosts} />
         <Posts user={props.user} posts={posts} updateUser={props.updateUser}  />

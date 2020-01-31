@@ -1,7 +1,8 @@
 import React from 'react'
+import UserImageUpload from './UserImageUpload';
 
 const InfoCard = (props) => {
-
+  
   const getInfo = (thing) => {
     if (thing.length === 0) {
       return (
@@ -15,10 +16,9 @@ const InfoCard = (props) => {
     })
   }
 
-
   return (
     <div className="profileCard">
-      <img src={props.user.image} alt={`${props.user.username}'s profile`}/>
+      <UserImageUpload user={props.user} updateUser={props.updateUser} />
       <h1>{props.user.username}</h1>
       <div className="type">
        <b>{props.user.type}</b>
