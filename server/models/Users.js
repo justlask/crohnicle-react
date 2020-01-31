@@ -16,8 +16,8 @@ const userSchema = new Schema({
     default: "Pending Confirmation"
 },
   location: {
-    city: {type: String, default: 'unknown'},
-    state: {type: String, default: 'unknown'}
+    city: {type: String},
+    state: {type: String}
   },
   type: {type: String, enum: ["crohnie", "ally", "caregiver", "professional"]},
 })

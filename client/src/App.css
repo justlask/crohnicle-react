@@ -325,6 +325,7 @@ img {
   display: flex;
   flex-direction: row;
   align-items: initial;
+  padding-top: 25px;
 }
 
 
@@ -521,6 +522,68 @@ img {
   height: 50px;
   width: 50px;
   border-radius: 8px;
+}
+
+
+
+
+/* Modal */
+.backdrop {
+  position: fixed;
+  display: flex;
+  padding-top: 100px;
+  background-color: rgba(0,0,0,0.3);
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+  margin-top: -110px;
+}
+.modal {
+  background-color: #fff;
+  border-radius: 16px;
+  width: 80%;
+  min-width: 400px;
+  max-width: 800px;
+  height: 70%;
+  overflow: scroll;
+  margin: 100px 20%;
+  padding: 30px;
+  display: flex;
+  z-index: 4;
+}
+.modalnames {
+  text-align: left;
+  font-weight: 500;
+  margin-bottom: 25px;
+  z-index: 4;
+}
+.modalnames h3 {
+  font-weight: 500;
+}
+.modalnames p {
+  margin-left: 25px;
+  font-weight: normal;
+}
+.actionform {
+  width: 100%;
+  padding: 10px;
+}
+.editinput {
+  background-color: #F7F7F7;
+  padding: 10px;
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  border-bottom: 2px solid #4E1681;
+}
+.editinput input {
+  background-color: #F7F7F7;
+  border: none;
+}
+
+.editinput:focus {
+  color: #4E1681;
+  border-bottom: 5px solid #F05D5D;
 }
 
 

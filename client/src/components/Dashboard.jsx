@@ -3,10 +3,12 @@ import AuthService from './Auth/AuthService'
 import Status from './Profile/Status'
 import Posts from './Profile/Posts'
 import InfoCard from './Profile/InfoCard'
+import EditProfile from './Profile/EditProfile'
 
 const Dashboard = (props) => {
   const service = new AuthService();
   const [posts, setPosts] = useState([]);
+  const [editIsHidden, setHidden] = useState(true)
 
   const loadPosts = () => {
     service.getPosts()
@@ -22,11 +24,12 @@ const Dashboard = (props) => {
 
   return (
     <main className="dash"> 
-      <InfoCard user={props.user} updateUser={props.updateUser}/>
+      <InfoCard user={props.user} updateUser={props.updateUser} editProfile={setHidden}/>
       <div>
         <Status user={props.user} updateUser={props.updateUser} updatePosts={loadPosts} />
         <Posts user={props.user} posts={posts} updateUser={props.updateUser}  />
       </div>
+      <EditProfile isHidden={editIsHidden} setHidden={setHidden} user={props.user} updateUser={props.updateUser}/>
     </main>
   )
 }

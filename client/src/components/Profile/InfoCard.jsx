@@ -1,5 +1,7 @@
 import React from 'react'
 import UserImageUpload from './UserImageUpload';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 
 const InfoCard = (props) => {
   
@@ -18,7 +20,12 @@ const InfoCard = (props) => {
 
   return (
     <div className="profileCard">
-      <UserImageUpload user={props.user} updateUser={props.updateUser} />
+      <div style={{display: 'flex', flexDirection: 'column'}}>
+        <button style={{backgroundColor: 'inherit', border: 'none', alignSelf: 'flex-end', padding: '10px'}} onClick={(e) => props.editProfile(false)}>
+          <FontAwesomeIcon style={{color: 'black', fontSize: '22px' }}icon={faPencilAlt} />
+        </button>
+        <UserImageUpload user={props.user} updateUser={props.updateUser} />
+      </div>
       <h1>{props.user.username}</h1>
       <div className="type">
        <b>{props.user.type}</b>
