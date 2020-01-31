@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import EditInput from './EditInput'
+import EditInput from './EditInput';
+import EditMedsConds from './EditMedsConds';
 
 const EditProfile = (props) => {
   const [ user, setUser ] = useState(props.user);
@@ -13,29 +14,11 @@ const EditProfile = (props) => {
         </div>
         <div className="modalnames">
           <h3>Edit Profile</h3>
-          <EditInput placeholder="name" label="name" value={props.user.name} />
-          {/* <div className="editinput" onFocus={isFocused} onBlur={isBlur}>
-            <label>Name</label>
-            <input type="text" placeholder="name" value={props.user.name} />
-          </div> */}
-          <EditInput placeholder="bio" label="bio" value={props.user.bio} />
-          {/* <div className="editinput" onFocus={isFocused} onBlur={isBlur}>
-            <label>Bio</label>
-            <input type="text" placeholder="bio" value={props.user.bio} />
-          </div> */}
-          <div className="editinput">
-            <label>Location</label>
-            <input type="text" placeholder="city" defaultValue={props.user.location.city}/>
-            <input type="text" placeholder="state" defaultValue={props.user.location.state}/>
-          </div>
-          <div className="editinput">
-            <label>Medications</label>
-            <input type="text" placeholder="medications" />
-          </div>
-          <div className="editinput">
-            <label>Conditions</label>
-            <input type="text" placeholder="illness/conditions" />
-          </div>
+          <EditInput type="text" label="name" inputs={[ {placeholder: 'name', value: props.user.name } ]} />
+          <EditInput type="text" label="bio" inputs={[ { placeholder: "bio", value: props.user.bio } ]}  />
+          <EditInput type="text" label="location" inputs={[ { placeholder: 'city', value: props.user.location.city }, { placeholder: 'state', value: props.user.location.state } ]} />
+          <EditMedsConds label="medications" thing={user.medications}/>
+          <EditMedsConds label="conditions" thing={user.conditions}/>
         </div>
       </form>
     )

@@ -571,7 +571,7 @@ img {
 .editinput {
   background-color: #F7F7F7;
   padding: 10px;
-  margin: 10px 0;
+  margin: 15px 0;
   display: flex;
   flex-direction: column;
   border-bottom: 2px solid #4E1681;
@@ -581,10 +581,6 @@ img {
   border: none;
 }
 
-.editinput:focus {
-  color: #4E1681;
-  border-bottom: 5px solid #F05D5D;
-}
 
 
 
