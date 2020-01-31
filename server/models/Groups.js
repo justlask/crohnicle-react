@@ -3,7 +3,7 @@ const Schema    = mongoose.Schema;
 
 const groupSchema = new Schema({
   name: String,
-  groupImage: String,
+  image: String,
   admin: {type: Schema.Types.ObjectId, ref: 'User'},
   summary: String,
   members: [ { type : Schema.Types.ObjectId, ref: 'User' } ],
@@ -14,7 +14,9 @@ const groupSchema = new Schema({
     state: {type: String},
     zipcode: {type: String}
   },
-})
+},
+{timestamps: true}
+)
 
 
 const Groups = mongoose.model("Groups", groupSchema)

@@ -6,17 +6,66 @@ const Comment = require('../models/Comments')
 const uploadCloud = require('../config/cloudinary.js');
 
 
-router.use((req,res,next) => {
-  if (!req.user) {
-    res.redirect("/user/login");
+router.post('/upload', uploadCloud.single("image"), (req, res, next) => {
+  console.log(req.body)
+  console.log(req.file)
+  if (!req.file) {
+    console.log('woooooot')
+    next(new Error('No file uploaded!'));
+    return;
   }
-  next();
-}); 
+  res.json({ image: req.file.secure_url });
+});
 
-router.get('/create', (req, res, next) => {
-  res.render('group-views/create')
-})
+router.get('/mygroups', (req,res,next) => {
+  Group.find({ members: { $in: req.user.id} })
+  .populate('admin')
+  .populate('members')
+  .then(groups => {
+    res.json(groups)
+  })
+});
 
+router.get('/findgroups', (req,res,next) => {
+  Group.find({ members: { $nin: req.user.id} })
+  .populate('admin')
+  .populate('members')
+  .then(groups => {
+    res.json(groups)
+  })
+});
+
+router.post('/creategroup', (req,res,next) => {
+  const newGroup = {
+    name: req.body.group.name,
+    summary: req.body.group.summary,
+    location: {
+      address: req.body.group.address,
+      city: req.body.group.city,
+      state: req.body.group.state,
+      zipcode: req.body.group.zipcode,
+    },
+    admin: req.user.id,
+    members: [req.user.id],
+  }
+
+  if (req.body.group.image) {
+    newGroup.image = req.body.group.image
+  }
+
+  Group.create(newGroup)
+  .then(theGroup => {
+    res.json(theGroup)
+  })
+  .catch(err => {
+    res.json(err)
+  })
+});
+
+
+
+
+///////////////////////////////////////// old
 
 router.post('/create',uploadCloud.single('photo'), (req,res,next) => {
   let newGroup = {
@@ -61,16 +110,11 @@ router.get('/:id', (req,res,next) => {
 })
 
 
-
-
-
-
 router.get('/', (req,res,next) => {
   Group.find({ members: { $nin: req.user.id} }).populate('admin').populate('members').then(data => {
     res.render('group-views/viewall', {groups: data})
   })
 })
-
 
 
 router.get('/edit/:id', (req,res,next) => {
@@ -83,7 +127,6 @@ router.get('/edit/:id', (req,res,next) => {
       res.render("group-views/edit", {group: data, admin: iAmAdmin})
   })
 })
-
 
 
 router.post('/edit/:id', uploadCloud.single('photo'), (req,res,next) => {
@@ -152,6 +195,4 @@ router.post('/comment/:id', (req,res,next) => {
 })
 
 
-
-// res.send(data.groupID, data.id)
 module.exports = router;

@@ -45,7 +45,7 @@ class AuthService {
     .then(response => response.data)
   }
 
-  myFriends = (user) => {
+  myFriends = () => {
     return this.service.get('/user/myfriends')
     .then(response => response.data)
   }
@@ -73,6 +73,27 @@ class AuthService {
   resetPassword = (email) => {
     return this.service.post(`/auth/resetpassword`, {email})
     .then(response => response.data)
+  }
+
+  myGroups = () => {
+    return this.service.get('/group/mygroups')
+    .then(response => response.data)
+  }
+
+  findGroups = () => {
+    return this.service.get('/group/findgroups')
+    .then(response => response.data)
+  }
+
+  createGroup = (group) => {
+    return this.service.post('/group/creategroup', {group})
+    .then(response => response.data)
+  }
+
+  handleUpload = (theFile) => {
+    return this.service.post('/group/upload', theFile)
+      .then(res => res.data)
+      .catch(err => console.log(err));
   }
 
 }

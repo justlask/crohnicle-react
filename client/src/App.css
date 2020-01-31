@@ -418,6 +418,12 @@ img {
   justify-content: space-around;
 }
 
+.smallimg {
+  height: 50px;
+  width: 50px;
+  border-radius: 8px;
+}
+
 
 
 @media screen and (max-width: 800px) {

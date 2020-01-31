@@ -42,9 +42,11 @@ const Friends = (props) => {
   let thisFunc = findFriends
 
   const showFriends = (e) => {
-    return ( friends.map((friend, i) => {
+    return ( 
+      friends.map((friend, i) => {
         return <FriendCard user={props.user} thisFunc={thisFunc} myFriends={myFriends} findFriends={findFriends} updateUser={props.updateUser} key={i} friend={friend} />
-     }))
+      })
+    )
   }
 
   return (
