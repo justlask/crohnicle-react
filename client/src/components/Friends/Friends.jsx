@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import SecondaryNav from '../SecondaryNav'
 import AuthService from '../Auth/AuthService'
 import Button from '../Button'
 import FriendCard from './FriendCard'
@@ -7,14 +6,14 @@ import FriendCard from './FriendCard'
 const Friends = (props) => {
   const service = new AuthService();
   const [friends, setFriends] = useState([])
-  const [buttons, setButtons] = useState({findFriends: 'activeButton', myFriends: 'notActiveButton'});
+  const [buttons, setButtons] = useState({findFriends: 'notActiveButton', myFriends: 'activeButton'});
   const [borders, setBorders] = useState('content')
 
   
   useEffect(() => {
-    service.findFriends()
+    service.myFriends()
     .then(response => {
-      setFriends(response)
+      setFriends(response.friends);
     })
   }, []);
 
@@ -24,7 +23,7 @@ const Friends = (props) => {
       setFriends(response);
       thisFunc = findFriends;
       setButtons({findFriends: 'activeButton', myFriends: 'notActiveButton'});
-      setBorders('content');
+      setBorders('content2');
     })
     .catch( error => console.log(error) )
   }
@@ -35,11 +34,11 @@ const Friends = (props) => {
       setFriends(response.friends);
       thisFunc = myFriends;
       setButtons({findFriends: 'notActiveButton', myFriends: 'activeButton'});
-      setBorders('content2')
+      setBorders('content')
     })
   }
 
-  let thisFunc = findFriends
+  let thisFunc = myFriends
 
   const showFriends = (e) => {
     return ( 
@@ -54,8 +53,8 @@ const Friends = (props) => {
       <div className="friends">
         <nav className="secondaryNav">
           <div className="navButtons">
-            <Button className={buttons.findFriends} name="find friends" onClick={(e) => findFriends(e)}></Button>
             <Button className={buttons.myFriends} name="my friends" onClick={(e) => myFriends(e)}></Button>
+            <Button className={buttons.findFriends} name="find friends" onClick={(e) => findFriends(e)}></Button>
           </div>
         </nav>
         <div className={borders}>

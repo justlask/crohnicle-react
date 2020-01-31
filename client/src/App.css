@@ -264,9 +264,6 @@ img {
 
 .postbox {
   width: 70vw;
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
   background-color: white;
   border-radius: 16px;
   padding: 25px;
@@ -274,25 +271,51 @@ img {
   margin: 25px 0 50px 0;
 }
 
+.postbox:hover {
+  background-color: rgba(247, 247, 247, 0.76);
+}
+
 
 .statusbox input,
 .statusbox textarea {
+  margin-bottom: 20px;
+  width: 100%;
   border-radius: 8px;
   padding: 5px;
   border: 1px solid #4E1681;
   color: #4E1681;
 }
+#photo {
+  border: none;
+  width: 70%;
+  margin-bottom: 0;
+}
 .statusbox button {
-  background-color: #4E1681;
+  width: 20%;
+  background-color: #F05D5D;
   color: white;
+  font-size: 18px;
   font-weight: 600;
   padding: 10px;
   border-radius: 8px;
+  align-self: flex-end;
 }
+.statusbox button:hover {
+  background-color: rgb(207, 76, 76);
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
 .status {
   display: flex;
   flex-direction: column;
-  max-width: 400px;
+  width: 100%;
+}
+.status > div {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
 }
 
 .dash {

@@ -17,44 +17,39 @@ const Groups = (props) => {
     .then(response => {
       setGroups(response)
     })
-    console.log(groups)
-  }, [])
-
+    }, [])
 
   const findGroups = () => {
     service.findGroups()
     .then(response => {
-      setHidden(true)
-      setNewGroup(false)
-      setGroups(response)
+      setHidden(true);
+      setNewGroup(false);
+      setGroups(response);
+      setButtons({myGroups: 'notActiveButton', findGroups: 'activeButton', createGroup: 'notActiveButton'});
+      setBorders('content2');
       thisFunc = findGroups;
-      setButtons({myGroups: 'notActiveButton', findGroups: 'activeButton', createGroup: 'notActiveButton'})
-      setBorders('content2')
     })
-    console.log(groups)
   }
 
   const myGroups = () => {
     service.myGroups()
     .then(response => {
-      setHidden(true)
-      setNewGroup(false)
-      setGroups(response)
+      setHidden(true);
+      setNewGroup(false);
+      setGroups(response);
+      setButtons({myGroups: 'activeButton', findGroups: 'notActiveButton', createGroup: 'notActiveButton'});
+      setBorders('content');
       thisFunc = myGroups;
-      setButtons({myGroups: 'activeButton', findGroups: 'notActiveButton', createGroup: 'notActiveButton'})
-      setBorders('content')
     })
-    console.log(groups)
   }
 
   const createGroups = () => {
-    setHidden(false)
-    setNewGroup(false)
-    console.log('lets make a new group')
-    setButtons({myGroups: 'notActiveButton', findGroups: 'notActiveButton', createGroup: 'activeButton'})
+    setHidden(false);
+    setNewGroup(false);
+    setGroups([]);
+    setButtons({myGroups: 'notActiveButton', findGroups: 'notActiveButton', createGroup: 'activeButton'});
+    setBorders('content2');
     thisFunc = createGroups
-    setBorders('content2')
-    console.log('yooooo ')
   }
 
   let thisFunc = myGroups

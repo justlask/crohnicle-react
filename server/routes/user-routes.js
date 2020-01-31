@@ -24,15 +24,10 @@ router.post('/upload', uploadCloud.single("image"), (req, res, next) => {
 
 router.get('/posts', (req,res,next) => {
 
-    Post.find({ $or: [ { authorID: { $in: req.user.friends } }, { authorID: req.user.id}]}).then(data => {
-      data.forEach(thing => { 
-        thing.iAmAdmin = false;
-
-        if(thing.authorID.equals(req.user.id)){
-          thing.iAmAdmin = true;
-        }
-      })
-        res.json({posts: data.reverse()})
+    Post.find({ $or: [ { authorID: { $in: req.user.friends } }, { authorID: req.user.id}]})
+    .populate('authorID')
+    .then(data => {
+      res.json({posts: data.reverse()})
     }).catch(err => next(err))
 });
 
@@ -88,108 +83,108 @@ router.get('/profile/:id', (req,res,next) => {
 
 
 
-router.get('/edit', (req,res,next) => {
-  //edit profile stuff will go here
-  res.render('user-views/edit')
-})
+// router.get('/edit', (req,res,next) => {
+//   //edit profile stuff will go here
+//   res.render('user-views/edit')
+// })
 
-router.post('/edit', uploadCloud.single('photo'),(req,res,next) => {
+// router.post('/edit', uploadCloud.single('photo'),(req,res,next) => {
   
-  //profile changes post will go here
-  let userObj = {}
-  if (req.file) { userObj.profilePic = req.file.url};
-  if (req.body.name) userObj.name = req.body.name;
-  if (req.body.bio) userObj.bio = req.body.bio;
-  if (req.body.email) userObj.email = req.body.email;
-  if (req.body.illness) userObj.illness = req.body.illness
+//   //profile changes post will go here
+//   let userObj = {}
+//   if (req.file) { userObj.profilePic = req.file.url};
+//   if (req.body.name) userObj.name = req.body.name;
+//   if (req.body.bio) userObj.bio = req.body.bio;
+//   if (req.body.email) userObj.email = req.body.email;
+//   if (req.body.illness) userObj.illness = req.body.illness
 
-  User.findByIdAndUpdate(req.user.id, userObj).then(data => {
-    res.redirect('/user/profile')
-  }).catch(err => next(err))
-});
-
-
-
-
-router.post("/delete", (req,res,next) => {
-  User.findByIdAndRemove(req.user.id).then(data => {
-    req.logout();
-  }).catch(err => next(err))
-});
-
-
-router.post('/edit/medications', (req,res,next) => {
-  if (req.body.medication) {
-    User.findByIdAndUpdate( req.user.id, {$push: {medications: req.body.medication}}).then(
-      data => {
-        res.redirect('/user/edit')
-      })
-  }
-  else {
-    User.findByIdAndUpdate(req.user.id, {$pull: {medications:{ $in: req.body.remove}}}).then(data =>{
-      res.redirect('/user/edit')
-    })
-  }
-})
-
-router.post('/edit/conditions', (req,res,next) => {
-  if (req.body.illness) {
-    User.findByIdAndUpdate( req.user.id, {$push: {illness: req.body.illness}}).then(
-      data => {
-        res.redirect('/user/edit')
-      })
-  }
-  else {
-    User.findByIdAndUpdate(req.user.id, {$pull: {illness:{ $in: req.body.remove}}}).then(
-      data =>{
-      res.redirect('/user/edit')
-    })
-  }
-})
+//   User.findByIdAndUpdate(req.user.id, userObj).then(data => {
+//     res.redirect('/user/profile')
+//   }).catch(err => next(err))
+// });
 
 
 
-router.get('/groups', (req,res,next) => {
-  Group.find({ members: { $in: req.user.id} }).then(data => {
-    res.render('user-views/groups' , {groups: data})
-  })
-})
+
+// router.post("/delete", (req,res,next) => {
+//   User.findByIdAndRemove(req.user.id).then(data => {
+//     req.logout();
+//   }).catch(err => next(err))
+// });
 
 
-router.get('/events', (req,res,next) => {
-  console.log(req.user.id)
-  Event.find({ members: { $in: req.user.id} }).then(data => {
-    console.log(data)
-    res.render('user-views/events' , {events: data})
-  })
-})
+// router.post('/edit/medications', (req,res,next) => {
+//   if (req.body.medication) {
+//     User.findByIdAndUpdate( req.user.id, {$push: {medications: req.body.medication}}).then(
+//       data => {
+//         res.redirect('/user/edit')
+//       })
+//   }
+//   else {
+//     User.findByIdAndUpdate(req.user.id, {$pull: {medications:{ $in: req.body.remove}}}).then(data =>{
+//       res.redirect('/user/edit')
+//     })
+//   }
+// })
+
+// router.post('/edit/conditions', (req,res,next) => {
+//   if (req.body.illness) {
+//     User.findByIdAndUpdate( req.user.id, {$push: {illness: req.body.illness}}).then(
+//       data => {
+//         res.redirect('/user/edit')
+//       })
+//   }
+//   else {
+//     User.findByIdAndUpdate(req.user.id, {$pull: {illness:{ $in: req.body.remove}}}).then(
+//       data =>{
+//       res.redirect('/user/edit')
+//     })
+//   }
+// })
 
 
-router.post('/filterfriends', (req,res,next) => {
-  let illnessFilter = req.body.illness
-  let medicationFilter = req.body.medication
+
+// router.get('/groups', (req,res,next) => {
+//   Group.find({ members: { $in: req.user.id} }).then(data => {
+//     res.render('user-views/groups' , {groups: data})
+//   })
+// })
 
 
-  if (medicationFilter && illnessFilter) {
-    User.find({ $or: [ { medications: { $in: medicationFilter } }, { illness: {$in: illnessFilter}}]}).then(users => {
-      res.render('user-views/findfriends' , {users: users})
-    })
-  }
+// router.get('/events', (req,res,next) => {
+//   console.log(req.user.id)
+//   Event.find({ members: { $in: req.user.id} }).then(data => {
+//     console.log(data)
+//     res.render('user-views/events' , {events: data})
+//   })
+// })
 
-  if (illnessFilter) {
-    User.find({illness: {$in: illnessFilter}}).then(users => {
-      console.log(users)
-      res.render('user-views/findfriends' , {users: users})
-    })
-  }
 
-  if (medicationFilter) {
-    User.find({medications: {$in: medicationFilter}}).then(users => {
-      console.log(users)
-      res.render('user-views/findfriends' , {users: users})
-    })
-  }
-})
+// router.post('/filterfriends', (req,res,next) => {
+//   let illnessFilter = req.body.illness
+//   let medicationFilter = req.body.medication
+
+
+//   if (medicationFilter && illnessFilter) {
+//     User.find({ $or: [ { medications: { $in: medicationFilter } }, { illness: {$in: illnessFilter}}]}).then(users => {
+//       res.render('user-views/findfriends' , {users: users})
+//     })
+//   }
+
+//   if (illnessFilter) {
+//     User.find({illness: {$in: illnessFilter}}).then(users => {
+//       console.log(users)
+//       res.render('user-views/findfriends' , {users: users})
+//     })
+//   }
+
+//   if (medicationFilter) {
+//     User.find({medications: {$in: medicationFilter}}).then(users => {
+//       console.log(users)
+//       res.render('user-views/findfriends' , {users: users})
+//     })
+//   }
+// })
 
 
 module.exports = router;

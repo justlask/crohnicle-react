@@ -30,8 +30,6 @@ const StatusPhotoUpload = (props) => {
       <input type="file" name="photo" id="photo" onChange={(e) => handleFileUpload(e)} />
     </div>
   )
-
-
 }
 
 export default StatusPhotoUpload;
