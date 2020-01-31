@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import AuthService from '../Auth/AuthService'
+import StatusPhotoUpload from './StatusPhotoUpload'
 
 const Status = (props) => {
   const [status, updateStatus] = useState({});
+  const [posted, hasPosted] = useState(false)
   const service = new AuthService();
 
   const handleChange = (event) => {  
@@ -12,27 +14,20 @@ const Status = (props) => {
     })
   }
 
-  const handleFileUpload = e => {
-    const uploadData = new FormData();
-    uploadData.append("image", e.target.files[0]);
-    
-    service.handleUpload(uploadData)
-    .then(response => {
-        updateStatus({
-          ...status,
-           image: response.secure_url });
-      })
-      .catch(err => {
-        console.log("Error while uploading the file: ", err);
-      });
-  }
-
   const handleSubmit = (event) => {
     event.preventDefault();
     service.post(status)
     .then(data => {
       document.getElementById("status").reset();
+      hasPosted(true)
       props.updatePosts();
+    })
+  }
+
+  const handlePhoto = (photo) => {
+    updateStatus({
+      ...status,
+      image: photo
     })
   }
 
@@ -40,11 +35,8 @@ const Status = (props) => {
     <div className="statusbox">
       <form className="status" id="status" onSubmit={handleSubmit} encType="multipart/form-data">
         <input type="text" name="title" placeholder="give me a title" onChange={handleChange}/>         
-        <textarea name="content" id="content" placeholder="tell me something good."  onChange={handleChange}></textarea>
-        <div>
-          <label for="photo">add a photo</label>
-          <input type="file" name="photo" id="photo" onChange={(e) => handleFileUpload(e)} />
-        </div>
+        <textarea name="content" id="content" placeholder="tell me something good."  onChange={handleChange} required></textarea>
+        <StatusPhotoUpload handlePhoto={handlePhoto} posted={posted}/>
         <button type="submit">share</button>
       </form> 
     </div>

@@ -262,6 +262,18 @@ img {
   box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
 }
 
+.postbox {
+  width: 70vw;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  background-color: white;
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
+  margin: 25px 0 50px 0;
+}
+
 
 .statusbox input,
 .statusbox textarea {
@@ -292,7 +304,12 @@ img {
 
 
 .profileCard {
+  /* position: fixed;
+  left: 0; */
   width: 20vw;
+  margin-top: 70px;
+  padding-bottom: 100px;
+  height: 70vh;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -316,18 +333,6 @@ img {
 .profileCard ul {
   list-style: none;
 }
-
-
-
-
-
-
-.postbox {
-  padding: 15px;
-  margin: 10px;
-  background-color: #F7F7F7;
-}
-
 
 .secondaryNav {
   display: flex;

@@ -7,10 +7,7 @@ const uploadCloud = require('../config/cloudinary.js');
 
 
 router.post('/upload', uploadCloud.single("image"), (req, res, next) => {
-  console.log(req.body)
-  console.log(req.file)
   if (!req.file) {
-    console.log('woooooot')
     next(new Error('No file uploaded!'));
     return;
   }

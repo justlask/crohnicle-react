@@ -90,6 +90,11 @@ class AuthService {
     .then(response => response.data)
   }
 
+  handleStatusUpload = (theFile) => {
+    return this.service.post('/post/upload', theFile)
+    .then(res => res.data)
+    .catch(err => console.log(err))
+  }
   handleUpload = (theFile) => {
     return this.service.post('/group/upload', theFile)
       .then(res => res.data)

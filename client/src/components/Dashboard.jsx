@@ -7,6 +7,7 @@ import InfoCard from './Profile/InfoCard'
 const Dashboard = (props) => {
   const service = new AuthService();
   const [posts, setPosts] = useState([]);
+  const [status, newStatus] = useState(false);
 
   const loadPosts = () => {
     service.getPosts()

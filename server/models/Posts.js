@@ -5,7 +5,7 @@ const postSchema = new Schema({
   title: String,
   author: String,
   authorID: { type : Schema.Types.ObjectId, ref: 'User' },
-  body: String,
+  content: String,
   image: String,
   comments: [{ type: Schema.Types.ObjectId, ref: "Comment"}],
   date: { type: Date, default: Date.now },
@@ -15,7 +15,6 @@ const postSchema = new Schema({
   timestamps: { type: Boolean,
     default: true
   },
-  date: Date,
 });
 
 
