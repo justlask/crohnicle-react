@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import AuthService from '../Auth/AuthService'
+import PostCard from '../Profile/PostCard'
 
 const FriendProfile = (props) => {
   const service = new AuthService();
@@ -14,13 +15,31 @@ const FriendProfile = (props) => {
     })
   }, [])
 
+  const showPosts = () => {
+    return (
+      posts.map((post, i) => {
+        return <PostCard post={post} key={i} />
+      })
+    )
+  }
+
   return (
     <main>      
-      <div>
-        <h1>{friend.username}</h1>
-        <p>{friend.type}</p>
+      <div style={{display: 'flex', flexDirection: 'column', width: '80%'}}>
+        <div style={{display: 'flex', justifyContent: 'space-around', alignItems: 'flex-start', padding: '20px 50px'}}>
+          <img style={{width: '20%'}}src={friend.image} alt=""/> 
+          <div style={{width: '70%'}}>
+            <h1>{friend.name}</h1>
+            <h2>@{friend.username}</h2>
+            <div className="type">{friend.type}</div>
+            <p>{friend.bio}</p>
+          </div>
+        </div>
+        <div style={{width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+          { showPosts() }
+        </div>
       </div>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo pariatur aspernatur aliquid quo consectetur deserunt perferendis, accusamus nisi at rem velit quam hic eius temporibus, eaque laudantium iste beatae rerum sequi deleniti! Reiciendis reprehenderit quam officia repellat totam veniam neque, quidem minima incidunt natus et enim unde quisquam rerum ipsa facere earum libero beatae. Fugit esse porro ad rerum architecto recusandae, minima quae vel eaque reiciendis aspernatur id numquam similique, pariatur neque doloribus distinctio excepturi accusantium nemo! Ab aut dolorem facere, voluptas rerum maiores! Suscipit corporis eum culpa velit! Dolorum veritatis in possimus, tempore minima qui dolor iusto ut ratione accusantium accusamus pariatur veniam quam eum deleniti id ea asperiores quidem atque ipsam. Libero natus voluptate explicabo recusandae ipsam modi.
+
     </main>
   )
 }

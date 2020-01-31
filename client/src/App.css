@@ -366,12 +366,9 @@ img {
 }
 
 
-
-
-
-
-
 .type {
+  width: 100%;
+  max-width: 150px;
   padding: 5px 15px;
   background-color: blue;
   font-size: 18px;

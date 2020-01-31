@@ -23,7 +23,6 @@ router.post('/upload', uploadCloud.single("image"), (req, res, next) => {
 })
 
 router.get('/posts', (req,res,next) => {
-
     Post.find({ $or: [ { authorID: { $in: req.user.friends } }, { authorID: req.user.id}]})
     .populate('authorID')
     .then(data => {
@@ -66,7 +65,9 @@ router.put('/removefriend', (req,res,next) => {
 router.get('/profile/:id', (req,res,next) => {
 
   User.findById( req.params.id ).select("-password -email").then(data =>
-    Post.find({authorID: data.id}).then(posts => {
+    Post.find({authorID: data.id})
+    .populate('authorID')
+    .then(posts => {
       console.log(posts)
       console.log(data)
       res.json({user: data, posts: posts.reverse()})
