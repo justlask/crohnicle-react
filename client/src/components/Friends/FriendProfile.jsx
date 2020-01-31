@@ -16,16 +16,21 @@ const FriendProfile = (props) => {
   }, [])
 
   const showPosts = () => {
-    return (
+    return (posts > 0) ? (
       posts.map((post, i) => {
         return <PostCard post={post} key={i} />
       })
+    ) :
+    (
+      <div className="postbox">
+        <h1>No posts yet!</h1>
+      </div>
     )
   }
 
   const getInfo = (thing) => {
     return (!thing) ? (
-        <li>Nothing to Show</li>
+       'Nothing yet'
     ) :
     ( thing.map((element, i) => {
         return element
@@ -48,7 +53,7 @@ const FriendProfile = (props) => {
             <div style={{width: '50%'}}>
               <h5>Medications:</h5>
               <p>{getInfo(friend.medications)}</p>
-              <h5>Conditions</h5>
+              <h5>Conditions:</h5>
               <p>{getInfo(friend.conditions)}</p>
             </div>
           </div>

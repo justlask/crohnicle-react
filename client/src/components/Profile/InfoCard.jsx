@@ -23,24 +23,28 @@ const InfoCard = (props) => {
         </button>
         <UserImageUpload user={props.user} updateUser={props.updateUser} />
       </div>
-      <h1>{props.user.username}</h1>
-      <div className="type">
-       <b>{props.user.type}</b>
+      <div style={{paddingBottom: '25px'}}>
+        <h2>{props.user.name}</h2>
+        <h4>@{props.user.username}</h4>
+        <p>{props.user.bio}</p>
+        <div className="type">
+        <b>{props.user.type}</b>
+        </div>
+        <p>{props.user.friends.length} friends</p>
       </div>
-      <p>{props.user.bio}</p>
+
       <div>
-        <h5>Medications</h5>
+        <h5>Medications:</h5>
         <p>
           {getInfo(props.user.medications)}
         </p>
       </div>
       <div>
-        <h5>Conditions</h5>
+        <h5>Conditions:</h5>
         <p>
           {getInfo(props.user.conditions)}
         </p>
       </div>
-      <p>{props.user.friends.length} friends</p>
     </div>
   )
 }
