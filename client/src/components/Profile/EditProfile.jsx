@@ -1,19 +1,11 @@
-import React, { Component } from 'react'
-import AuthService from '../Auth/AuthService'
+import React from 'react'
 
-class EditProfile extends Component {
-  constructor(props) {
-    super(props);
-    this.service = new AuthService();
-  }
-
-  render() {
-    return (
-      <div>
-        
-      </div>
-    )
-  }
+const EditProfile = () => {
+  return (
+    <div>
+      edit?
+    </div>
+  )
 }
+export default EditProfile
 
-export default EditProfile;

@@ -1,16 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default class Profile extends Component {
-  constructor(props) {
-    super(props)
-  }
-
-
-  render() {
-    return (
-      <div>
-
-      </div>
-    )
-  }
+export default function Profile() {
+  return (
+    <div>
+      not sure what this page is supposed to be?
+    </div>
+  )
 }
+
