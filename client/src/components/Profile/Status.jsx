@@ -5,8 +5,6 @@ const Status = (props) => {
   const [status, updateStatus] = useState({});
   const service = new AuthService();
 
-  console.log(props)
-
   const handleChange = (event) => {  
     updateStatus({
       ...status,
@@ -31,7 +29,6 @@ const Status = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(status)
     service.post(status)
     .then(data => {
       document.getElementById("status").reset();

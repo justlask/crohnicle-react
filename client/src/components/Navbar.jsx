@@ -1,19 +1,8 @@
 import React from 'react'
-import AuthService from './Auth/AuthService'
 import { Link, NavLink } from 'react-router-dom'
 import Button from './Button'
 
 const Navbar = (props) => {
-  // const service = new AuthService();
-
-  // const logoutUser = () => {
-  //   service.logout()
-  //   .then(() => {
-  //     props.history.push('/')
-  //     props.updateUser(null);
-  //   })
-  // }
-
   if (props.user) {
     return (
       <header>

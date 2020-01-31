@@ -1,70 +1,69 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import SecondaryNav from '../SecondaryNav'
 import AuthService from '../Auth/AuthService'
 import Button from '../Button'
 import FriendCard from './FriendCard'
 
-export default class Friends extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      friends: [],
-      thisFunc: this.findFriends,
-      activeButtons: {findFriends: 'activeButton', myFriends: 'notActiveButton'},
-      borders: 'content'
-    }
-    this.service = new AuthService();
-  }
+const Friends = (props) => {
+  const service = new AuthService();
+  const [friends, setFriends] = useState([])
+  const [buttons, setButtons] = useState({findFriends: 'activeButton', myFriends: 'notActiveButton'});
+  const [borders, setBorders] = useState('content')
 
-  componentDidMount() {
-    this.service.findFriends(this.props.user)
+  
+  useEffect(() => {
+    service.findFriends()
     .then(response => {
-      this.setState({friends: response})
+      setFriends(response)
     })
-  }
+  }, []);
 
-
-
-  findFriends = (e) => {
-    this.service.findFriends(this.props.user)
+  const findFriends = (e) => {
+    service.findFriends()
     .then(response => {
-        this.setState({friends: response, thisFunc: this.findFriends, activeButtons: {findFriends: 'activeButton', myFriends: 'notActiveButton'}, borders: 'content' });
+      setFriends(response);
+      thisFunc = findFriends;
+      setButtons({findFriends: 'activeButton', myFriends: 'notActiveButton'});
+      setBorders('content');
     })
     .catch( error => console.log(error) )
   }
 
-  myFriends = (e) => {
-    this.service.myFriends(this.props.user)
+  const myFriends = (e) => {
+    service.myFriends()
     .then(response => {
-      this.setState({friends: response.friends, thisFunc: this.myFriends, activeButtons: {findFriends: 'notActiveButton', myFriends: 'activeButton'}, borders: 'content2' })
+      setFriends(response.friends);
+      thisFunc = myFriends;
+      setButtons({findFriends: 'notActiveButton', myFriends: 'activeButton'});
+      setBorders('content2')
     })
   }
 
-  showFriends = (e) => {
-      return ( this.state.friends.map((friend, i) => {
-        return <FriendCard user={this.props.user} thisFunc={this.state.thisFunc} myFriends={this.myFriends} findFriends={this.findFriends} updateUser={this.props.updateUser} key={i} friend={friend} />
+  let thisFunc = findFriends
+
+  const showFriends = (e) => {
+    return ( friends.map((friend, i) => {
+        return <FriendCard user={props.user} thisFunc={thisFunc} myFriends={myFriends} findFriends={findFriends} updateUser={props.updateUser} key={i} friend={friend} />
      }))
   }
 
-
-
-  render() {
-    return (
-      <main>
-        <div className="friends">
-          <nav className="secondaryNav">
-            <div className="navButtons">
-            <Button className={this.state.activeButtons.findFriends} name="find friends" onClick={(e) => this.findFriends(e)}></Button>
-            <Button className={this.state.activeButtons.myFriends} name="my friends" onClick={(e) => this.myFriends(e)}></Button>
-            </div>
-          </nav>
-          <div className={this.state.borders}>
-            <div className="contentInner">
-              {this.showFriends()}
-            </div>
+  return (
+    <main>
+      <div className="friends">
+        <nav className="secondaryNav">
+          <div className="navButtons">
+            <Button className={buttons.findFriends} name="find friends" onClick={(e) => findFriends(e)}></Button>
+            <Button className={buttons.myFriends} name="my friends" onClick={(e) => myFriends(e)}></Button>
+          </div>
+        </nav>
+        <div className={borders}>
+          <div className="contentInner">
+            { showFriends() }
           </div>
         </div>
-      </main>
-    )
-  }
+      </div>
+    </main>
+  )
 }
+
+export default Friends;

@@ -1,25 +1,22 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Button from './Button'
 
-export default class SecondaryNav extends Component {
-  constructor(props) {
-    super(props)
-  }
+const SecondaryNav = (props) => {
 
-  createButtons = () => {
-    console.log(this.props.options)
+  const createButtons = () => {
+    console.log(props.options)
     return (
-      this.props.options.map((option, i) => {
+      props.options.map((option, i) => {
         return <Button key={i} name={option}/>
       })
     )
   }
 
-  render() {
-    return (
-      <div>
-        {this.createButtons()}
-      </div>
-    )
-  }
+  return (
+    <div>
+      {createButtons()}
+    </div>
+  )
 }
+
+export default SecondaryNav;

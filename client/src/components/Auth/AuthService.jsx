@@ -50,7 +50,7 @@ class AuthService {
     .then(response => response.data)
   }
 
-  findFriends = (user) => {
+  findFriends = () => {
     return this.service.get('/user/findfriends')
     .then(response => response.data)
   }
