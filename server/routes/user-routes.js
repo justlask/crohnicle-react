@@ -75,7 +75,14 @@ router.get('/profile/:id', (req,res,next) => {
     )
 });
 
+router.post('/updatemedcon', (req,res,next) => {
+  
+  User.findByIdAndUpdate(req.user.id, {$push: {[req.body.type]: req.body.add}}, {new: true})
+  .then(user => {
+    res.json(user)
+  });
 
+})
 
 
 

@@ -40,7 +40,7 @@ const InfoCard = (props) => {
       <div>
         <h3>Conditions</h3>
         <ul>
-          {getInfo(props.user.illness)}
+          {getInfo(props.user.conditions)}
         </ul>
       </div>
       <p>{props.user.friends.length} friends</p>

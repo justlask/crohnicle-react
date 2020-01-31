@@ -112,6 +112,11 @@ class AuthService {
     .then(res => res.data)
   }
 
+  updateUserMedCon = (obj) => {
+    return this.service.post('/user/updatemedcon', obj)
+    .then(res => res.data)
+  }
+
 }
 
 export default AuthService;

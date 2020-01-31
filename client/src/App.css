@@ -331,10 +331,9 @@ img {
 
 
 .profileCard {
-  margin-top: 50px;
   width: 20vw;
-  height: 70vh;
-  padding-top: 50px;
+  min-height: 70vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
