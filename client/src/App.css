@@ -271,7 +271,7 @@ img {
   border-radius: 16px;
   padding: 25px;
   box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
-  margin: 25px 0 50px 0;
+  margin: 20px 0 20px 0;
 }
 
 .postbox:hover {
@@ -367,6 +367,7 @@ img {
 
 
 .type {
+  text-align: center;
   width: 100%;
   max-width: 150px;
   padding: 5px 15px;

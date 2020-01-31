@@ -6,16 +6,13 @@ import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 const InfoCard = (props) => {
   
   const getInfo = (thing) => {
-    if (thing.length === 0) {
-      return (
+    return (thing.length === 0) ? (
         <li>Nothing to Show</li>
-      )
-    }
-    return thing.map((element, i) => {
-      return (
-      <li key={i}>{element}</li>
-      )
-    })
+    ) :
+    ( thing.map((element, i) => {
+        return element
+      }).join(', ')
+    )
   }
 
   return (
@@ -32,16 +29,16 @@ const InfoCard = (props) => {
       </div>
       <p>{props.user.bio}</p>
       <div>
-        <h3>Medications</h3>
-        <ul>
+        <h5>Medications</h5>
+        <p>
           {getInfo(props.user.medications)}
-        </ul>
+        </p>
       </div>
       <div>
-        <h3>Conditions</h3>
-        <ul>
+        <h5>Conditions</h5>
+        <p>
           {getInfo(props.user.conditions)}
-        </ul>
+        </p>
       </div>
       <p>{props.user.friends.length} friends</p>
     </div>
