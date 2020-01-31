@@ -1,11 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 
-export default class Button extends Component {
-  render() {
-    return (
-
-        <Link to={this.props.link}><button className={this.props.className}onClick={this.props.onClick}>{this.props.name}</button></Link>
-    )
-  }
+const Button = (props) => {
+  return (
+    <Link to={props.link}><button className={props.className}onClick={props.onClick}>{props.name}</button></Link>
+  )
 }
+
+export default Button;

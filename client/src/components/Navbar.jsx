@@ -4,14 +4,15 @@ import { Link, NavLink } from 'react-router-dom'
 import Button from './Button'
 
 const Navbar = (props) => {
-  const service = new AuthService();
+  // const service = new AuthService();
 
-  const logoutUser = () => {
-    service.logout()
-    .then(() => {
-      props.updateUser(null);
-    })
-  }
+  // const logoutUser = () => {
+  //   service.logout()
+  //   .then(() => {
+  //     props.history.push('/')
+  //     props.updateUser(null);
+  //   })
+  // }
 
   if (props.user) {
     return (
@@ -21,7 +22,7 @@ const Navbar = (props) => {
           <NavLink activeClassName='is-active' to="/groups">groups</NavLink>
           <NavLink activeClassName='is-active' to="/events">events</NavLink>
           <NavLink activeClassName='is-active' to="/friends">friends</NavLink>
-          <Button link="/" className="noButton" name="logout" onClick={logoutUser}></Button>
+          <Button link="/" className="noButton" name="logout" onClick={props.logoutUser}></Button>
         </nav>
       </header>
     )

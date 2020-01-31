@@ -96,7 +96,14 @@ router.post('/signup', (req, res, next) => {
   
   router.post('/logout', (req, res, next) => {
     req.logout();
-    res.status(200).json({message: "You've been logged out"});
+    req.session.destroy(function (err) {
+      if (!err) {
+          res.status(200).clearCookie('connect.sid', {path: '/'}).json({status: "Success"});
+      } else {
+          // handle error case...
+          res.status(400).json({message: 'something went wrong.'})
+      }
+    })
   });
   
   router.get('/loggedin', (req,res,next) => {

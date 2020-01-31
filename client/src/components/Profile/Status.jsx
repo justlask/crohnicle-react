@@ -1,59 +1,57 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import AuthService from '../Auth/AuthService'
 
-export default class Status extends Component {
-  constructor(props){
-    super(props);
-    this.service = new AuthService();
-    this.state = {}
-    this.baseState = {}
+const Status = (props) => {
+  const [status, updateStatus] = useState({});
+  const service = new AuthService();
+
+  console.log(props)
+
+  const handleChange = (event) => {  
+    updateStatus({
+      ...status,
+      [event.target.name]: event.target.value
+    })
   }
 
-
-  handleChange = (event) => {
-    const {name, value} = event.target;
-    this.setState({[name]: value});
-  }
-
-
-  handleFileUpload = e => {
-
+  const handleFileUpload = e => {
     const uploadData = new FormData();
     uploadData.append("image", e.target.files[0]);
     
-    this.service.handleUpload(uploadData)
+    service.handleUpload(uploadData)
     .then(response => {
-        this.setState({ image: response.secure_url });
+        updateStatus({
+          ...status,
+           image: response.secure_url });
       })
       .catch(err => {
         console.log("Error while uploading the file: ", err);
       });
-}
+  }
 
-  handleSubmit = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-
-    this.service.post(this.state)
+    console.log(status)
+    service.post(status)
     .then(data => {
-      document.getElementById("status").reset()
-      return this.props.handleStatusUpdate(data)
+      document.getElementById("status").reset();
+      props.updatePosts();
     })
   }
 
-  render() {
-    return (
-      <div className="statusbox">
-        <form className="status" id="status" onSubmit={this.handleSubmit} encType="multipart/form-data">
-            <input type="text" name="title" placeholder="give me a title" onChange={this.handleChange}/>         
-            <textarea name="content" id="content" placeholder="tell me something good."  onChange={this.handleChange}></textarea>
-          <div>
-            <input type="file" name="photo" id="photo" onChange={(e) => this.handleFileUpload(e)} />
-            <label for="photo">add a photo</label>
-          </div>
-
-          <button type="submit">share</button>
-        </form> 
-      </div>
-    )
-  }
+  return (
+    <div className="statusbox">
+      <form className="status" id="status" onSubmit={handleSubmit} encType="multipart/form-data">
+        <input type="text" name="title" placeholder="give me a title" onChange={handleChange}/>         
+        <textarea name="content" id="content" placeholder="tell me something good."  onChange={handleChange}></textarea>
+        <div>
+          <input type="file" name="photo" id="photo" onChange={(e) => handleFileUpload(e)} />
+          <label for="photo">add a photo</label>
+        </div>
+        <button type="submit">share</button>
+      </form> 
+    </div>
+  )
 }
+
+export default Status;
