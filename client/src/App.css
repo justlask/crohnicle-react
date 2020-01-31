@@ -266,6 +266,7 @@ img {
   width: 70vw;
   display: flex;
   justify-content: space-around;
+  align-items: flex-start;
   background-color: white;
   border-radius: 16px;
   padding: 25px;
