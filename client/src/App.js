@@ -12,6 +12,7 @@ import Dashboard from './components/Dashboard'
 import Friends from './components/Friends/Friends'
 import FriendProfile from './components/Friends/FriendProfile'
 import Groups from './components/Groups/Groups'
+import GroupPage from './components/Groups/GroupPage'
 import Events from './components/Events/Events'
 import ResetPassword from './components/Auth/ResetPassword'
 import ProtectedRoute from './components/Auth/protectedRoute'
@@ -53,11 +54,12 @@ const App = () => {
           <Route exact path='/login' render={(props) => <Login user={user} {...props} updateUser={updateUser} />}></Route>
           <Route exact path="/forgot" render={() => <ResetPassword /> }></Route>
 
-          <ProtectedRoute user={user} updateUser={updateUser} path="/dashboard" component={Dashboard} />
-          <ProtectedRoute user={user} updateUser={updateUser} path="/friends" component={Friends} />
-          <ProtectedRoute user={user} updateUser={updateUser} path="/profile/:id" component={FriendProfile}/>
-          <ProtectedRoute user={user} updateUser={updateUser} path="/groups" component={Groups}/>
-          <ProtectedRoute user={user} updateUser={updateUser} path="/events" component={Events} />
+          <ProtectedRoute user={user} updateUser={updateUser} exact path="/dashboard" component={Dashboard} />
+          <ProtectedRoute user={user} updateUser={updateUser} exact path="/friends" component={Friends} />
+          <ProtectedRoute user={user} updateUser={updateUser} exact path="/profile/:id" component={FriendProfile}/>
+          <ProtectedRoute user={user} updateUser={updateUser} exact path="/group/:id" component={GroupPage}/>
+          <ProtectedRoute user={user} updateUser={updateUser} exact path="/groups" component={Groups}/>
+          <ProtectedRoute user={user} updateUser={updateUser} exact path="/events" component={Events} />
         </Switch>
         <Footer />
       </div>

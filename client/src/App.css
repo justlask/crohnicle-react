@@ -251,23 +251,70 @@ img {
 
 
 .statusbox {
+  margin-top: 25px;
+  width: 70vw;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: white;
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
 }
 
+
+.statusbox input,
+.statusbox textarea {
+  border-radius: 8px;
+  padding: 5px;
+  border: 1px solid #4E1681;
+  color: #4E1681;
+}
+.statusbox button {
+  background-color: #4E1681;
+  color: white;
+  font-weight: 600;
+  padding: 10px;
+  border-radius: 8px;
+}
 .status {
   display: flex;
   flex-direction: column;
   max-width: 400px;
 }
 
+.dash {
+  display: flex;
+  flex-direction: row;
+  align-items: initial;
+}
+
 
 
 .profileCard {
+  width: 20vw;
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
   align-items: center;
+}
+
+.profileCard img {
+  border-radius: 50%;
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.19);
+}
+
+.type {
+  padding: 5px 15px;
+  background-color: blue;
+  font-size: 18px;
+  border-radius: 8px;
+  color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.profileCard ul {
+  list-style: none;
 }
 
 

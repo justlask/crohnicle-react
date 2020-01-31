@@ -42,8 +42,8 @@ const Status = (props) => {
         <input type="text" name="title" placeholder="give me a title" onChange={handleChange}/>         
         <textarea name="content" id="content" placeholder="tell me something good."  onChange={handleChange}></textarea>
         <div>
-          <input type="file" name="photo" id="photo" onChange={(e) => handleFileUpload(e)} />
           <label for="photo">add a photo</label>
+          <input type="file" name="photo" id="photo" onChange={(e) => handleFileUpload(e)} />
         </div>
         <button type="submit">share</button>
       </form> 

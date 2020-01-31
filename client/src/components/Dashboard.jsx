@@ -21,12 +21,12 @@ const Dashboard = (props) => {
   }, []);
 
   return (
-    <main> 
+    <main className="dash"> 
+      <InfoCard user={props.user}/>
       <div>
-        <InfoCard user={props.user}/>
-      </div>
         <Status user={props.user} updateUser={props.updateUser} updatePosts={loadPosts} />
         <Posts user={props.user} posts={posts} updateUser={props.updateUser}  />
+      </div>
     </main>
   )
 }

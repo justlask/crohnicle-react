@@ -96,6 +96,11 @@ class AuthService {
       .catch(err => console.log(err));
   }
 
+  getGroup = (id) => {
+    return this.service.get(`/group/${id}`)
+    .then(res => res.data)
+  }
+
 }
 
 export default AuthService;

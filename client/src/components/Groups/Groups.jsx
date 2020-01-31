@@ -66,8 +66,7 @@ const Groups = (props) => {
       })
     )
   }
-
-
+  
   return (
     <main>
       <div className="friends">

@@ -3,7 +3,7 @@ const Schema    = mongoose.Schema;
 
 const eventSchema = new Schema({
   name: String,
-  eventImage: String,
+  image: {type: String, default: 'https://res.cloudinary.com/justlaskcloud/image/upload/v1580453852/Screen_Shot_2020-01-31_at_1.57.19_AM_sxl2ba.png'},
   admin: {type: Schema.Types.ObjectId, ref: 'User'},
   summary: String,
   members: [ { type : Schema.Types.ObjectId, ref: 'User' } ],
@@ -19,6 +19,8 @@ const eventSchema = new Schema({
     day: {type: String},
     year: {type: String}
   }
+}, {
+  timestamps: true
 })
 
 
