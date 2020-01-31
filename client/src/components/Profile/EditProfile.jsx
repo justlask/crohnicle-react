@@ -1,21 +1,34 @@
 import React, { useState } from 'react';
 import EditInput from './EditInput';
 import EditMedsConds from './EditMedsConds';
+import AuthService from '../Auth/AuthService';
 
 const EditProfile = (props) => {
+  const service = new AuthService();
   const [ user, setUser ] = useState(props.user);
-  const [ updates, setUpdates ] = useState(null)
+  const [ updates, setUpdates ] = useState({})
 
 
   const submitChanges = (e) => {
     e.preventDefault();
-    console.log(user)
-    // props.setHidden(true);
-    console.log(updates)
+    service.updateUser(updates)
+    .then(response => {
+      console.log(response)
+      setUser(response);
+      props.updateUser(response);
+      props.setHidden(true);
+    })
   }
 
   const cancelChanges = (e) => {
     props.setHidden(true)
+  }
+
+  const update = (input) => {
+    setUpdates({
+      ...updates,
+      ...input
+    })
   }
 
   const createForm = () => {
@@ -27,9 +40,9 @@ const EditProfile = (props) => {
         </div>
         <div className="modalnames">
           <h3>Edit Profile</h3>
-          <EditInput type="text" label="name" inputs={[ {placeholder: 'name', value: props.user.name } ]} setUser={setUpdates} />
-          <EditInput type="text" label="bio" inputs={[ { placeholder: "bio", value: props.user.bio } ]}  setUser={setUpdates} />
-          <EditInput type="text" label="location" inputs={[ { placeholder: 'city', value: props.user.location.city }, { placeholder: 'state', value: props.user.location.state } ]} setUser={setUpdates} />
+          <EditInput type="text" label="name" inputs={[ {placeholder: 'name', value: props.user.name } ]} setUpdates={update} />
+          <EditInput type="text" label="bio" inputs={[ { placeholder: "bio", value: props.user.bio } ]}  setUpdates={update} />
+          <EditInput type="text" label="location" inputs={[ { placeholder: 'city', value: props.user.location.city }, { placeholder: 'state', value: props.user.location.state } ]} setUpdates={update} />
           <EditMedsConds label="medications" thing={user.medications} updateUser={props.updateUser} />
           <EditMedsConds label="conditions" thing={user.conditions} updateUser={props.updateUser}/>
         </div>

@@ -117,6 +117,11 @@ class AuthService {
     .then(res => res.data)
   }
 
+  updateUser = (obj) =>{
+    return this.service.post('/user/update', obj)
+    .then(res => res.data)
+  }
+
 }
 
 export default AuthService;

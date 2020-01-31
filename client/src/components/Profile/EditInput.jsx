@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 const EditInput = (props) => {
   const [ color, setColor ] = useState('#4E1681');
-  const [ input, setInput ] = useState(null);
+  const [ input, setInput ] = useState({});
 
   const isFocused = () => {
     setColor('#F05D5D')
@@ -10,6 +10,8 @@ const EditInput = (props) => {
 
   const isBlur = () => {
     setColor('#4E1681')
+    props.setUpdates(input)
+
   }
 
   const handleChange = (e) => {
@@ -17,14 +19,12 @@ const EditInput = (props) => {
       ...input,
       [e.target.name]: e.target.value
     })
-    props.setUser(input)
-    console.log(input)
   }
 
   const handleInputs = () => {
     return (
       props.inputs.map((input, i) => {
-        return <input key={i} type={props.type} placeholder={input.placeholder} defaultValue={input.value} onChange={(e) => handleChange(e)}/>
+        return <input key={i} name={input.placeholder} type={props.type} placeholder={input.placeholder} defaultValue={input.value} onChange={(e) => handleChange(e)}/>
       })
     )
   }
