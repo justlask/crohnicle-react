@@ -515,7 +515,6 @@ img {
   margin: -10px;
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
   justify-content: space-around;
 }
 
@@ -580,6 +579,20 @@ img {
 .editinput input {
   background-color: #F7F7F7;
   border: none;
+}
+input.btn{
+  background-color: #4E1681;
+}
+
+.btn {
+  background-color: #4E1681;
+  padding: 5px;
+  color: white;
+}
+
+.btn:hover {
+  background-color: rgb(53, 11, 95);
+  color: white;
 }
 
 

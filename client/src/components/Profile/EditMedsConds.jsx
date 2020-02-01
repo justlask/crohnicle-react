@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import AuthService from '../Auth/AuthService';
 
 const EditMedsConds = (props) => {
+  // called it thing because it can be a medicine or a condition
+  // need to come up with a better naming convention for this.
+
   const service = new AuthService();
   const [ color, setColor ] = useState('#4E1681');
   const [ thing, setThing ] = useState(null)
@@ -14,10 +17,19 @@ const EditMedsConds = (props) => {
     setColor('#4E1681')
   }
 
+  const deleteThis = () => {
+    console.log('lets delete!')
+  }
+
   const handleThing = () => {
     return (
       props.thing.map((thing, i) => {
-      return <div key={i}>{thing}</div>
+        return (
+          <div key={i}>
+            <p>{thing}</p>
+            <button onClick={(e) => deleteThis(e)}>delete</button>
+          </div>
+        )
       })
     )
   }
@@ -42,7 +54,7 @@ const EditMedsConds = (props) => {
     return (
       <div>
         <input type="text" value={thing} placeholder="add another" onChange={(e) => handleChange(e)}/>
-        <input type="submit" value="submit" onClick={(e) => submitThing(e)}/>
+        <input className="btn" type="submit" value="add" onClick={(e) => submitThing(e)}/>
       </div>
     )
   }

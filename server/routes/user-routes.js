@@ -75,8 +75,6 @@ router.get('/profile/:id', (req,res,next) => {
     Post.find({authorID: data.id})
     .populate('authorID')
     .then(posts => {
-      console.log(posts)
-      console.log(data)
       res.json({user: data, posts: posts.reverse()})
     })
     )
@@ -90,6 +88,14 @@ router.post('/updatemedcon', (req,res,next) => {
   });
 
 });
+
+router.post('/deletemedcon', (req,res,next) => {
+
+  User.findByIdAndUpdate(req.user.id, {$pull: {[req.body.type]: req.body.add}}, {new: true})
+  .then(user => {
+    res.json(user)
+  })
+})
 
 router.post('/update', (req,res,next) => {
   let updateObj = {}

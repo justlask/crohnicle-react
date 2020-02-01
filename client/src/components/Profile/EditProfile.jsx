@@ -35,8 +35,8 @@ const EditProfile = (props) => {
     return (
       <form className="actionform">
         <div style={{display: 'flex', justifyContent: 'space-between'}}>
-          <button style={{color: 'black'}} onClick={(e) => cancelChanges(e)}>close</button>
-          <button style={{color: 'black'}} onClick={(e) => submitChanges(e)}>save</button>
+          <button className="btn" onClick={(e) => cancelChanges(e)}>close</button>
+          <button className="btn" onClick={(e) => submitChanges(e)}>save</button>
         </div>
         <div className="modalnames">
           <h3>Edit Profile</h3>

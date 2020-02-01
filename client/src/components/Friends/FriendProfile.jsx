@@ -16,7 +16,7 @@ const FriendProfile = (props) => {
   }, [])
 
   const showPosts = () => {
-    return (posts > 0) ? (
+    return (posts.length > 0) ? (
       posts.map((post, i) => {
         return <PostCard post={post} key={i} />
       })
@@ -29,13 +29,15 @@ const FriendProfile = (props) => {
   }
 
   const getInfo = (thing) => {
-    return (!thing) ? (
+    if (thing) {
+    return (thing.length === 0) ? (
        'Nothing yet'
     ) :
     ( thing.map((element, i) => {
         return element
       }).join(", ")
     )
+    }
   }
 
   return (

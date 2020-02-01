@@ -11,7 +11,6 @@ const EditInput = (props) => {
   const isBlur = () => {
     setColor('#4E1681')
     props.setUpdates(input)
-
   }
 
   const handleChange = (e) => {

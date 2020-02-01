@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const PostCard = (props) => {
-  console.log(props)
   return (
     <div className="postbox">
       <div style={{width: '20%', height: 'auto'}}>

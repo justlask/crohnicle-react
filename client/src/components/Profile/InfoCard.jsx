@@ -7,7 +7,7 @@ const InfoCard = (props) => {
   
   const getInfo = (thing) => {
     return (thing.length === 0) ? (
-        <li>Nothing to Show</li>
+        'Nothing to Show'
     ) :
     ( thing.map((element, i) => {
         return element
@@ -23,7 +23,7 @@ const InfoCard = (props) => {
         </button>
         <UserImageUpload user={props.user} updateUser={props.updateUser} />
       </div>
-      <div style={{paddingBottom: '25px'}}>
+      <div style={{paddingBottom: '25px', textAlign: 'left'}}>
         <h2>{props.user.name}</h2>
         <h4>@{props.user.username}</h4>
         <p>{props.user.bio}</p>
