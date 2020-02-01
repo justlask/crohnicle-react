@@ -26,7 +26,6 @@ const CreateGroup = (props) => {
     e.preventDefault();
     service.createGroup(group)
     .then(response => {
-      console.log(response)
       setGroup(response)
       props.isCreated(true)
     })

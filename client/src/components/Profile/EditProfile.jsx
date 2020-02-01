@@ -13,10 +13,10 @@ const EditProfile = (props) => {
     e.preventDefault();
     service.updateUser(updates)
     .then(response => {
-      console.log(response)
       setUser(response);
       props.updateUser(response);
       props.setHidden(true);
+      props.updatePosts();
     })
   }
 

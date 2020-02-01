@@ -40,31 +40,33 @@ const FriendProfile = (props) => {
     }
   }
 
+  const showLocation = () => {
+    return (!friend.location) ? null : <p>{friend.location.city}, {friend.location.state}</p>
+  }
+
   return (
-    <main>      
-      <div style={{display: 'flex', flexDirection: 'column', width: '80%'}}>
-        <div style={{display: 'flex', justifyContent: 'space-around', alignItems: 'flex-start', padding: '20px 50px'}}>
-          <img style={{width: '20%', borderRadius: 16, boxShadow: '0px 2px 4px 0px rgba(0, 0, 0, 0.5)'}}src={friend.image} alt=""/> 
-          <div style={{width: '70%', textAlign: 'left', display: 'flex'}}>
-            <div style={{width: '50%'}}>
-              <h1>{friend.name}</h1>
-              <h2>@{friend.username}</h2>
-              <p>{friend.bio}</p>
-              <div className="type">{friend.type}</div>
-            </div>
-            <div style={{width: '50%'}}>
-              <h5>Medications:</h5>
-              <p>{getInfo(friend.medications)}</p>
-              <h5>Conditions:</h5>
-              <p>{getInfo(friend.conditions)}</p>
-            </div>
+    <main>   
+      <div className="friendprofile">
+        <div className="friendcard">
+          <img src={friend.image} alt=""/>
+          <div className="content">
+            <h1>{friend.name}</h1>
+            <h2>@{friend.username}</h2>
+            <p>{friend.bio}</p>
+            { showLocation() }
+            <div className="type">{friend.type}</div>
+          </div>
+          <div className="content">
+            <h5>Medications:</h5>
+            <p>{getInfo(friend.medications)}</p>
+            <h5>Conditions:</h5>
+            <p>{getInfo(friend.conditions)}</p>
           </div>
         </div>
-        <div style={{width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-          { showPosts() }
-        </div>
-      </div>
-
+          <div className="posts">
+            { showPosts() }
+          </div>
+      </div>   
     </main>
   )
 }

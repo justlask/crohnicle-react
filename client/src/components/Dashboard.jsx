@@ -25,11 +25,11 @@ const Dashboard = (props) => {
   return (
     <main className="dash"> 
       <InfoCard user={props.user} updateUser={props.updateUser} editProfile={setHidden}/>
-      <div>
+      <div className="secondary">
         <Status user={props.user} updateUser={props.updateUser} updatePosts={loadPosts} />
         <Posts user={props.user} posts={posts} updateUser={props.updateUser}  />
       </div>
-      <EditProfile isHidden={editIsHidden} setHidden={setHidden} user={props.user} updateUser={props.updateUser}/>
+      <EditProfile isHidden={editIsHidden} setHidden={setHidden} user={props.user} updateUser={props.updateUser} updatePosts={loadPosts}/>
     </main>
   )
 }

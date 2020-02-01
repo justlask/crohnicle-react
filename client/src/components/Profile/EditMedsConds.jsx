@@ -19,7 +19,6 @@ const EditMedsConds = (props) => {
 
   const deleteThis = (e, thing) => {
     e.preventDefault();
-    console.log('lets delete!')
     let obj = {type: props.label, add: thing}
     service.deleteMedCon(obj)
     .then(response => {
@@ -69,7 +68,7 @@ const EditMedsConds = (props) => {
 
   return (
     <div style={{borderBottomColor: color}} className="editinput" onFocus={isFocused} onBlur={isBlur}>
-      <label>{props.label}</label>
+      <label style={{color: color}}>{props.label}</label>
       {handleThing()}
       {newThing()}
     </div>

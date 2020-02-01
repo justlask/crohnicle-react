@@ -31,23 +31,23 @@ const FriendCard = (props) => {
 
   const handleButton = () => {
     if (props.user.friends.includes(props.friend._id)) {
-      return <Button className="friendbutton" onClick={(e) => removeFriend(e)} name="unfollow" />
+      return <Button onClick={(e) => removeFriend(e)} name="unfollow" />
     }
     else {
-      return <Button className="friendbutton" onClick={(e) => addFriend(e)} name="follow" />
+      return <Button onClick={(e) => addFriend(e)} name="follow" />
     }
   }
 
   return (
     <div className="friendcard">
       <img src={props.friend.image} alt=""/>
-      <div>
-        <div className="flexcol">
-          <h2>{props.friend.name}</h2>
-          <Link to={`profile/${props.friend._id}`}><h3 className="friendlink">{props.friend.username}</h3></Link>
+      <div className="contentbox">
+        <div className="userinfo">
+          <p>{props.friend.name} <Link to={`profile/${props.friend._id}`}>@{props.friend.username}</Link></p>
+          <p>{props.friend.bio}</p>
           <p>{props.friend.location.city}, {props.friend.location.state}</p>
         </div>
-        <div>
+        <div className="friendbutton">
           {handleButton()}
         </div>
       </div>

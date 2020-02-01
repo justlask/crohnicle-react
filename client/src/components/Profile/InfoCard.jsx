@@ -17,13 +17,13 @@ const InfoCard = (props) => {
 
   return (
     <div className="profileCard">
-      <div style={{display: 'flex', flexDirection: 'column'}}>
-        <button style={{backgroundColor: 'inherit', border: 'none', alignSelf: 'flex-end', padding: '10px'}} onClick={(e) => props.editProfile(false)}>
-          <FontAwesomeIcon style={{color: 'black', fontSize: '22px' }}icon={faPencilAlt} />
+        <button onClick={(e) => props.editProfile(false)}>
+          <FontAwesomeIcon className="icon" icon={faPencilAlt} />
         </button>
+      <div className="profileimg">
         <UserImageUpload user={props.user} updateUser={props.updateUser} />
       </div>
-      <div style={{paddingBottom: '25px', textAlign: 'left'}}>
+      <div className="userinfo">
         <h2>{props.user.name}</h2>
         <h4>@{props.user.username}</h4>
         <p>{props.user.bio}</p>
@@ -32,18 +32,19 @@ const InfoCard = (props) => {
         </div>
         <p>{props.user.friends.length} friends</p>
       </div>
-
-      <div>
-        <h5>Medications:</h5>
-        <p>
-          {getInfo(props.user.medications)}
-        </p>
-      </div>
-      <div>
-        <h5>Conditions:</h5>
-        <p>
-          {getInfo(props.user.conditions)}
-        </p>
+      <div className="userinfo">
+        <div>
+          <h5>Medications:</h5>
+          <p>
+            {getInfo(props.user.medications)}
+          </p>
+        </div>
+        <div>
+          <h5>Conditions:</h5>
+          <p>
+            {getInfo(props.user.conditions)}
+          </p>
+        </div>
       </div>
     </div>
   )
