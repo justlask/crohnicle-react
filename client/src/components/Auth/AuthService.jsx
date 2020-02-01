@@ -117,10 +117,17 @@ class AuthService {
     .then(res => res.data)
   }
 
+  deleteMedCon = (obj) => {
+    return this.service.post('/user/deletemedcon', obj)
+    .then(res => res.data)
+  }
+
   updateUser = (obj) =>{
     return this.service.post('/user/update', obj)
     .then(res => res.data)
   }
+
+
 
 }
 

@@ -17,17 +17,24 @@ const EditMedsConds = (props) => {
     setColor('#4E1681')
   }
 
-  const deleteThis = () => {
+  const deleteThis = (e, thing) => {
+    e.preventDefault();
     console.log('lets delete!')
+    let obj = {type: props.label, add: thing}
+    service.deleteMedCon(obj)
+    .then(response => {
+      props.setUser(response)
+      props.updateUser(response);
+    })
   }
 
   const handleThing = () => {
     return (
       props.thing.map((thing, i) => {
         return (
-          <div key={i}>
+          <div key={i} style={{display: 'flex', justifyContent: 'space-between', marginBottom: 10}}>
             <p>{thing}</p>
-            <button onClick={(e) => deleteThis(e)}>delete</button>
+            <button className="btn" onClick={(e) => deleteThis(e, thing)}>delete</button>
           </div>
         )
       })
@@ -45,6 +52,7 @@ const EditMedsConds = (props) => {
     let obj = {type: props.label, add: thing}
     service.updateUserMedCon(obj)
     .then(response => {
+      props.setUser(response);
       props.updateUser(response);
       setThing('');
     })

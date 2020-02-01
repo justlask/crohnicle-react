@@ -43,8 +43,8 @@ const EditProfile = (props) => {
           <EditInput type="text" label="name" inputs={[ {placeholder: 'name', value: props.user.name } ]} setUpdates={update} />
           <EditInput type="text" label="bio" inputs={[ { placeholder: "bio", value: props.user.bio } ]}  setUpdates={update} />
           <EditInput type="text" label="location" inputs={[ { placeholder: 'city', value: props.user.location.city }, { placeholder: 'state', value: props.user.location.state } ]} setUpdates={update} />
-          <EditMedsConds label="medications" thing={user.medications} updateUser={props.updateUser} />
-          <EditMedsConds label="conditions" thing={user.conditions} updateUser={props.updateUser}/>
+          <EditMedsConds label="medications" thing={user.medications} updateUser={props.updateUser} setUser={setUser} />
+          <EditMedsConds label="conditions" thing={user.conditions} updateUser={props.updateUser} setUser={setUser} />
         </div>
       </form>
     )

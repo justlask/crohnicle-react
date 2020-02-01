@@ -95,7 +95,7 @@ router.post('/deletemedcon', (req,res,next) => {
   .then(user => {
     res.json(user)
   })
-})
+});
 
 router.post('/update', (req,res,next) => {
   let updateObj = {}
