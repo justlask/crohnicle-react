@@ -60,7 +60,7 @@ const EditMedsConds = (props) => {
 
   const newThing = () => {
     return (
-      <div>
+      <div style={{display: 'flex', justifyContent: 'space-between'}}>
         <input type="text" value={thing} placeholder="add another" onChange={(e) => handleChange(e)}/>
         <input className="btn" type="submit" value="add" onClick={(e) => submitThing(e)}/>
       </div>
