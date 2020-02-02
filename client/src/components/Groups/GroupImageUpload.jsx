@@ -22,7 +22,7 @@ const GroupImageUpload = (props) => {
   }
 
   return (image) ? (
-    <div>
+    <div className="uploadimg">
       <label htmlFor="image">Group Image</label>
       <img className="smallimg" src={image} alt=""/>
     </div>

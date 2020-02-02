@@ -30,7 +30,7 @@ const Signup = (props) => {
 
   return(
     <div className="signupbox">
-      <h1>Signup</h1>
+      <h1>Sign up</h1>
       <div className="form">
         <form onSubmit={handleFormSubmit} className="signup-login">
           <div className="floatinglabel">
@@ -56,11 +56,11 @@ const Signup = (props) => {
             <option value="professional">medical professional</option>
           </select><br></br>
 
-          <input className="submitbtn" type="submit" value="Signup" />
+          <input className="submitbtn" type="submit" value="Sign up" />
         </form><br></br>
 
         <p>Already have account? 
-          <Link to={"/login"}> Login</Link>
+          <Link to={"/login"}> Log in</Link>
         </p>
       </div>
     </div>

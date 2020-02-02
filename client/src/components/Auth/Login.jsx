@@ -41,10 +41,10 @@ const Login = (props) => {
             <label>Password</label>
             <input type="password" name="password" placeholder="password" value={user.password} onChange={ e => handleChange(e)} /><br></br>
           </div>             
-          <input type="submit" value="Login" className="submitbtn" />
+          <input type="submit" value="Log in" className="submitbtn" />
         </form><br></br>
         <p>Don't have account? 
-          <Link to={"/signup"}> Signup</Link>
+          <Link to={"/signup"}> Sign up</Link>
         </p>
       </div>
     </div> 

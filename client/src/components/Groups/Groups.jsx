@@ -44,9 +44,9 @@ const Groups = (props) => {
   }
 
   const createGroups = () => {
+    setGroups([]);
     setHidden(false);
     setNewGroup(false);
-    setGroups([]);
     setButtons({myGroups: 'notActiveButton', findGroups: 'notActiveButton', createGroup: 'activeButton'});
     setBorders('content2');
     thisFunc = createGroups

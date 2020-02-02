@@ -105,7 +105,7 @@ footer {
   }
   a {
     align-self: flex-start;
-    margin-left: 256px;
+    margin-left: 10%;
   }
   .join {
     margin-top: 42px;
@@ -175,7 +175,10 @@ footer {
   color: $purple;
   justify-content: center;
   align-items: center;
-
+  .signup-login {
+    display: flex;
+    flex-direction: column;
+  }
   .form {
     background-color: white;
     border-radius: 16px;
@@ -202,8 +205,8 @@ footer {
     outline: none;
   }
   .submitbtn {
-    justify-self: flex-start;
-    align-self: flex-start;
+    justify-self: center;
+    align-self: center;
     height: 56px;
     width: 200px;
     border: none;
@@ -319,14 +322,21 @@ footer {
           margin-bottom: 0;
         }
       }
-      input,
+      input[type=text],
       textarea {
         margin-bottom: 20px;
         width: 100%;
-        border-radius: 8px;
+        background-color: $favorite;
         padding: 5px;
-        border: 1px solid $purple;
-        color: $purple;
+        border: none;
+        border-bottom: 2px solid $purple;
+        color: black;
+      }
+      input[type=text]:focus,
+      textarea:focus {
+        outline: none;
+        border: none;
+        border-bottom: 2px solid $peach;
       }
       button {
         width: 20%;
@@ -635,6 +645,81 @@ footer {
       font-weight: 600;
       border: 1px solid $purple;
       margin-bottom: 10px;
+    }
+    .btn:hover {
+      color: white;
+      background-color: $purple;
+      font-weight: 600;
+      border: 1px solid $purple;
+      margin-bottom: 10px;
+    }
+  }
+}
+
+.smallimg {
+  height: 100px;
+  width: auto;
+  border-radius: 8px;
+}
+
+/* create group */ 
+.creategroup {
+  display: flex;
+  height: 100%;
+  justify-content: space-around;
+  align-items: flex-start;
+  background-color: white;
+  border-radius: 16px;
+  padding: 10px;
+  margin: 10px 0;
+  .actionform {
+    width: 100%;
+    padding: 10px;
+    .modalnames {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    font-weight: 500;
+    z-index: 4;
+      h3 {
+        font-weight: 500;
+      }
+      p {
+        margin-left: 25px;
+        font-weight: normal;
+      }
+    }
+    .editinput {
+      background-color: $favorite;
+      padding: 10px;
+      margin: 15px 0;
+      display: flex;
+      flex-direction: column;
+      border-bottom: 2px solid $purple;
+      input {
+        background-color: $favorite;
+        border: none;
+        width: 80%;
+      }
+      textarea {
+        border: none;
+        background-color: inherit;
+      }
+      .btn {
+        width: 12%;
+        border: 1px solid $purple
+      }
+      .btn:hover {
+        color: $light;
+        background-color: $purple;
+      }
+    }
+    .btn {
+      color: $purple;
+      font-weight: 600;
+      border: 1px solid $purple;
+      margin-bottom: 10px;
+      align-self: flex-end;
     }
     .btn:hover {
       color: white;

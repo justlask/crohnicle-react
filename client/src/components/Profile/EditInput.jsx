@@ -21,10 +21,15 @@ const EditInput = (props) => {
   }
 
   const handleInputs = () => {
-    return (
-      props.inputs.map((input, i) => {
-        return <input key={i} name={input.placeholder} type={props.type} placeholder={input.placeholder} defaultValue={input.value} onChange={(e) => handleChange(e)}/>
-      })
+   return (props.type === "textarea") ? 
+   (
+     props.inputs.map((input, i) => {
+       return <textarea key={i} name={input.placeholder} placeholder={input.placeholder} defaultValue={input.value} onChange={(e) => handleChange(e)} ></textarea>
+     })
+   ) :
+   ( props.inputs.map((input, i) => {
+      return <input key={i} name={input.placeholder} type={props.type} placeholder={input.placeholder} defaultValue={input.value} onChange={(e) => handleChange(e)}/>
+    })
     )
   }
 

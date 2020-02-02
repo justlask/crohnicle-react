@@ -21,7 +21,7 @@ const StatusPhotoUpload = (props) => {
 
   return (image && !props.posted) ? (
     <div>
-      <img src={image} alt=""/>
+      <img className="smallimg" src={image} alt=""/>
     </div>
   ):
   (

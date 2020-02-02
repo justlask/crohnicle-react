@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import AuthService from '../Auth/AuthService';
 import GroupImageUpload from './GroupImageUpload';
-
+import EditInput from '../Profile/EditInput';
 
 const CreateGroup = (props) => {
   const [group, setGroup] = useState({});
@@ -14,12 +14,11 @@ const CreateGroup = (props) => {
     })
   }
 
-  const handleChange = (event) => {  
+  const handleChange = (response) => {  
     setGroup({
       ...group,
-      [event.target.name]: event.target.value
+      ...response
     })
-    console.log(group)
   }
 
   const createGroup = (e) => {
@@ -37,25 +36,16 @@ const CreateGroup = (props) => {
     </div>
   ) :
   (
-    <div style={{color: 'white'}}>
-      <form>
-        <GroupImageUpload handleImage={handleImage} />
-        <div className="floatinglabel">
-          <label htmlFor="name">Name*</label>
-          <input type="text" name="name" placeholder="group name" onChange={handleChange} required />
+    <div className="creategroup">
+      <form className="actionform">
+        <div className="modalnames">
+          <EditInput type="text" label="name" inputs={[ {placeholder: 'name', value: undefined } ]} setUpdates={handleChange} />
+          <EditInput type="textarea" label="summary" inputs={[ {placeholder: 'summary', value: undefined } ]} setUpdates={handleChange} />
+          <EditInput type="text" label="location" inputs={[ {placeholder: 'address', value: undefined }, {placeholder: 'city', value: undefined },{placeholder: 'state', value: undefined },{placeholder: 'zipcode', value: undefined } ]} setUpdates={handleChange} />
+          <GroupImageUpload handleImage={handleImage} />
+          <input className="btn" type="submit" value="submit" onClick={(e) => createGroup(e)}/>
         </div>
-        <div className="floatinglabel">
-          <label htmlFor="summary">Summary*</label>
-          <textarea name="summary" cols="30" rows="10" placeholder="Tell us about your group" onChange={handleChange} required></textarea>
-        </div>
-        <div className="floatinglabel">
-          <label htmlFor="location">Location</label>
-          <input type="text" name="address" placeholder="street address" onChange={handleChange}/>
-          <input type="text" name="city" placeholder="city" onChange={handleChange}/>
-          <input type="text" name="state" placeholder="state" onChange={handleChange}/>
-          <input type="number" name="zipcode" placeholder="zipcode" onChange={handleChange} />
-        </div>
-        <input type="submit" value="submit" onClick={(e) => createGroup(e)}/>
+
       </form>
     </div>
   )
