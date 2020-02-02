@@ -38,6 +38,10 @@ const FriendCard = (props) => {
     }
   }
 
+  const handleLocation = () => {
+    return (!props.friend.location) ? null : <p>{props.friend.location.city}, {props.friend.location.state}</p>
+  }
+
   return (
     <div className="friendcard">
       <img src={props.friend.image} alt=""/>
@@ -45,7 +49,7 @@ const FriendCard = (props) => {
         <div className="userinfo">
           <p>{props.friend.name} <Link to={`profile/${props.friend._id}`}>@{props.friend.username}</Link></p>
           <p>{props.friend.bio}</p>
-          <p>{props.friend.location.city}, {props.friend.location.state}</p>
+          { handleLocation() }
         </div>
         <div className="friendbutton">
           {handleButton()}
