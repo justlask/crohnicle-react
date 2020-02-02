@@ -16,7 +16,7 @@ const Status = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    service.post(status)
+    service.postStatus(status)
     .then(data => {
       document.getElementById("status").reset();
       hasPosted(true)
@@ -33,11 +33,11 @@ const Status = (props) => {
 
   return (
     <div className="statusbox">
-      <form className="status" id="status" onSubmit={handleSubmit} encType="multipart/form-data">
+      <form className="status" id="status" encType="multipart/form-data">
         <input type="text" name="title" placeholder="give me a title" onChange={handleChange}/>         
         <textarea name="content" id="content" placeholder="tell me something good."  onChange={handleChange} required></textarea>
         <StatusPhotoUpload handlePhoto={handlePhoto} posted={posted}/>
-        <button type="submit">share</button>
+        <button type="submit" onClick={handleSubmit}>share</button>
       </form> 
     </div>
   )

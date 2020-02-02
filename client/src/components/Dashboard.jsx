@@ -10,24 +10,26 @@ const Dashboard = (props) => {
   const [posts, setPosts] = useState([]);
   const [editIsHidden, setHidden] = useState(true)
 
+  useEffect(() => {
+    service.getPosts()
+    .then(posts => {
+      setPosts(posts)
+    })
+  }, []);
+
   const loadPosts = () => {
     service.getPosts()
     .then(posts => {
-      setPosts(posts.posts)
+      setPosts(posts)
     })
-    .catch(err => console.log(err))
   }
-
-  useEffect(() => {
-    loadPosts();
-  }, []);
 
   return (
     <main className="dash"> 
-      <InfoCard user={props.user} updateUser={props.updateUser} editProfile={setHidden} loadPosts={loadPosts}/>
+      <InfoCard user={props.user} updateUser={props.updateUser} editProfile={setHidden} />
       <div className="secondary">
         <Status user={props.user} updateUser={props.updateUser} updatePosts={loadPosts} />
-        <Posts user={props.user} posts={posts} updateUser={props.updateUser}  />
+        <Posts user={props.user} posts={posts} updateUser={props.updateUser} updatePosts={loadPosts}/>
       </div>
       <EditProfile isHidden={editIsHidden} setHidden={setHidden} user={props.user} updateUser={props.updateUser} updatePosts={loadPosts}/>
     </main>

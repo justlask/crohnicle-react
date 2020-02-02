@@ -80,6 +80,9 @@ app.use('/api/auth', require('./routes/auth-routes'));
 app.use('/api/post', require('./routes/post-routes'));
 app.use('/api/user', require('./routes/user-routes'));
 app.use('/api/group', require('./routes/group-routes'));
+app.use('/api/event', require('./routes/event-routes'));
+app.use('/api/comment', require('./routes/comment-routes'));
+app.use('/api/notification', require('./routes/notification-routes'));
 
 
 

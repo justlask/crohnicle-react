@@ -581,6 +581,41 @@ footer {
     background-color: $favorite;
   }
 }
+.commentsbtn {
+  background-color: inherit;
+  padding: 5px;
+  font-weight: 600;
+  color:$purple;
+  border: none;
+}
+.interactbtns {
+  width: 10%;
+  display: flex;
+  justify-content: space-between;
+  .icon {
+    padding: 0px 5px;
+    font-size: 25px;
+    color: $peach;
+  }
+  .liked {
+    padding: 0px 5px;
+    font-size: 25px;
+    color: $purple;
+  }
+  .unliked {
+    padding: 0px 5px;
+    font-size: 25px;
+    color: $peach;
+  }
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: inherit;
+    border: none;
+    padding: 5px;
+  }
+}
 
 /* Modal */
 .backdrop {

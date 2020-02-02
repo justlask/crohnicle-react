@@ -6,14 +6,14 @@ const Posts = (props) => {
   const showPosts = () => {
     return props.posts.map((post, i) => {
       return (
-        <PostCard post={post} key={i} />
+        <PostCard post={post} key={i} user={props.user} updatePosts={props.updatePosts} />
       )
     })
   }
 
   return (
     <div className="posts">
-      {showPosts()}
+      { showPosts() }
     </div>
   )
 }

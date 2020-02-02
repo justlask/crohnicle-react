@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 // import Comments from '../Comments/Comments'
 import PostOptions from './PostOptions'
+import AddComment from '../Comments/AddComment'
 import EditPost from './EditPost'
 
 const PostCard = (props) => {
+  const [ showAddComment, setShowAddComment ] = useState(false)
+
   return (
     <div className="postbox">
       <img className="userimg" src={props.post.authorID.image} alt=""/>
@@ -17,7 +20,8 @@ const PostCard = (props) => {
         <div>
           {(props.post.image) ? <img src={props.post.image}></img> : null}
         </div>
-        <PostOptions />
+        <AddComment isVisable={showAddComment} showAddComment={setShowAddComment} post={props.post._id} update={props.updatePosts}/>
+        <PostOptions post={props.post} user={props.user} update={props.updatePosts} showAddComment={setShowAddComment}/>
       </div>
       <EditPost />
     </div>

@@ -5,11 +5,10 @@ const commentSchema = new Schema({
   author: String,
   authorID: { type : Schema.Types.ObjectId, ref: 'User' },
   content: String,
-  likes: Number,
-  timestamps: { type: Boolean,
-    default: true
-  },
+  likes: [ {type: Schema.Types.ObjectId, ref: 'User'}],
   date: { type: Date, default: Date.now },
+}, {
+  timestamps: true
 });
 
 

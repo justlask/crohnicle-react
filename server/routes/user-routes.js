@@ -26,7 +26,7 @@ router.get('/posts', (req,res,next) => {
     Post.find({ $or: [ { authorID: { $in: req.user.friends } }, { authorID: req.user.id}]})
     .populate('authorID')
     .then(data => {
-      res.json({posts: data.reverse()})
+      res.json(data.reverse())
     }).catch(err => next(err))
 });
 

@@ -1,7 +1,8 @@
-const express = require('express');
-const router = express.Router();
-const User  = require('../models/Users')
-const Post  = require('../models/Posts')
+const express     = require('express');
+const router      = express.Router();
+const User        = require('../models/Users')
+const Post        = require('../models/Posts');
+const Comment     = require('../models/Comments')
 const uploadCloud = require('../config/cloudinary.js');
 
 
@@ -29,7 +30,28 @@ router.post('/create', (req,res,next) => {
   .then(data => {
     res.json(data)
   })
-})
+});
+
+router.post('/like/:id', (req, res, next) => {
+  console.log(req.params.id)
+
+  Post.findByIdAndUpdate(req.params.id, {$push: { likes: req.user.id }}, {new:true})
+  .populate('authorID')
+  .then(post => {
+    res.json(post)
+  })
+});
+
+router.post('/unlike/:id', (req, res, next) => {
+  console.log(req.params.id)
+
+  Post.findByIdAndUpdate(req.params.id, {$pull: { likes: req.user.id }}, {new:true})
+  .populate('authorID')
+  .then(post => {
+    res.json(post)
+  })
+});
+
 
 
 

@@ -11,10 +11,9 @@ const notificationSchema = new Schema({
   date: { type: Date, default: Date.now },
   type: { type: String, enum : ["Update", "Comment"]},
   hidden: Boolean,
-  likes: Number,
-  timestamps: { type: Boolean,
-    default: true
-  },
+  likes: [ {type: Schema.Types.ObjectId, ref: "User"}],
+}, {
+  timestamps: true
 });
 
 const Notification = mongoose.model('Notification', notificationSchema);

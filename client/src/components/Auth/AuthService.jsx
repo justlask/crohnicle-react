@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+// this is where i keep my axios calls.
+
 class AuthService {
   constructor() {
     let service = axios.create({
@@ -31,11 +33,11 @@ class AuthService {
 
   handleUpload (theFile) {
     return this.service.post('/user/upload', theFile)
-      .then(res => res.data)
+      .then(response => response.data)
       .catch(err => console.log(err));
   }
 
-  post = (status) => {
+  postStatus = (status) => {
     return this.service.post('/post/create', status)
     .then(response => response.data)
   }
@@ -92,41 +94,55 @@ class AuthService {
 
   handleStatusUpload = (theFile) => {
     return this.service.post('/post/upload', theFile)
-    .then(res => res.data)
+    .then(response => response.data)
     .catch(err => console.log(err))
   }
   handleUpload = (theFile) => {
     return this.service.post('/group/upload', theFile)
-      .then(res => res.data)
+      .then(response => response.data)
       .catch(err => console.log(err));
   }
 
   handleUserPhotoUpload = (theFile) => {
     return this.service.post('/user/upload', theFile)
-    .then(res => res.data)
+    .then(response => response.data)
     .catch(err => console.log(err))
   }
 
   getGroup = (id) => {
     return this.service.get(`/group/${id}`)
-    .then(res => res.data)
+    .then(response => response.data)
   }
 
   updateUserMedCon = (obj) => {
     return this.service.post('/user/updatemedcon', obj)
-    .then(res => res.data)
+    .then(response => response.data)
   }
 
   deleteMedCon = (obj) => {
     return this.service.post('/user/deletemedcon', obj)
-    .then(res => res.data)
+    .then(response => response.data)
   }
 
   updateUser = (obj) =>{
     return this.service.post('/user/update', obj)
-    .then(res => res.data)
+    .then(response => response.data)
   }
 
+  addLike = (id) => {
+    return this.service.post(`/post/like/${id}`)
+    .then(response => response.data)
+  }
+
+  removeLike = (id) => {
+    return this.service.post(`/post/unlike/${id}`)
+    .then(response => response.data)
+  }
+
+  addPostComment = (comment, post) => {
+    return this.service.post('/comment/add', {comment, post})
+    .then(response => response.data)
+  }
 
 
 }

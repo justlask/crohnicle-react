@@ -11,10 +11,9 @@ const postSchema = new Schema({
   date: { type: Date, default: Date.now },
   type: { type: String, enum : ["Personal", "Health"]},
   hidden: Boolean,
-  likes: Number,
-  timestamps: { type: Boolean,
-    default: true
-  },
+  likes: [ {type: Schema.Types.ObjectId, ref: 'User'}],
+}, {
+  timestamps: true
 });
 
 const Post = mongoose.model('Post', postSchema);
