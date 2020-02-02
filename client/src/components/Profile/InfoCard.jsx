@@ -21,7 +21,7 @@ const InfoCard = (props) => {
           <FontAwesomeIcon className="icon" icon={faPencilAlt} />
         </button>
       <div className="profileimg">
-        <UserImageUpload user={props.user} updateUser={props.updateUser} />
+        <UserImageUpload user={props.user} updateUser={props.updateUser} loadPosts={props.loadPosts} />
       </div>
       <div className="userinfo">
         <h2>{props.user.name}</h2>

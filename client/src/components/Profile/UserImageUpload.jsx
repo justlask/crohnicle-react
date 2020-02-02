@@ -14,6 +14,7 @@ const UserImageUpload = (props) => {
       console.log(response)
       setUpload(response.image)
       props.updateUser(response)
+      props.loadPosts();
       })
       .catch(err => {
         console.log("Error while uploading the file: ", err);

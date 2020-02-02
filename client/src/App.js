@@ -8,7 +8,6 @@ import Footer from './components/Footer'
 import Signup from './components/Auth/Signup'
 import Login from './components/Auth/Login'
 import Dashboard from './components/Dashboard'
-
 import Friends from './components/Friends/Friends'
 import FriendProfile from './components/Friends/FriendProfile'
 import Groups from './components/Groups/Groups'

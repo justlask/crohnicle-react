@@ -1,15 +1,15 @@
 const mongoose  = require('mongoose');
 const Schema    = mongoose.Schema
-// only users make posts on their page
-const postSchema = new Schema({
+// only for groups/events (equivalent of a user post)
+const notificationSchema = new Schema({
   title: String,
   author: String,
   authorID: { type : Schema.Types.ObjectId, ref: 'User' },
   content: String,
   image: String,
-  comments: [{ type: Schema.Types.ObjectId, ref: "Comment"}],
+  comments: [ { type: Schema.Types.ObjectId, ref: "Comment"} ],
   date: { type: Date, default: Date.now },
-  type: { type: String, enum : ["Personal", "Health"]},
+  type: { type: String, enum : ["Update", "Comment"]},
   hidden: Boolean,
   likes: Number,
   timestamps: { type: Boolean,
@@ -17,6 +17,6 @@ const postSchema = new Schema({
   },
 });
 
-const Post = mongoose.model('Post', postSchema);
+const Notification = mongoose.model('Notification', notificationSchema);
 
-module.exports = Post;
+module.exports = Notification;

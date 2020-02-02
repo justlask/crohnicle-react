@@ -355,39 +355,40 @@ footer {
       }
     }
   }
-  .posts {
-    .postbox {
-      display: flex;
-      justify-content: space-around;
-      align-items: flex-start;
-      background-color: white;
-      border-radius: 16px;
-      padding: 10px;
-      margin: 10px 0;
-      .userimg {
-        width: 10%;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
+}
+.posts {
+  width: 100%;
+  .postbox {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    background-color: white;
+    border-radius: 16px;
+    padding: 10px;
+    margin: 10px 0;
+    .userimg {
+      width: 10%;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
+    }
+    .contentbox {
+      width: 100%;
+      text-align: left;
+      padding: 0px 5%;
+      a {
+        color: $purple;
       }
-      .contentbox {
-        width: 100%;
-        text-align: left;
-        padding: 0px 5%;
-        a {
-          color: $purple;
-        }
-        h5 {
-          font-weight: 500;
-        }
-      }
-      img {
-        width: 100%;
-        height: auto;
+      h5 {
+        font-weight: 500;
       }
     }
-    .postbox:hover {
-      background-color: $favorite;
+    img {
+      width: 100%;
+      height: auto;
     }
+  }
+  .postbox:hover {
+    background-color: $favorite;
   }
 }
 
@@ -462,7 +463,7 @@ footer {
   .friendcard {
     display: flex;
     justify-content: space-around;
-    align-items: flex-start;
+    align-items: center;
     background-color: white;
     border-radius: 16px;
     padding: 10px;
@@ -532,6 +533,7 @@ footer {
     width: 100%;
     background-color: white;
     display: flex;
+    align-items: center;
     border-radius: 16px;
     img {
       width: 20%;

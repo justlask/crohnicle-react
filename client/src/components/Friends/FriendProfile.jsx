@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import AuthService from '../Auth/AuthService'
-import PostCard from '../Profile/PostCard'
+import PostCard from '../Posts/PostCard'
 
 const FriendProfile = (props) => {
   const service = new AuthService();

@@ -1,5 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+// import Comments from '../Comments/Comments'
+import PostOptions from './PostOptions'
+import EditPost from './EditPost'
 
 const PostCard = (props) => {
   return (
@@ -14,7 +17,9 @@ const PostCard = (props) => {
         <div>
           {(props.post.image) ? <img src={props.post.image}></img> : null}
         </div>
+        <PostOptions />
       </div>
+      <EditPost />
     </div>
   )
 }

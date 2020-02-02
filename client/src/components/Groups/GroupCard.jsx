@@ -15,7 +15,7 @@ const GroupCard = (props) => {
         <div className="userinfo">
           <h5><Link to={`/group/${props.group._id}`}>{props.group.name}</Link></h5>
           <p>{props.group.summary}</p>
-          {handleLocation()}
+          { handleLocation() }
         </div>
       </div>
     </div>

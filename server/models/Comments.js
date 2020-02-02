@@ -1,16 +1,15 @@
 const mongoose  = require('mongoose');
 const Schema    = mongoose.Schema
-
+// anything can have comments
 const commentSchema = new Schema({
   author: String,
   authorID: { type : Schema.Types.ObjectId, ref: 'User' },
-  groupID: {type: Schema.Types.ObjectId, ref: 'Groups'},
-  body: String,
-  meta: { likes: Number },
+  content: String,
+  likes: Number,
   timestamps: { type: Boolean,
     default: true
   },
-  date: Date,
+  date: { type: Date, default: Date.now },
 });
 
 

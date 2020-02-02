@@ -7,22 +7,22 @@ const eventSchema = new Schema({
   admin: {type: Schema.Types.ObjectId, ref: 'User'},
   summary: String,
   members: [ { type : Schema.Types.ObjectId, ref: 'User' } ],
+  notifications: [ { type: Schema.Types.ObjectId, ref: 'Notification' } ],
   location: {
     address: {type: String},
     city: {type: String},
     state: {type: String},
     zipcode: {type: String}
   },
-  comments: [{type: Schema.Types.ObjectId, ref: 'Comment'}],
   eventDate: {
     month: {type: String},
-    day: {type: String},
-    year: {type: String}
+    day: {type: Number},
+    year: {type: Number},
+    time: {type: String}
   }
 }, {
   timestamps: true
 })
-
 
 const Events = mongoose.model("Events", eventSchema)
 
