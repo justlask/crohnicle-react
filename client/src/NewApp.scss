@@ -618,6 +618,9 @@ footer {
     border: none;
     padding: 5px;
   }
+  button:focus {
+    outline: none;
+  }
 }
 
 .addcomment input[type=text] {
@@ -826,6 +829,64 @@ footer {
 }
 .joinbtn:focus {
   outline: none;
+}
+
+
+.statusbox {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border-radius: 16px;
+  padding: 25px;
+  .status {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    div {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      text-align: center;
+    }
+    #photo {
+      border: none;
+      width: 70%;
+      margin-bottom: 0;
+    }
+  }
+  input[type=text],
+  textarea {
+    margin-bottom: 20px;
+    width: 100%;
+    background-color: $favorite;
+    padding: 5px;
+    border: none;
+    border-bottom: 2px solid $purple;
+    color: black;
+  }
+  input[type=text]:focus,
+  textarea:focus {
+    outline: none;
+    border: none;
+    border-bottom: 2px solid $peach;
+  }
+  button {
+    width: 20%;
+    background-color: $peach;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 10px;
+    border-radius: 8px;
+    align-self: flex-end;
+  }
+  button:hover {
+    background-color: $darkpeach;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
 }
 
 

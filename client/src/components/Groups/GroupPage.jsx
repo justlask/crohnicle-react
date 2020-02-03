@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import AuthService from '../Auth/AuthService';
 import PostCard from '../Posts/PostCard';
+import Status from './Status';
 
 const GroupPage = (props) => {
   const service = new AuthService();
@@ -56,24 +57,33 @@ const GroupPage = (props) => {
     }
   }
 
+  const handleStatus = () => {
+    if (group.members) {
+      return (group.members.includes(props.user._id)) ? <Status /> : null
+    }
+  }
+
   return (
     <main>   
       <div className="friendprofile">
-        <div className="friendcard">
-          <img src={group.image} alt=""/>
-          <div className="content">
-            <h1>{group.name}</h1>
-            <p>{group.summary}</p>
-            { showLocation() }
+        <div style={{backgroundColor: 'white', borderRadius: '16px'}}>
+          <div className="friendcard">
+            <img src={group.image} alt=""/>
+            <div className="content">
+              <h1>{group.name}</h1>
+              <p>{group.summary}</p>
+              { showLocation() }
+            </div>
+            <div className="content">
+              <div className="type">{(group.members) ? group.members.length : null} members</div>
+              { handleJoin() }
+            </div>
           </div>
-          <div className="content">
-            <div className="type">{(group.members) ? group.members.length : null} members</div>
-          {handleJoin()}
-          </div>
+          { handleStatus() }
         </div>
-          <div className="posts">
-            { showPosts() }
-          </div>
+        <div className="posts">
+          { showPosts() }
+        </div>
       </div>   
     </main>
   )
