@@ -50,6 +50,36 @@ const FriendProfile = (props) => {
     }
   }
 
+  const addFriend = (e) => {
+    let user = props.user
+    let friendID = props.match.params.id
+
+    service.addFriend(user, friendID)
+    .then(response => {
+      props.updateUser(response)
+    })
+  }
+
+  const removeFriend = (e) => {
+    let user = props.user
+    let friendID = props.match.params.id
+
+    service.removeFriend(user, friendID)
+    .then(response => {
+      props.updateUser(response)
+    })
+  }
+
+  const handleFriend = () => {
+    if (props.match.params.id !== props.user._id) {
+      return (props.user.friends.includes(props.match.params.id)) ? (
+        <button className="joinbtn" onClick={removeFriend}>unfollow</button>
+      ) : (
+        <button className="joinbtn" onClick={addFriend}>follow</button>
+    )
+    }
+  }
+
   const showLocation = () => {
     return (!friend.location) ? null : <p>{friend.location.city}, {friend.location.state}</p>
   }
@@ -65,6 +95,7 @@ const FriendProfile = (props) => {
             <p>{friend.bio}</p>
             { showLocation() }
             <div className="type">{friend.type}</div>
+            { handleFriend() }
           </div>
           <div className="content">
             <h5>Medications:</h5>
