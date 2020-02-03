@@ -7,6 +7,14 @@ const FriendProfile = (props) => {
   const [friend, setFriend] = useState({});
   const [posts, setPosts] = useState([])
 
+  const updateProfile = () => {
+    service.getProfile(props.match.params.id)
+    .then(friend => {
+      setFriend(friend.user);
+      setPosts(friend.posts);
+    })
+  }
+
   useEffect(() => {
     service.getProfile(props.match.params.id)
     .then(friend => {
@@ -15,11 +23,12 @@ const FriendProfile = (props) => {
     })
   }, [])
 
+
   const showPosts = () => {
     console.log(posts)
     return (posts.length > 0) ? (
       posts.map((post, i) => {
-        return <PostCard post={post} key={i} user={props.user} />
+        return <PostCard post={post} key={i} user={props.user} updatePosts={updateProfile} />
       })
     ) :
     (

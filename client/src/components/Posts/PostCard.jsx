@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Comments from '../Comments/Comments'
 import PostOptions from './PostOptions'
 import AddComment from '../Comments/AddComment'
-import EditPost from './EditPost'
+// import EditPost from './EditPost'
 
 const PostCard = (props) => {
   const [ showAddComment, setShowAddComment ] = useState(false);
@@ -25,7 +25,7 @@ const PostCard = (props) => {
         <Comments isVisable={showComments} showComments={setShowComments} comments={props.post.comments}/>
         <AddComment isVisable={showAddComment} showAddComment={setShowAddComment} post={props.post._id} update={props.updatePosts}/>
       </div>
-      <EditPost />
+      {/* <EditPost /> */}
     </div>
   )
 }
