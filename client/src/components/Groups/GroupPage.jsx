@@ -32,6 +32,30 @@ const GroupPage = (props) => {
     }
   }
 
+  const joinGroup = () => {
+    service.joinGroup(group._id)
+    .then(response => {
+      setGroup(response)
+    })
+  }
+
+  const leaveGroup = () => {
+    service.leaveGroup(group._id)
+    .then(response => {
+      setGroup(response)
+    })
+  }
+
+  const handleJoin = () => {
+    if (group.members) {
+      return (group.members.includes(props.user._id)) ? (
+        <button className="joinbtn" onClick={leaveGroup}>leave group</button>
+      ) : (
+        <button className="joinbtn" onClick={joinGroup}>join group</button>
+    )
+    }
+  }
+
   return (
     <main>   
       <div className="friendprofile">
@@ -39,14 +63,12 @@ const GroupPage = (props) => {
           <img src={group.image} alt=""/>
           <div className="content">
             <h1>{group.name}</h1>
-            {/* <h2>@{group.summary}</h2> */}
             <p>{group.summary}</p>
             { showLocation() }
-            <div className="type">{(group.members) ? group.members.length : null} members</div>
           </div>
           <div className="content">
-            Extra content can go here???
-           <p> </p>
+            <div className="type">{(group.members) ? group.members.length : null} members</div>
+          {handleJoin()}
           </div>
         </div>
           <div className="posts">

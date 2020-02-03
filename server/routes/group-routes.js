@@ -62,14 +62,32 @@ router.post('/creategroup', (req,res,next) => {
 
 router.get('/:id', (req,res,next) => {
   Group.findById(req.params.id)
-  .populate('members')
   .populate('admin')
   .populate('comments')
   .then(group => {
     console.log(group)
     res.json(group)
   })
-})
+});
+
+
+router.post('/join/:id', (req,res,next) => {
+  Group.findByIdAndUpdate(req.params.id, {$push: {members: req.user.id}}, {new:true})
+  .populate('admin')
+  .populate('comments')
+  .then(response => {
+    res.json(response)
+  })
+});
+
+router.post('/leave/:id', (req,res,next) => {
+  Group.findByIdAndUpdate(req.params.id, {$pull: {members: req.user.id}}, {new:true})
+  .populate('admin')
+  .populate('comments')
+  .then(response => {
+    res.json(response)
+  })
+});
 
 
 

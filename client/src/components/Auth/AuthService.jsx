@@ -144,6 +144,16 @@ class AuthService {
     .then(response => response.data)
   }
 
+  joinGroup = (id) => {
+    return this.service.post(`/group/join/${id}`)
+    .then(response => response.data)
+  }
+
+  leaveGroup = (id) => {
+    return this.service.post(`/group/leave/${id}`)
+    .then(response => response.data)
+  }
+
 
 }
 
