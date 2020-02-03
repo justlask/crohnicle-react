@@ -16,7 +16,8 @@ const Status = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    service.postStatus(status)
+    status.group = props.group
+    service.postGroupNotification(status)
     .then(data => {
       document.getElementById("status").reset();
       hasPosted(true)

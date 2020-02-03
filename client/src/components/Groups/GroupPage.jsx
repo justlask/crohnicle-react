@@ -6,12 +6,16 @@ import Status from './Status';
 const GroupPage = (props) => {
   const service = new AuthService();
   const [group, setGroup] = useState({})
+  const [posts, setPosts] = useState([])
 
   useEffect(() => {
     service.getGroup(props.match.params.id)
-    .then(response => {
-      console.log(response)
-      setGroup(response)
+    .then(group => {
+      setGroup(group)
+    })
+    service.getGroupPosts(props.match.params.id)
+    .then(posts => {
+      setPosts(posts)
     })
   }, [])
 
@@ -19,15 +23,23 @@ const GroupPage = (props) => {
     return (!group.location) ? null : <p>{group.location.city}, {group.location.state}</p>
   }
 
+  const loadPosts = () => {
+    service.getGroupPosts(props.match.params.id)
+    .then(posts => {
+      setPosts(posts)
+    })
+  }
+
   const showPosts = () => {
-    if (group.notifications){
-      return (group.notifications.length > 0) ? (
-        group.notifications.map((post, i) => {
-          return <PostCard post={post} key={i} />
+    console.log(posts)
+    if (posts && group) {
+      return (posts.length > 0 && group.members.includes(props.user._id)) ? (
+        posts.map((post, i) => {
+          return <PostCard post={post} key={i} user={props.user} updatePosts={loadPosts} />
         })
       ) : (
         <div className="postbox">
-          <h1>No posts yet!</h1>
+          <h3>This group either has no posts, or you are not a member.</h3>
         </div>
       )
     }
@@ -59,7 +71,7 @@ const GroupPage = (props) => {
 
   const handleStatus = () => {
     if (group.members) {
-      return (group.members.includes(props.user._id)) ? <Status /> : null
+      return (group.members.includes(props.user._id)) ? <Status group={group._id} user={props.user} updateUser={props.updateUser} updatePosts={loadPosts} /> : null
     }
   }
 

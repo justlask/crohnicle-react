@@ -3,6 +3,7 @@ const router = express.Router();
 const User  = require('../models/Users')
 const Group = require('../models/Groups')
 const Comment = require('../models/Comments')
+const Notification = require('../models/Notification')
 const uploadCloud = require('../config/cloudinary.js');
 
 
@@ -63,7 +64,7 @@ router.post('/creategroup', (req,res,next) => {
 router.get('/:id', (req,res,next) => {
   Group.findById(req.params.id)
   .populate('admin')
-  .populate('comments')
+  .populate('notifications')
   .then(group => {
     console.log(group)
     res.json(group)
@@ -73,8 +74,7 @@ router.get('/:id', (req,res,next) => {
 
 router.post('/join/:id', (req,res,next) => {
   Group.findByIdAndUpdate(req.params.id, {$push: {members: req.user.id}}, {new:true})
-  .populate('admin')
-  .populate('comments')
+  .populate('notifications')
   .then(response => {
     res.json(response)
   })
@@ -83,7 +83,7 @@ router.post('/join/:id', (req,res,next) => {
 router.post('/leave/:id', (req,res,next) => {
   Group.findByIdAndUpdate(req.params.id, {$pull: {members: req.user.id}}, {new:true})
   .populate('admin')
-  .populate('comments')
+  .populate('notifications')
   .then(response => {
     res.json(response)
   })

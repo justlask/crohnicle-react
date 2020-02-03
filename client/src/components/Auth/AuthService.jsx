@@ -154,6 +154,16 @@ class AuthService {
     .then(response => response.data)
   }
 
+  getGroupPosts = (id) => {
+    return this.service.get(`/notification/${id}`)
+    .then(response => response.data)
+  }
+
+  postGroupNotification = (status) => {
+    return this.service.post('/notification/create', status )
+    .then(response => response.data)
+  }
+
 
 }
 
