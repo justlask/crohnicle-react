@@ -31,7 +31,6 @@ const GroupPage = (props) => {
   }
 
   const showPosts = () => {
-    console.log(posts)
     if (posts && group) {
       return (posts.length > 0 && group.members.includes(props.user._id)) ? (
         posts.map((post, i) => {

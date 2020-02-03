@@ -1,9 +1,10 @@
-const express     = require('express');
-const router      = express.Router();
-const User        = require('../models/Users')
-const Post        = require('../models/Posts');
-const Comment     = require('../models/Comments')
-const uploadCloud = require('../config/cloudinary.js');
+const express       = require('express');
+const router        = express.Router();
+const User          = require('../models/Users')
+const Post          = require('../models/Posts');
+const Comment       = require('../models/Comments');
+const Notification  = require('../models/Notification');
+const uploadCloud   = require('../config/cloudinary.js');
 
 
 
@@ -17,7 +18,6 @@ router.post('/upload', uploadCloud.single('image'), (req,res,next) => {
 
 
 router.post('/create', (req,res,next) => {
-  console.log(req.body)
   let postObj = {
     author: req.user.username,
     content: req.body.content,
@@ -33,22 +33,45 @@ router.post('/create', (req,res,next) => {
 });
 
 router.post('/like/:id', (req, res, next) => {
-  console.log(req.params.id)
 
-  Post.findByIdAndUpdate(req.params.id, {$push: { likes: req.user.id }}, {new:true})
-  .populate('authorID')
-  .then(post => {
-    res.json(post)
+  Post.findById(req.params.id)
+  .then(response => {
+
+    if (response === null) {
+      // it's a group post
+      Notification.findByIdAndUpdate(req.params.id, {$push: { likes: req.user.id }}, {new:true})
+      .populate('authorID')
+      .then(post => {
+        res.json(post)
+      })
+    }
+    // it's a users post
+    Post.findByIdAndUpdate(req.params.id, {$push: { likes: req.user.id }}, {new:true})
+    .populate('authorID')
+    .then(post => {
+      res.json(post)
+    })
   })
 });
 
 router.post('/unlike/:id', (req, res, next) => {
-  console.log(req.params.id)
+  
+  Post.findById(req.params.id)
+  .then(response => {
 
-  Post.findByIdAndUpdate(req.params.id, {$pull: { likes: req.user.id }}, {new:true})
-  .populate('authorID')
-  .then(post => {
-    res.json(post)
+    if (response === null) {
+      //it's a group post
+      Notification.findByIdAndUpdate(req.params.id, {$pull: { likes: req.user.id }}, {new:true})
+      .populate('authorID')
+      .then(post => {
+        res.json(post)
+      })
+    }
+    Post.findByIdAndUpdate(req.params.id, {$pull: { likes: req.user.id }}, {new:true})
+    .populate('authorID')
+    .then(post => {
+      res.json(post)
+    })
   })
 });
 

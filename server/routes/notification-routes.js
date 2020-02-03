@@ -8,7 +8,6 @@ const Group         = require('../models/Groups')
 
 
 router.post('/create', (req,res,next) => {
-  console.log(req.body)
   let postObj = {
     author: req.user.username,
     content: req.body.content,
@@ -28,12 +27,26 @@ router.post('/create', (req,res,next) => {
 
 router.get('/:id', (req,res,next) => {
   Group.findById(req.params.id)
+  .populate('authorID')
+  .populate('comments')
+  .populate({
+    path : 'notifications',
+    model: Notification,
+    populate : {
+      path : 'comments',
+      model: Comment,
+      populate: {
+        path: 'authorID',
+        model: User,
+      }
+    }
+  })
   .populate({
     path : 'notifications',
     model: Notification,
     populate : {
       path : 'authorID',
-      model: User
+      model: User,
     }
   })
   .then(response => {

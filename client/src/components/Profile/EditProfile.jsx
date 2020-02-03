@@ -8,11 +8,6 @@ const EditProfile = (props) => {
   const [ user, setUser ] = useState(props.user);
   const [ updates, setUpdates ] = useState({})
 
-  useEffect(() => {
-    console.log(props)
-  },[])
-
-
   const submitChanges = (e) => {
     e.preventDefault();
     service.updateUser(updates)
