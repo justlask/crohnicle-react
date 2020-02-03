@@ -6,6 +6,7 @@ const passport = require("passport");
 const Post     = require('../models/Posts')
 const Group     = require('../models/Groups')
 const Event     = require('../models/Events')
+const Comment   = require('../models/Comments')
 
 const uploadCloud = require('../config/cloudinary.js');
 
@@ -25,6 +26,14 @@ router.post('/upload', uploadCloud.single("image"), (req, res, next) => {
 router.get('/posts', (req,res,next) => {
     Post.find({ $or: [ { authorID: { $in: req.user.friends } }, { authorID: req.user.id}]})
     .populate('authorID')
+    .populate({
+      path : 'comments',
+      model: Comment,
+      populate : {
+        path : 'authorID',
+        model: User
+      }
+    })
     .then(data => {
       res.json(data.reverse())
     }).catch(err => next(err))
@@ -63,10 +72,6 @@ router.put('/removefriend', (req,res,next) => {
   }).catch(err => next(err))
 });
 
-
-
-
-
 router.get('/profile/:id', (req,res,next) => {
 
   User.findById( req.params.id )
@@ -74,6 +79,14 @@ router.get('/profile/:id', (req,res,next) => {
   .then(data =>
     Post.find({authorID: data.id})
     .populate('authorID')
+    .populate({
+      path : 'comments',
+      model: Comment,
+      populate : {
+        path : 'authorID',
+        model: User
+      }
+    })
     .then(posts => {
       res.json({user: data, posts: posts.reverse()})
     })

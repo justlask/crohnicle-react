@@ -16,9 +16,10 @@ const FriendProfile = (props) => {
   }, [])
 
   const showPosts = () => {
+    console.log(posts)
     return (posts.length > 0) ? (
       posts.map((post, i) => {
-        return <PostCard post={post} key={i} />
+        return <PostCard post={post} key={i} user={props.user} />
       })
     ) :
     (

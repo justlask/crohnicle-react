@@ -7,8 +7,8 @@ import EditProfile from './Profile/EditProfile'
 
 const Dashboard = (props) => {
   const service = new AuthService();
-  const [posts, setPosts] = useState([]);
-  const [editIsHidden, setHidden] = useState(true)
+  const [ posts, setPosts ] = useState([]);
+  const [ editIsHidden, setHidden ] = useState(true)
 
   useEffect(() => {
     service.getPosts()

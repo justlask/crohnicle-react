@@ -21,7 +21,7 @@ const PostOptions = (props) => {
   }
 
   const addComment = (e) => {
-    props.showAddComment(true);
+    props.showAddComment(!props.showAddCommentVariable);
   }
 
   const handleLike = (e) => {
@@ -39,7 +39,7 @@ const PostOptions = (props) => {
   }
 
   const showComments = () => {
-    console.log('show all them comments')
+    props.showComments(!props.showCommentsVariable)
   }
 
   return (props.post.comments.length > 0) ? (
