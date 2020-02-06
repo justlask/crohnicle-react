@@ -128,11 +128,6 @@ router.post('/join/:id', (req,res,next) => {
 
 
 
-
-//messing around with adding a "chat" feature to groups
-//create a comment in the comment schema
-//save comment id to group.comments array
-//on group page load, query all comments with that post id
 router.post('/comment/:id', (req,res,next) => {
 
   let newComment = {
@@ -152,6 +147,4 @@ router.post('/comment/:id', (req,res,next) => {
 })
 
 
-
-// res.send(data.groupID, data.id)
 module.exports = router;
