@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import AuthService from './AuthService';
+import FlashMessage from '../FlashMessage';
 import { Link } from 'react-router-dom';
 
 const Signup = (props) => {
   const service = new AuthService();
   const [user, setUser] = useState({username: '', password: '', email: '', type: ''});
+  const [isHidden, setHidden] = useState(false)
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
@@ -18,7 +20,9 @@ const Signup = (props) => {
         props.updateUser(response)
         props.history.push('/dashboard')
     })
-    .catch( error => console.log(error) )
+    .catch(err => {
+      console.log(err)
+    })
   }
   
   const handleChange = (event) => {  
@@ -58,7 +62,7 @@ const Signup = (props) => {
 
           <input className="submitbtn" type="submit" value="Sign up" />
         </form><br></br>
-
+        <FlashMessage isHidden={isHidden} message="failed" setHidden={setHidden} />
         <p>Already have account? 
           <Link to={"/login"}> Log in</Link>
         </p>

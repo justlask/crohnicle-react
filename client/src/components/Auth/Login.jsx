@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import AuthService from './AuthService';
+import FlashMessage from '../FlashMessage';
 import { Link } from 'react-router-dom';
 
 const Login = (props) => {
@@ -40,7 +41,8 @@ const Login = (props) => {
           <div  className="floatinglabel">
             <label>Password</label>
             <input type="password" name="password" placeholder="password" value={user.password} onChange={ e => handleChange(e)} /><br></br>
-          </div>             
+          </div> 
+          <FlashMessage isHidden="false" message="helloooo" />            
           <input type="submit" value="Log in" className="submitbtn" />
         </form><br></br>
         <p>Don't have account? 
