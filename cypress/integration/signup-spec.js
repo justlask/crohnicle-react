@@ -19,7 +19,16 @@ context('Signup', () => {
     cy.get('select').select('ally')
     cy.get('input[type="submit"]').click()
 
-    // cy.contains("Unable to signup")
+    cy.contains("Username taken")
+    cy.url().should('contain', '/signup')
+  })
+  it('will not work without username or password', () => {
+    cy.contains('a', 'sign up').click()
+    cy.get('input[name="email"]').type('fake@email.com')
+    cy.get('select').select('ally')
+    cy.get('input[type="submit"]').click()
+
+    cy.contains("Provide username and password")
     cy.url().should('contain', '/signup')
   })
 
