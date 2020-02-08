@@ -5,6 +5,7 @@ $purple: #4E1681;
 $darkpurple: rgb(58, 10, 104);
 $light: #E6E5DE;
 $favorite: #F7F7F7;
+$warning: rgba(240, 93, 93, 0.5);
 
 * {
   margin: 0;
@@ -887,6 +888,17 @@ footer {
     transition: all 0.2s;
     cursor: pointer;
   }
+}
+
+
+/* Flash Message */
+.flashmessage {
+  background-color: $warning;
+  color: black;
+  padding: 10px;
+  font-weight: 500;
+  border-radius: 8px;
+  margin-bottom: 20px;
 }
 
 

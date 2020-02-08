@@ -6,7 +6,15 @@ import { Link } from 'react-router-dom';
 const Signup = (props) => {
   const service = new AuthService();
   const [user, setUser] = useState({username: '', password: '', email: '', type: ''});
-  const [isHidden, setHidden] = useState(false)
+  const [isHidden, setHidden] = useState(true)
+  const [error, setError] = useState(null)
+
+  const handleError = (error) => {
+    setError(error.response.data.message)
+    setHidden(false)
+
+    setTimeout(() => setHidden(true), 4000)
+  }
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
@@ -17,14 +25,17 @@ const Signup = (props) => {
   
     service.signup(username, password, email, type)
     .then(response => {
+      console.log(response)
         props.updateUser(response)
         props.history.push('/dashboard')
     })
     .catch(err => {
-      console.log(err)
+      handleError(err);
+      // console.log(err.response.data.message)
+      // setError(err.response.data.message)
     })
   }
-  
+
   const handleChange = (event) => {  
     setUser({
       ...user,
@@ -59,10 +70,9 @@ const Signup = (props) => {
             <option value="caregiver">caregiver</option>
             <option value="professional">medical professional</option>
           </select><br></br>
-
+          <FlashMessage isHidden={isHidden} message={error} setHidden={setHidden} />
           <input className="submitbtn" type="submit" value="Sign up" />
         </form><br></br>
-        <FlashMessage isHidden={isHidden} message="failed" setHidden={setHidden} />
         <p>Already have account? 
           <Link to={"/login"}> Log in</Link>
         </p>

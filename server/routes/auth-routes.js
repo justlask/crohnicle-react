@@ -20,7 +20,7 @@ router.post('/signup', (req, res, next) => {
 
   if (!username || !password) {
     console.log('no username or pass')
-    res.status(400).json({ message: 'Provide username and password' });
+    res.status(400).send({ message: 'Provide username and password' });
     return;
   }
 
@@ -28,13 +28,13 @@ router.post('/signup', (req, res, next) => {
 
       if(err){
         console.log(err)
-          res.status(500).json({message: "Username check went bad."});
+          res.status(500).send({message: "Username check went bad."});
           return;
       }
 
       if (foundUser) {
         console.log('already exists')
-          res.status(400).json({ message: 'Username taken. Choose another one.' });
+          res.status(400).send({ message: 'Username taken' });
           return;
       }
 
@@ -51,7 +51,7 @@ router.post('/signup', (req, res, next) => {
       aNewUser.save(err => {
           if (err) {
             console.log('error saving')
-              res.status(400).json({ message: 'Saving user to database went wrong.' });
+              res.status(400).send({ message: 'Saving user to database went wrong.' });
               return;
           }
 
@@ -60,7 +60,7 @@ router.post('/signup', (req, res, next) => {
           req.login(aNewUser, (err) => {
 
               if (err) {
-                  res.status(500).json({ message: 'Login after signup went bad.' });
+                  res.status(500).send({ message: 'Login after signup went bad.' });
                   return;
               }
           
@@ -73,19 +73,25 @@ router.post('/signup', (req, res, next) => {
 });
   
   router.post('/login', (req,res,next) => {
+    const username = req.body.username;
+    const password = req.body.password;
+    if (!username || !password) {
+      res.status(400).send({message: 'Provide username/password'});
+      return;
+    }
     passport.authenticate('local', (err, theUser, failureDetails) => {
       if (err) {
-        res.status(500).json({message: 'Something went wrong during login'})
+        res.status(500).send({message: 'Something went wrong'})
         return;
       }
       if (!theUser) {
-        res.status(401).json(failureDetails);
+        res.status(401).send({message: 'username/password incorrect'});
         return;
       }
 
       req.login(theUser, (err) => {
         if (err) {
-          res.status(500).json({message: 'Error during login.'})
+          res.status(500).send({message: 'error during login'})
           return;
         }
         
@@ -120,7 +126,6 @@ router.post('/signup', (req, res, next) => {
 
     User.findOne({email: email},)
     .then(foundUser => {
-        console.log('user     ' + foundUser)
         if (foundUser === null) {
             // handle case if no email | username is found
             res.status(400).json({ message: 'No account with that email exists.'});
