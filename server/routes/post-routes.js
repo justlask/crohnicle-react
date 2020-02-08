@@ -18,18 +18,28 @@ router.post('/upload', uploadCloud.single('image'), (req,res,next) => {
 
 
 router.post('/create', (req,res,next) => {
-  let postObj = {
-    author: req.user.username,
-    content: req.body.content,
-    authorID: req.user.id
-  }
-  if (req.body.title) postObj.title = req.body.title
-  if (req.body.image) postObj.image = req.body.image
 
-  Post.create(postObj)
-  .then(data => {
-    res.json(data)
-  })
+  if (!req.body.title && !req.body.content) {
+    res.status(400).send({message: 'you cannot make an empty post'});
+    return;
+  }
+  if (!req.body.content) {
+    res.status(400).send({message: 'you cannot make a post without content'});
+    return;
+  }
+    let postObj = {
+      author: req.user.username,
+      content: req.body.content,
+      authorID: req.user.id
+    }
+    if (req.body.title) postObj.title = req.body.title
+    if (req.body.image) postObj.image = req.body.image
+  
+    Post.create(postObj)
+    .then(data => {
+      res.json(data)
+    })
+
 });
 
 router.post('/like/:id', (req, res, next) => {

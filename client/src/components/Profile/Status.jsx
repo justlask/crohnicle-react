@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
 import AuthService from '../Auth/AuthService'
 import StatusPhotoUpload from './StatusPhotoUpload'
+import FlashMessage from '../FlashMessage'
 
 const Status = (props) => {
   const [status, updateStatus] = useState({});
-  const [posted, hasPosted] = useState(false)
+  const [posted, hasPosted] = useState(false);
+  const [isHidden, setHidden] = useState(true);
+  const [error, setError] = useState(null);
   const service = new AuthService();
 
   const handleChange = (event) => {  
@@ -14,6 +17,13 @@ const Status = (props) => {
     })
   }
 
+  const handleError = (error) => {
+    setError(error);
+    setHidden(false);
+
+    setTimeout(() => setHidden(true), 4000)
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault();
     service.postStatus(status)
@@ -21,6 +31,9 @@ const Status = (props) => {
       document.getElementById("status").reset();
       hasPosted(true)
       props.updatePosts();
+    })
+    .catch(err => {
+      handleError(err.response.data.message)
     })
   }
 
@@ -37,6 +50,7 @@ const Status = (props) => {
         <input type="text" name="title" placeholder="give me a title" onChange={handleChange}/>         
         <textarea name="content" id="content" placeholder="tell me something good."  onChange={handleChange} required></textarea>
         <StatusPhotoUpload handlePhoto={handlePhoto} posted={posted}/>
+        <FlashMessage isHidden={isHidden} message={error}/>
         <button type="submit" onClick={handleSubmit}>share</button>
       </form> 
     </div>
