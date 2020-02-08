@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import AddComment from './AddComment'
 
 const Comments = (props) => {
+  const [ showAddComment, setShowAddComment ] = useState(true);
 
   const displayComments = () => {
     return props.comments.map((comment, i) => {
@@ -20,6 +22,7 @@ const Comments = (props) => {
   return (props.isVisable) ? (
       <div>
         { displayComments() }
+        <AddComment isVisable={showAddComment} showAddComment={setShowAddComment} post={props.post} update={props.update}/>
       </div>
   ) : null
 }

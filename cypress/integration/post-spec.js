@@ -31,7 +31,7 @@ context('Posts', () => {
 
   it('will add a new post to the posts container with both title/content', () => {
     cy.get('input[name="title"]').type("it's a title")
-    cy.get('textarea[name="content"]').type("it's some content without a title")
+    cy.get('textarea[name="content"]').type("it's some content with a title")
      cy.get('#status > button').click()
   });
   

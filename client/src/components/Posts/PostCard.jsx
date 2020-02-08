@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Comments from '../Comments/Comments'
 import PostOptions from './PostOptions'
-import AddComment from '../Comments/AddComment'
 // import EditPost from './EditPost'
 
 const PostCard = (props) => {
@@ -22,8 +21,7 @@ const PostCard = (props) => {
           {(props.post.image) ? <img src={props.post.image}></img> : null}
         </div>
         <PostOptions post={props.post} user={props.user} update={props.updatePosts} showAddComment={setShowAddComment} showAddCommentVariable={showAddComment} showComments={setShowComments} showCommentsVariable={showComments}/>
-        <Comments isVisable={showComments} showComments={setShowComments} comments={props.post.comments}/>
-        <AddComment isVisable={showAddComment} showAddComment={setShowAddComment} post={props.post._id} update={props.updatePosts}/>
+        <Comments isVisable={showComments} showComments={setShowComments} comments={props.post.comments} post={props.post._id} update={props.updatePosts}/>
       </div>
       {/* <EditPost /> */}
     </div>

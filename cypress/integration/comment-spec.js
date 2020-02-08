@@ -11,6 +11,16 @@ context('Comments', () => {
     // logged in
   });
 
+  it('will allow people to add a comment', () => {
+
+  });
+
+  it('will allow people to view comments', () => {
+    
+  })
+
+
+
   
 
 });

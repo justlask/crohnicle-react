@@ -20,10 +20,6 @@ const PostOptions = (props) => {
     })
   }
 
-  const addComment = (e) => {
-    props.showAddComment(!props.showAddCommentVariable);
-  }
-
   const handleLike = (e) => {
     return (props.post.likes.includes(props.user._id)) ? (
       <button onClick={(e) => removeLike(e)}>
@@ -42,22 +38,11 @@ const PostOptions = (props) => {
     props.showComments(!props.showCommentsVariable)
   }
 
-  return (props.post.comments.length > 0) ? (
+  return (
     <div>
       <div className="interactbtns">
         { handleLike() }
-        <button onClick={(e) => addComment(e)}>
-          {props.post.comments.length}
-          <FontAwesomeIcon className="icon" icon={faComment} />
-        </button>
-      </div>
-      <button className="commentsbtn" onClick={(e) => showComments(e)}>view all {props.post.comments.length} comments</button>
-    </div>
-  ) : (
-    <div>
-      <div className="interactbtns">
-        { handleLike() }
-        <button onClick={(e) => addComment(e)}>
+        <button onClick={(e) => showComments(e)}>
           {props.post.comments.length}
           <FontAwesomeIcon className="icon" icon={faComment} />
         </button>
