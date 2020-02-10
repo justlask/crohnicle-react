@@ -15,6 +15,7 @@ import GroupPage from './components/Groups/GroupPage'
 import Events from './components/Events/Events'
 import ResetPassword from './components/Auth/ResetPassword'
 import ProtectedRoute from './components/Auth/protectedRoute'
+import Error404 from './components/Error404'
 
 const App = () => {
   const service = new AuthService();
@@ -59,6 +60,7 @@ const App = () => {
           <ProtectedRoute user={user} updateUser={updateUser} exact path="/group/:id" component={GroupPage}/>
           <ProtectedRoute user={user} updateUser={updateUser} exact path="/groups" component={Groups}/>
           <ProtectedRoute user={user} updateUser={updateUser} exact path="/events" component={Events} />
+          <Route render={() => <Error404 /> }/>
         </Switch>
         <Footer />
       </div>
